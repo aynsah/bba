@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.5'
+ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -32,8 +32,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,9 +58,9 @@ gem 'simple_form'
 
 gem "slim-rails"
 
-gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'remotipart'#, github: 'mshibuya/remotipart'
 
-gem 'rails_admin', github: 'sferik/rails_admin'
+gem 'rails_admin'#, github: 'sferik/rails_admin'
 
 gem 'rails_admin_rollincode', '~> 1.0'
 

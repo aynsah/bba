@@ -9,7 +9,7 @@ class Users::UnlocksController < Devise::UnlocksController
   # POST /resource/unlock
   def create
     super
-  en
+  end
   # GET /resource/unlock?unlock_token=abcdef
   def show
     super

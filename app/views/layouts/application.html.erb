@@ -20,19 +20,21 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <% if current_user %>
-                <% if current_user.admin == true %>
+                <% if current_user && current_user.admin == true %>
                   <%= link_to "Admin Dashboard", rails_admin_path, class: "nav-link" %>
                 <% end %>
-              <% end %>  
                 <span class="sr-only">(current)</span>
-              
             </li>
             <li class="nav-item">
                 <% if current_user %>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
                 <% else %> 
                   <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+                <% end %>
+            </li>
+            <li class="nav-item">
+                <% if current_user %>
+                  <%= link_to "Edit Profil", edit_user_registration_path, class: "nav-link" %>
                 <% end %>
             </li>
           </ul>

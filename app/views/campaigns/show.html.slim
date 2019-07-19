@@ -1,0 +1,20 @@
+p= link_to "New", new_campaign_path
+
+table
+  tr
+    th width="150" Photo
+    th width="150" Judul
+    th width="150" Kategori
+    th width="150" Target donasi
+    th width="150" Batas Waktu
+    th width="150" Deskripsi
+    th width="150" Tambahan
+
+  tr
+    td= @campaign.image_campaign
+    td= @campaign.campaign_title
+    td= @campaign.campaign_category
+    td= @campaign.donation_target
+    td= @campaign.campaign_timeout
+    td= @campaign.campaign_desc
+    td= @campaign.additional_text

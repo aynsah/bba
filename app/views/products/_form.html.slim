@@ -1,0 +1,12 @@
+= simple_form_for(@product) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name
+    = f.input :quantity, input_html: { min: 0 }
+    = f.input :price
+    = f.input :supplier_id, collection: Supplier.all, label: t('Suppliers'), value_method: :id
+
+  .form-actions
+    = f.button :submit, class: "btn-primary"

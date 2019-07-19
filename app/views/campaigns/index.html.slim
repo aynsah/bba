@@ -1,0 +1,12 @@
+p= link_to "New", new_campaign_path
+
+/ # = simple_form_for(@campaigns, as: :campaigns, method: :get, url: search_campaign_path, remote: true) do |f|
+/ #   .form-group
+/ #     = f.input :campaign_category, collection: ["Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan"]
+
+= form_tag campaigns_path, :method => 'get' do
+  = select_tag :search,  options_for_select(["All", "Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan" ])
+  = submit_tag
+
+div id="search-output-table"
+  = render partial: "table", locales: {campaigns: @campaigns}

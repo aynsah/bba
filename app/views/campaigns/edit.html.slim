@@ -1,0 +1,15 @@
+h2 Edit Campaign
+
+= simple_form_for(@campaign) do |f|
+
+  .form-group
+    = f.input :image_campaign
+    = f.input :campaign_category, collection: ["Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan"]
+    = f.input :campaign_title, required: true
+    = f.input :donation_target, as: :decimal
+    = f.input :campaign_timeout, as: :date
+    = f.input :campaign_desc, as: :text
+    = f.input :additional_text, as: :text
+    = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+
+    = f.submit "Create Campaign"

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_041221) do
+ActiveRecord::Schema.define(version: 2019_07_18_095610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campaigns", force: :cascade do |t|
+    t.string "campaign_title", null: false
+    t.string "campaign_category"
+    t.integer "donation_target"
+    t.date "campaign_timeout"
+    t.text "campaign_desc"
+    t.text "additional_text"
+    t.string "image_campaign"
+    t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -28,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_041221) do
     t.string "name"
     t.integer "quantity"
     t.float "price"
-    t.string "supplier"
+    t.string "supplier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +83,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_041221) do
     t.string "photo"
     t.text "address"
     t.text "bio"
+    t.boolean "verified_user"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

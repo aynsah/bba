@@ -1,7 +1,9 @@
 p= link_to "New", new_campaign_path
 
 = form_tag campaigns_path, class: "form-inline mb-2", :method => 'get' do
-  = select_tag :search,  options_for_select(["All", "Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan" ], params[:search]), class: "form-control col-lg-3"
+  = select_tag :category_filter,  options_for_select(["All", "Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan" ], params[:category_filter]), class: "form-control col-lg-3"
+
+  = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-3"
   
   = button_tag(type: "submit", class: "btn btn-outline-secondary ml-4") do
   	| Submit

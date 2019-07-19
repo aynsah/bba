@@ -2,11 +2,7 @@ class CampaignsController < ApplicationController
   before_action :find_campaign, only: [:show, :edit, :update, :destroy]
 
   def index
-    @campaigns = Campaign.search(params[:search])
-  end
-
-  def search
-    @campaigns = Campaign.find_by_campaign_category(params[:campaign_category])
+    @campaigns = Campaign.search(params[:category_filter],params[:user_filter])
   end
 
   def new

@@ -4,7 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
-  has_many :campaigns
+  has_many :campaigns, dependent: :destroy
+
+  # validates :terms_of_service, acceptance: true
+
+  before_save { email.downcase! }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 8 }
 
   def self.new_with_session(params, session)
     super.tap do |user|

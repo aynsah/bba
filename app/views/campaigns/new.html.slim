@@ -1,15 +1,19 @@
 h2 Add new Campaign
 
-= simple_form_for(@campaign) do |f|
+- if current_user
+    = simple_form_for(@campaign) do |f|
+      .form-group
+        = f.input :image_campaign
+        = f.input :campaign_category, collection: ["Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan"]
+        = f.input :campaign_title, required: true
+        = f.input :donation_target, as: :decimal
+        = "maksimal target donasi sejumlah 1 Miliyar"
+        = f.input :campaign_timeout, as: :date
+        = f.input :campaign_desc, as: :text
+        = f.input :additional_text, as: :text
+        = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
 
-  .form-group
-    = f.input :image_campaign
-    = f.input :campaign_category, collection: ["Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan"]
-    = f.input :campaign_title, required: true
-    = f.input :donation_target, as: :decimal
-    = f.input :campaign_timeout, as: :date
-    = f.input :campaign_desc, as: :text
-    = f.input :additional_text, as: :text
-    = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+        = f.submit "Create Campaign"
 
-    = f.submit "Create Campaign"
+- else
+    - controller.redirect_to new_user_session_path unless current_user

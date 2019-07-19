@@ -1,0 +1,2 @@
+module ReportProductsHelper
+end

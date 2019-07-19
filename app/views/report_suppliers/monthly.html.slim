@@ -1,0 +1,56 @@
+h1
+ | Monthly Report : 
+ = @month
+
+table class="table"
+	thead
+		tr
+			th Name
+			th Country
+			th Created at
+			th Updated at
+
+	tbody
+		- @reports.each do |report|
+			tr
+				td = report.name
+				td = report.country
+				td = report.created_at
+				td = report.updated_at
+
+	tfoot
+		tr
+			td colspan="3" align="right"
+				b Total Supplier
+			td 
+				b = @total
+br
+
+table class="table"
+	tr
+		td 
+			b = link_to 'January', month_supplier_path("January")
+		td
+			b = link_to 'February', month_supplier_path("February")
+		td 
+		 	b = link_to 'March', month_supplier_path("March")
+		td
+			b = link_to 'April', month_supplier_path("April")
+		td
+			b = link_to 'May', month_supplier_path("May")
+		td
+			b = link_to 'June', month_supplier_path("June")
+		td
+			b = link_to 'July', month_supplier_path("July")
+		td
+			b = link_to 'August', month_supplier_path("August")
+		td
+			b = link_to 'September', month_supplier_path("September")
+		td
+			b = link_to 'October', month_supplier_path("October")
+		td
+			b = link_to 'November', month_supplier_path("November")
+		td
+			b = link_to 'December', month_supplier_path("December")
+
+= link_to 'Back', products_path, :class => "btn btn-outline-secondary" 

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_supplier_report/:month', to: "report_suppliers#monthly", as: 'month_supplier'
   
+  # get 'campaigns/:id/report-abuse', to: "campaign_complaints#new", as: 'campaign_complaints'
+  # post 'campaigns/:id/report-abuse', to: "campaign_complaints#create"
+
   get 'newsletters', to: 'newsletters#index'
   post 'newsletters/create', to: 'newsletters#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

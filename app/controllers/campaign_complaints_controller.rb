@@ -1,19 +1,19 @@
 class CampaignComplaintsController < ApplicationController
   def new
-    @complaint = CampaignComplaint.new
+    @campaign_complaint = CampaignComplaint.new
   end
 
   def create
     user = current_user.id
-    @complaint = CampaignComplaint.new(complaint_params)
-    @complaint.user_id = user
-    @complaint.validate!
-    @complaint.save
+    @campaign_complaint = CampaignComplaint.new(campaign_complaint_params)
+    @campaign_complaint.user_id = user
+    @campaign_complaint.validate!
+    @campaign_complaint.save
     redirect_to root_path
   end
 
   private
-    def complaint_params
-      params.permit(:complaint, :campaign_id)
+    def campaign_complaint_params
+      params[:campaign_complaint].permit(:complaint, :campaign_id)
     end
 end

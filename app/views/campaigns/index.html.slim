@@ -1,11 +1,8 @@
 p= link_to "New", new_campaign_path
-
-/ # = simple_form_for(@campaigns, as: :campaigns, method: :get, url: search_campaign_path, remote: true) do |f|
-/ #   .form-group
-/ #     = f.input :campaign_category, collection: ["Medis & Kesehatan", "Pendidikan", "Bencana Alam", "Birthday", "Difabel", "Family", "Hadiah", "Karya", "Kegiatan Sosial", "Kemanusiaan"]
 = form_tag campaigns_path, class: "form-inline mb-2", :method => 'get' do
   = select_tag :category_filter,  options_from_collection_for_select( Category.all, :id, :category_name, params[:category_filter]), class: "form-control col-lg-3"
-  = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-3"
+  
+  / = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-3"
   
   = button_tag(type: "submit", class: "btn btn-outline-secondary ml-4") do
   	| Submit

@@ -20,4 +20,4 @@ table
     td= @campaign.additional_text
 
 br/
-= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :method => :get}
+= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}

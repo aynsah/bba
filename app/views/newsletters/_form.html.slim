@@ -1,0 +1,6 @@
+= form_tag 'newsletters/create', class: "form-group mb-2" do
+	br Subject: 
+	= text_field_tag 'subject', '', class: "form-control col-lg-3"
+	br Body:
+	= text_area_tag 'body', '', class: "form-control col-lg-8"
+	= submit_tag "submit",:value => "submit", class: "btn btn-outline-secondary mt-4"

@@ -1,0 +1,5 @@
+<%= form_tag 'newsletters/create' do %>
+	subject: </br><%= text_field_tag 'subject', ''%></br>
+	Body:<%= text_area_tag 'body', ''%>
+	<%= submit_tag "submit",:value => "submit"%>
+<%end%>

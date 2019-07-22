@@ -13,8 +13,11 @@ table
   tr
     td= @campaign.image_campaign
     td= @campaign.campaign_title
-    td= @campaign.campaign_category
+    td= @campaign.category.category_name
     td= @campaign.donation_target
     td= @campaign.campaign_timeout
     td= @campaign.campaign_desc
     td= @campaign.additional_text
+
+br/
+= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :method => :get}

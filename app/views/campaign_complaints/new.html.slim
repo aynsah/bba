@@ -1,0 +1,12 @@
+h2 Send a campaign report
+
+- if current_user
+    = simple_form_for(@complaint) do |f|
+      .form-group
+        = f.input :complaint, as: :text
+        = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{params[:campaign_id]}" }
+
+        = f.submit "Send"
+
+- else
+    - controller.redirect_to new_user_session_path

@@ -58,9 +58,9 @@ gem 'simple_form'
 
 gem "slim-rails"
 
-gem 'remotipart'#, github: 'mshibuya/remotipart'
+gem 'remotipart' # , github: 'mshibuya/remotipart'
 
-gem 'rails_admin'#, github: 'sferik/rails_admin'
+gem 'rails_admin' # , github: 'sferik/rails_admin'
 
 gem 'rails_admin_rollincode', '~> 1.0'
 

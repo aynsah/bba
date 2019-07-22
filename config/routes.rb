@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :campaign_complaints
   resources :campaigns
   resources :products
   resources :suppliers

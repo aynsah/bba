@@ -10,7 +10,6 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    @current_user = current_user.id
     @campaign = Campaign.new(campaign_params)
     @campaign.save
     redirect_to campaigns_path
@@ -37,6 +36,6 @@ class CampaignsController < ApplicationController
 
   private
     def campaign_params
-      params.require(:campaign).permit(:image_campaign, :campaign_category, :campaign_title, :donation_target, :campaign_timeout, :campaign_desc, :additional_text, :user_id)
+      params.require(:campaign).permit(:image_campaign, :category_id, :campaign_title, :donation_target, :campaign_timeout, :campaign_desc, :additional_text, :user_id)
     end
 end

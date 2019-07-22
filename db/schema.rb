@@ -10,20 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_063221) do
+ActiveRecord::Schema.define(version: 2019_07_22_060707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "campaign_complaints", force: :cascade do |t|
+    t.boolean "checked", default: false
+    t.string "user_id"
+    t.text "complaint"
+    t.string "campaign_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "campaigns", force: :cascade do |t|
     t.string "campaign_title", null: false
-    t.string "campaign_category"
+    t.string "category_id"
     t.integer "donation_target"
     t.date "campaign_timeout"
     t.text "campaign_desc"
     t.text "additional_text"
     t.string "image_campaign"
     t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_063221) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "provider"
     t.string "uid"
     t.datetime "remember_created_at"

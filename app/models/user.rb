@@ -1,10 +1,12 @@
 class User < ApplicationRecord
+  has_many :campaign_complaints
+  has_many :campaigns, dependent: :destroy
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :lockable
   devise :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
-  has_many :campaigns, dependent: :destroy
 
   # validates :terms_of_service, acceptance: true
 

@@ -1,24 +1,21 @@
-h1 List of Products
+h1 Home
 
 table class="table"
 	thead
 		tr
-			th scope="col" ID
-			th scope="col" Name
-			th scope="col" Quantity
-			th scope="col" Price
+			th scope="col" Judul
+			th scope="col" colspan="2" Penggalang Dana
+			th scope="col" Kategori
+			th scope="col" Batas Waktu
 
 	tbody
-		- @products.each do |product|
+		- @campaigns.each do |c|
 			tr
-				td = product.id
-				td = product.name
-				td = product.quantity
-				td = product.price
+				td = c.campaign_title
+				td width="50" = c.user.verified_user ? "(Verified) ": ""
+				td = c.user.name
+				td = c.category.category_name
+				td = c.campaign_timeout
 br
 
-= link_to "New Product", products_path, :class => "btn btn-primary"
-span>
-= link_to "New Supplier", suppliers_path, :class => "btn btn-primary"
-span>
 = link_to "Send Mail", newsletters_path, :class => "btn btn-primary"

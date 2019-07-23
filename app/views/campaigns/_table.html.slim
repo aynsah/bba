@@ -5,7 +5,6 @@ table
     th width="1000" colspan="2" Penggalang Dana
     th width="200" Kategori
     th width="200" Batas Waktu
-    th width="200" colspan="3" Action
 
   - @campaigns.each do |campaign|
     tr
@@ -15,6 +14,3 @@ table
       td= campaign.user.name
       td= campaign.category.category_name
       td= campaign.campaign_timeout
-      td= link_to "Show", campaign
-      td= link_to "Update", edit_campaign_path(campaign)
-      td= link_to "Delete", campaign, data: { confirm: 'Are you sure?'}, method: :delete

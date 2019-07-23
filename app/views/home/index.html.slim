@@ -1,21 +1,24 @@
 h1 Home
-
-table class="table"
-	thead
-		tr
-			th scope="col" Judul
-			th scope="col" colspan="2" Penggalang Dana
-			th scope="col" Kategori
-			th scope="col" Batas Waktu
-
-	tbody
-		- @campaigns.each do |c|
-			tr
-				td = c.campaign_title
-				td width="50" = c.user.verified_user ? "(Verified) ": ""
-				td = c.user.name
-				td = c.category.category_name
-				td = c.campaign_timeout
 br
+
+- @campaigns.each do |c|
+	div class="card"
+		img class="card-img-top" src="..." alt="Campaign Image"
+		div class="card-body"
+			h5 class="card-title"
+				= c.campaign_title
+			p class="card-text"
+				= c.campaign_desc
+			= link_to "Detail", c, :class => "btn btn-primary"
+		p class="card-text ml-4 text-muted"
+			| Penggalang Dana : 
+			= c.user.name
+			span>
+			= c.user.verified_user ? "(Verified) ": ""
+		ul class="list-group list-group-flush"
+			li class="list-group-item"
+				| Donation Target : 
+				= c.donation_target
+	br
 
 = link_to "Send Mail", newsletters_path, :class => "btn btn-primary"

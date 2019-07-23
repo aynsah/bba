@@ -6,7 +6,7 @@ class NewslettersController < ApplicationController
 
 	def create
 		data = params[:body]
-   		subject=params[:subject]
+   		subject = params[:subject]
 
 		@emails = User.where("subcribed = true").pluck(:email)
 

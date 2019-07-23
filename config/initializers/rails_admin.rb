@@ -23,6 +23,11 @@ RailsAdmin.config do |config|
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
+  config.navigation_static_links = {
+    'Google' => 'http://www.google.com',
+    'Home' => 'http://localhost:3000'
+  }
+  config.navigation_static_label = "Custom Links"
 
   config.actions do
     dashboard                     # mandatory

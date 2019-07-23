@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_07_23_084754) do
     t.text "campaign_desc"
     t.text "additional_text"
     t.string "image_campaign"
-    t.integer "user_id"
+    t.string "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

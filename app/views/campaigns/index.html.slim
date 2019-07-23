@@ -3,7 +3,7 @@
   = form_tag campaigns_path, class: "form-inline mb-2", :method => 'get' do
     = select_tag :category_filter,  options_from_collection_for_select( Category.all, :id, :category_name, params[:category_filter]), class: "form-control col-lg-3", prompt: 'All'
     
-    = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-3"
+    = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-3 ml-2"
     
     = button_tag(type: "submit", class: "btn btn-outline-secondary ml-4") do
       | Submit

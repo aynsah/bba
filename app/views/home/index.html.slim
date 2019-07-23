@@ -7,6 +7,8 @@ br
 		div class="card-body"
 			h5 class="card-title"
 				= c.campaign_title
+			p class="card-text"
+				= raw c.campaign_desc
 			= link_to "Detail", c, :class => "btn btn-primary"
 		p class="card-text ml-4 text-muted"
 			| Penggalang Dana : 

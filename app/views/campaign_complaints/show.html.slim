@@ -4,7 +4,7 @@
   p= link_to "#{@campaign.user.name}", users_index_path(current_user.id)
   br/
   h4 Komplain dari user :
-  = @complaint.complaint
+  = raw @complaint.complaint
   br/
   br/
   h6 

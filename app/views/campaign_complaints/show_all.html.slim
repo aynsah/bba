@@ -6,7 +6,7 @@ h4 Komplain dari user :
   h6
     = link_to "#{complaint.user.name}", users_index_path(current_user.id)
   p 
-    = complaint.complaint
+    = raw complaint.complaint
   p
     | Dikirim :
     = complaint.created_at

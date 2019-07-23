@@ -1,0 +1,45 @@
+h2 Profil
+img src=""
+p
+  | Username : 
+  = @user.name
+p
+  | Address : 
+  = @user.address != "" && @user.address != nil ? @user.address : "Unknown"
+p
+  | Phone : 
+  = @user.phone != "" && @user.phone != nil ? @user.phone : "Unknown"
+
+p Bio : 
+p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
+
+p= link_to "Edit Profil", edit_user_registration_path
+h2 Campaigns
+table
+  tr
+    th width="200" Photo
+    th width="200" Judul
+    th width="1000" colspan="2" Penggalang Dana
+    th width="200" Kategori
+    th width="200" Batas Waktu
+
+  - @campaigns.each do |campaign|
+    tr
+      td= campaign.image_campaign
+      td= link_to "#{campaign.campaign_title}", campaign
+      td= campaign.user.verified_user ? "Verified :": "No"
+      td= campaign.user.name
+      td= campaign.category.category_name
+      td= campaign.campaign_timeout
+br/
+br/
+h2 Complaints
+table
+  tr
+    th width="400" Complaint
+    th width="200" Campaign
+
+  - @complaints.each do |complaint|
+    tr
+      td= complaint.complaint
+      td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"

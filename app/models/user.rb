@@ -36,11 +36,4 @@ class User < ApplicationRecord
       user.save
     end
   end
-  RailsAdmin.config do |config|
-    config.model 'User' do
-      navigation_icon 'icon-user'
-      label "Users"
-    end
-  end
-
 end

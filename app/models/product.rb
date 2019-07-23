@@ -2,7 +2,8 @@ class Product < ApplicationRecord
 	belongs_to :supplier
 
 	RailsAdmin.config do |config|
-      config.model Product do
+      config.model 'Product' do
+
         export do
           field :id
           field :name

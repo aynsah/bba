@@ -16,4 +16,5 @@ class Campaign < ApplicationRecord
       all
     end
   end
+
 end

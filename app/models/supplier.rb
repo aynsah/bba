@@ -3,6 +3,7 @@ class Supplier < ApplicationRecord
 
 	RailsAdmin.config do |config|
       config.model Supplier do
+
         export do
           field :id
           field :name

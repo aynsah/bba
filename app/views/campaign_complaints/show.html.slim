@@ -1,6 +1,7 @@
 - if current_user.admin == true
+
   h1= @campaign.campaign_title
-  p= @campaign.user.name
+  p= link_to "#{@campaign.user.name}", users_index_path(current_user.id)
   br/
   h4 Komplain dari user :
   = @complaint.complaint
@@ -8,11 +9,12 @@
   br/
   h6 
     | Dikirim oleh : 
-    = @complaint.user.name
+    = link_to "#{@complaint.user.name}", users_index_path(current_user.id)
   h7
     | Dikirim :
     = @complaint.created_at
 
+  br/
   br/
   = link_to "Show All Complaint This Campaign", show_all_complaints_path(@campaign.id)
 

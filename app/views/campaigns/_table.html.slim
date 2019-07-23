@@ -11,6 +11,6 @@ table
       td= campaign.image_campaign
       td= link_to "#{campaign.campaign_title}", campaign
       td= campaign.user.verified_user ? "Verified :": "No"
-      td= campaign.user.name
+      td= link_to "#{campaign.user.name}", users_index_path(current_user.id)
       td= campaign.category.category_name
       td= campaign.campaign_timeout

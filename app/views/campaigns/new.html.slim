@@ -8,7 +8,7 @@ h2 Add new Campaign
         = f.input :campaign_title, required: true
         = f.input :donation_target, as: :decimal
         = "maksimal target donasi sejumlah 1 Miliyar"
-        = f.input :campaign_timeout, as: :date
+        = f.input :campaign_timeout, as: :date, start_year: Date.today.year
         = f.input :campaign_desc, as: :text
         = f.input :additional_text, as: :text
         = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }

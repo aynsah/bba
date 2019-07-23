@@ -1,0 +1,20 @@
+- if current_user.admin == true
+  h1= @campaign.campaign_title
+  p= @campaign.user.name
+  br/
+  h4 Komplain dari user :
+  = @complaint.complaint
+  br/
+  br/
+  h6 
+    | Dikirim oleh : 
+    = @complaint.user.name
+  h7
+    | Dikirim :
+    = @complaint.created_at
+
+  br/
+  = link_to "Show All Complaint This Campaign", show_all_complaints_path(@campaign.id)
+
+- else
+  = controller.redirect_to campaigns_path

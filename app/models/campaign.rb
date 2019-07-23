@@ -3,7 +3,7 @@ class Campaign < ApplicationRecord
   belongs_to :category
   has_many :campaign_complaints
 
-  validates :donation_target, presence: true, length: { in: 6..10}
+  validates :donation_target, presence: true, length: { in: 4..10}
 
   def self.search(filter1, filter2)
     if filter1 != "All" && filter2 == "All"

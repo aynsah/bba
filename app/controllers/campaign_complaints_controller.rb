@@ -12,6 +12,17 @@ class CampaignComplaintsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @complaint = CampaignComplaint.find(params[:id])
+    @campaign = Campaign.find(@complaint.campaign_id)
+  end
+
+  def show_all
+    @campaign = Campaign.find(params[:id])
+    @complaints = CampaignComplaint.where("campaign_id = ?", "#{@campaign.id}")
+    
+  end
+
   private
     def campaign_complaint_params
       params[:campaign_complaint].permit(:complaint, :campaign_id)

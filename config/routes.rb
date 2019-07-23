@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "home#index"
-
+  get 'campaign_complaints/campaign/:id', to: "campaign_complaints#show_all", as: 'show_all_complaints'
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_supplier_report/:month', to: "report_suppliers#monthly", as: 'month_supplier'
   

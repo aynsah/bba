@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :campaign_complaints
+  has_many :campaign_complaints, dependent: :destroy
   has_many :campaigns, dependent: :destroy
   
   # Include default devise modules. Others available are:

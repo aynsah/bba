@@ -16,8 +16,10 @@ table
     td= @campaign.category.category_name
     td= @campaign.donation_target
     td= @campaign.campaign_timeout
-    td= @campaign.campaign_desc
-    td= @campaign.additional_text
+    td= raw @campaign.campaign_desc
+    td= raw @campaign.additional_text
+
+= social_share_button_tag(@campaign.campaign_title)
 
 br/
 = link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}

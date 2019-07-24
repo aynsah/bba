@@ -1,8 +1,9 @@
- div class="row" 
+ div class="row" align="center"
   - @campaigns.each do |c|
-    div class="col-sm-6"
+    div class="col-sm-4"
       = link_to c, :class => "custom-card" do
           div class="card border-primary mt-4"
+            = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
             div class="card-body"
               h5 class="card-title"
                 = c.campaign_title

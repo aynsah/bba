@@ -25,6 +25,6 @@ class CampaignComplaintsController < ApplicationController
 
   private
     def campaign_complaint_params
-      params[:campaign_complaint].permit(:complaint, :campaign_id)
+      params[:campaign_complaint].permit(:complaint_category_id, :complaint, :campaign_id)
     end
 end

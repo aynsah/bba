@@ -1,7 +1,7 @@
 class Campaign < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_many :campaign_complaints
+  has_many :campaign_complaints, dependent: :destroy
 
   validates :donation_target, presence: true, length: { in: 4..10}
 
@@ -15,6 +15,15 @@ class Campaign < ApplicationRecord
     else
       all
     end
+  end
+
+  def self.date_after(campaign_timeout)
+    timeout = (campaign_timeout - Date.today).to_i
+    if timeout == 0
+      timeout = "< 1"
+    end
+    timeout = timeout.to_s + " Hari"
+    return timeout
   end
 
 end

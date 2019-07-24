@@ -3,7 +3,9 @@
   h1= @campaign.campaign_title
   p= link_to "#{@campaign.user.name}", users_index_path(current_user.id)
   br/
-  h4 Komplain dari user :
+  h4 
+    | Komplain dari user : 
+    = @complaint.complaint_category.category_name
   = raw @complaint.complaint
   br/
   br/
@@ -16,7 +18,8 @@
 
   br/
   br/
-  = link_to "Show All Complaint This Campaign", show_all_complaints_path(@campaign.id)
-
+  if current_user.admin == true
+    = link_to "Show All Complaint This Campaign", show_all_complaints_path(@campaign.id)
+  end
 - else
   = controller.redirect_to campaigns_path

@@ -7,10 +7,12 @@ table
     th width="200" Batas Waktu
 
   - @campaigns.each do |campaign|
+    - if campaign.user == nil
+      - next
     tr
       td= campaign.image_campaign
       td= link_to "#{campaign.campaign_title}", campaign
       td= campaign.user.verified_user ? "Verified :": "No"
       td= link_to "#{campaign.user.name}", users_index_path(current_user.id)
-      td= campaign.category.category_name
-      td= campaign.campaign_timeout
+      td= campaign.category ?  campaign.category.category_name : "Unknown"
+      td= Campaign.date_after(campaign.campaign_timeout)

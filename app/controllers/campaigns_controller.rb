@@ -3,6 +3,7 @@ class CampaignsController < ApplicationController
 
   def index
     @campaigns = Campaign.search(params[:category_filter],params[:user_filter]).order(created_at: :desc)
+
   end
 
   def new
@@ -26,12 +27,13 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @campaign = Campaign.find(params[:id])
   end
 
   private
     def find_campaign
-      @campaign = Campaign.find(params[:id])
+      if Campaign.exists?(params[:id])
+        @campaign = Campaign.find(params[:id])
+      end
     end
 
   private

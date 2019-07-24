@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_23_084754) do
+ActiveRecord::Schema.define(version: 2019_07_24_030733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_07_23_084754) do
     t.string "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "complaint_category_id"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -51,6 +52,12 @@ ActiveRecord::Schema.define(version: 2019_07_23_084754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "complaint_categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -109,7 +116,7 @@ ActiveRecord::Schema.define(version: 2019_07_23_084754) do
     t.text "address"
     t.text "bio"
     t.boolean "verified_user", default: false
-    t.boolean "subcribed", default: false
+    t.boolean "subscribed", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -22,6 +22,7 @@ table
     th width="1000" colspan="2" Penggalang Dana
     th width="200" Kategori
     th width="200" Batas Waktu
+    th width="200" Update
 
   - @campaigns.each do |campaign|
     tr
@@ -29,17 +30,18 @@ table
       td= link_to "#{campaign.campaign_title}", campaign
       td= campaign.user.verified_user ? "Verified :": "No"
       td= campaign.user.name
-      td= campaign.category.category_name
+      td= campaign.category ?  campaign.category.category_name? : "Unknown"
       td= campaign.campaign_timeout
+      td= link_to "Update", edit_campaign_path(campaign)
 br/
 br/
 h2 Complaints
 table
   tr
-    th width="400" Complaint
+    th width="400" Dibuat Tanggal
     th width="200" Campaign
 
   - @complaints.each do |complaint|
     tr
-      td= complaint.complaint
+      td= complaint.created_at
       td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"

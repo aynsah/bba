@@ -1,61 +1,62 @@
-h1 Monthly Report
-
-table class="table"
-	thead
-		tr
-			th Name
-			th Quantity
-			th Price
-			th Created at
-			th Updated at
-
-	tbody
-		- @reports.each do |report|
+div class="container mt-4 mb-4"
+	h1 Monthly Report
+	
+	table class="table"
+		thead
 			tr
-				td = report.name
-				td = report.quantity
-				td = report.price
-				td = report.created_at
-				td = report.updated_at
-
-	tfoot
+				th Name
+				th Quantity
+				th Price
+				th Created at
+				th Updated at
+	
+		tbody
+			- @reports.each do |report|
+				tr
+					td = report.name
+					td = report.quantity
+					td = report.price
+					td = report.created_at
+					td = report.updated_at
+	
+		tfoot
+			tr
+				td colspan="4" align="right"
+					b Total Quantity
+				td 
+					b = @quantity
+			tr
+				td colspan="4" align="right"
+					b Total Price
+				td
+					b = @price
+	br
+	
+	table class="table"
 		tr
-			td colspan="4" align="right"
-				b Total Quantity
 			td 
-				b = @quantity
-		tr
-			td colspan="4" align="right"
-				b Total Price
+				b = link_to 'January', month_product_path("January")
 			td
-				b = @price
-br
-
-table class="table"
-	tr
-		td 
-			b = link_to 'January', month_product_path("January")
-		td
-			b = link_to 'February', month_product_path("February")
-		td 
-		 	b = link_to 'March', month_product_path("March")
-		td
-			b = link_to 'April', month_product_path("April")
-		td
-			b = link_to 'May', month_product_path("May")
-		td
-			b = link_to 'June', month_product_path("June")
-		td
-			b = link_to 'July', month_product_path("July")
-		td
-			b = link_to 'August', month_product_path("August")
-		td
-			b = link_to 'September', month_product_path("September")
-		td
-			b = link_to 'October', month_product_path("October")
-		td
-			b = link_to 'November', month_product_path("November")
-		td
-			b = link_to 'December', month_product_path("December")
-
-= link_to 'Back', products_path, :class => "btn btn-outline-secondary"
+				b = link_to 'February', month_product_path("February")
+			td 
+			 	b = link_to 'March', month_product_path("March")
+			td
+				b = link_to 'April', month_product_path("April")
+			td
+				b = link_to 'May', month_product_path("May")
+			td
+				b = link_to 'June', month_product_path("June")
+			td
+				b = link_to 'July', month_product_path("July")
+			td
+				b = link_to 'August', month_product_path("August")
+			td
+				b = link_to 'September', month_product_path("September")
+			td
+				b = link_to 'October', month_product_path("October")
+			td
+				b = link_to 'November', month_product_path("November")
+			td
+				b = link_to 'December', month_product_path("December")
+	
+	= link_to 'Back', products_path, :class => "btn btn-outline-secondary"

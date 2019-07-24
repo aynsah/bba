@@ -1,12 +1,13 @@
-p#notice = notice
-
-p
-  strong Name : 
-  = @supplier.name
-p
-  strong Quantity : 
-  = @supplier.quantity
-
-=> link_to 'Edit', edit_supplier_path(@supplier)
-'|
-=< link_to 'Back', suppliers_path
+div class="container mt-4 mb-4"
+	p#notice = notice
+	
+	p
+	  strong Name : 
+	  = @supplier.name
+	p
+	  strong Country : 
+	  = @supplier.country
+	
+	=> link_to 'Edit', edit_supplier_path(@supplier)
+	'|
+	=< link_to 'Back', suppliers_path

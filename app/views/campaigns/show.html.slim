@@ -1,25 +1,27 @@
-p= link_to "New", new_campaign_path
-
-table
-  tr
-    th width="150" Photo
-    th width="150" Judul
-    th width="150" Kategori
-    th width="150" Target donasi
-    th width="150" Batas Waktu
-    th width="150" Deskripsi
-    th width="150" Tambahan
-
-  tr
-    td= @campaign.image_campaign
-    td= @campaign.campaign_title
-    td= @campaign.category.category_name
-    td= @campaign.donation_target
-    td= @campaign.campaign_timeout
-    td= raw @campaign.campaign_desc
-    td= raw @campaign.additional_text
-
-= social_share_button_tag(@campaign.campaign_title)
-
-br/
-= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+div class="container mt-4"
+    p= link_to "New", new_campaign_path
+    
+    table
+      tr
+        th width="150" Photo
+        th width="150" Judul
+        th width="150" Kategori
+        th width="150" Target donasi
+        th width="150" Batas Waktu
+        th width="150" Deskripsi
+        th width="150" Tambahan
+    
+      tr
+        td= @campaign.image_campaign
+        td= @campaign.campaign_title
+        td= @campaign.category.category_name
+        td= @campaign.donation_target
+        td= @campaign.campaign_timeout
+        td= raw @campaign.campaign_desc
+        td= raw @campaign.additional_text
+    
+    = social_share_button_tag(@campaign.campaign_title)
+    
+    br/
+    = link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+    

@@ -6,13 +6,14 @@
     <%= csp_meta_tag %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
     <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'style.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <div>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <%= link_to "BBA", root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"      aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -72,7 +73,7 @@
     <% end %>
 
     </div>
-    <div class="container">
+    <div>
       <%= yield %>
     </div>
   </body>

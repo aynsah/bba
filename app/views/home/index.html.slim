@@ -13,8 +13,6 @@ div class="container"
 	      		  div class="card-body"
 	      		    h5 class="card-title"
 	      		      = c.campaign_title
-	      		    p class="card-text"
-	      		      = raw c.campaign_desc
 	      		  p class="card-text ml-4 text-muted"
 	      		    | Penggalang Dana : 
 	      		    = c.user.name
@@ -23,7 +21,7 @@ div class="container"
 	      		  ul class="list-group list-group-flush"
 	      		    li class="list-group-item"
 	      		      | Donation Target : 
-	      		      = c.donation_target
+	      		      = number_to_currency c.donation_target
 	br
 	div align="center"
 		= link_to "Load More", campaigns_path, :class => "btn btn-outline-secondary mb-4"

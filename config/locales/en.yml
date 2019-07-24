@@ -31,3 +31,14 @@
 
 en:
   hello: "Hello world"
+
+en:
+  number:
+    currency:
+      format:
+        delimiter: '.'
+        format: '%u %n'
+        precision: 2
+        separator: ','
+        strip_insignificant_zeros: true
+        unit: 'Rp'

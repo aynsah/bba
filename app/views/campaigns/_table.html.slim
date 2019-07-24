@@ -1,18 +1,18 @@
-table
-  tr
-    th width="200" Photo
-    th width="200" Judul
-    th width="1000" colspan="2" Penggalang Dana
-    th width="200" Kategori
-    th width="200" Batas Waktu
-
-  - @campaigns.each do |campaign|
-    - if campaign.user == nil
-      - next
-    tr
-      td= campaign.image_campaign
-      td= link_to "#{campaign.campaign_title}", campaign
-      td= campaign.user.verified_user ? "Verified :": "No"
-      td= link_to "#{campaign.user.name}", users_index_path(current_user.id)
-      td= campaign.category ?  campaign.category.category_name : "Unknown"
-      td= Campaign.date_after(campaign.campaign_timeout)
+ div class="row" 
+  - @campaigns.each do |c|
+    div class="col-sm-6"
+      = link_to c, :class => "custom-card" do
+          div class="card border-primary mt-4"
+            div class="card-body"
+              h5 class="card-title"
+                = c.campaign_title
+            p class="card-text ml-4 text-muted"
+              | Penggalang Dana : 
+              = c.user.name
+              span>
+              = c.user.verified_user ? "(Verified) ": ""
+            ul class="list-group list-group-flush"
+              li class="list-group-item"
+                | Donation Target : 
+                = c.donation_target
+  br

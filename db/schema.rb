@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_030733) do
+ActiveRecord::Schema.define(version: 2019_07_24_035617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "campaign_complaints", force: :cascade do |t|
     t.boolean "checked", default: false
-    t.string "user_id"
+    t.integer "user_id"
     t.text "complaint"
     t.string "campaign_id"
     t.datetime "created_at", null: false

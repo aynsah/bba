@@ -1,25 +1,29 @@
-h1 Home
+div class="jumbotron jumbotron-fluid" align="center"
+	h1 Total Campaign
+	h3 = @total
 br
 
-- @campaigns.each do |c|
-	div class="card"
-		img class="card-img-top" src="..." alt="Campaign Image"
-		div class="card-body"
-			h5 class="card-title"
-				= c.campaign_title
-			p class="card-text"
-				= raw c.campaign_desc
-			= link_to "Detail", c, :class => "btn btn-primary"
-		p class="card-text ml-4 text-muted"
-			| Penggalang Dana : 
-			= c.user.name
-			span>
-			= c.user.verified_user ? "(Verified) ": ""
-		ul class="list-group list-group-flush"
-			li class="list-group-item"
-				| Donation Target : 
-				= c.donation_target
-	br
+div class="container"
 
-div align="center"
-	= link_to "Load More", campaigns_path, :class => "btn btn-outline-secondary"
+	div class="row"
+	  - @campaigns.each do |c|
+	    div class="col-sm-6"
+	    	= link_to c, :class => "custom-card" do
+	      		div class="card border-primary"
+	      		  div class="card-body"
+	      		    h5 class="card-title"
+	      		      = c.campaign_title
+	      		    p class="card-text"
+	      		      = raw c.campaign_desc
+	      		  p class="card-text ml-4 text-muted"
+	      		    | Penggalang Dana : 
+	      		    = c.user.name
+	      		    span>
+	      		    = c.user.verified_user ? "(Verified) ": ""
+	      		  ul class="list-group list-group-flush"
+	      		    li class="list-group-item"
+	      		      | Donation Target : 
+	      		      = c.donation_target
+	br
+	div align="center"
+		= link_to "Load More", campaigns_path, :class => "btn btn-outline-secondary mb-4"

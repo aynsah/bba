@@ -4,7 +4,7 @@ div class="container mt-4 mb-4"
     - if current_user
         = simple_form_for(@campaign) do |f|
           .form-group
-            = f.input :image_campaign
+            = f.input :image_campaign, as: :file
             = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id
             = f.input :campaign_title, required: true
             = f.input :donation_target, as: :decimal

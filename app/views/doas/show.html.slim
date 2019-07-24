@@ -1,0 +1,14 @@
+div class="container mt-4 mb-4"
+  h2= @doa.title
+  p= @doa.doa_status.status_name
+  
+  p= raw @doa.doa
+  hr
+  p= raw @doa.doa_desc
+  hr
+  p 
+    | Dibuat Oleh : 
+    = @doa.created_at
+  p
+    | Berakhir : 
+    = @doa.expired_at

@@ -20,7 +20,6 @@ class CampaignsController < ApplicationController
   end
 
   def update
-    @current_user = current_user.id
     @campaign.update(campaign_params)
     redirect_to campaigns_path
     

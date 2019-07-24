@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :campaign_complaints, dependent: :destroy
   has_many :campaigns, dependent: :destroy
+  has_many :doas
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -17,6 +18,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 8 }
 
+  mount_uploader :photo, AvatarUploader
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

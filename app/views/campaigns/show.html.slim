@@ -1,5 +1,5 @@
 - if @campaign
-div class="container mt-4"
+  div class="container mt-4"
     p= link_to "New", new_campaign_path
     table
       tr
@@ -12,7 +12,7 @@ div class="container mt-4"
         th width="150" Tambahan
 
       tr
-        td= @campaign.image_campaign
+        td=image_tag @campaign.image_campaign.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
         td= @campaign.campaign_title
         td= @campaign.category ?  @campaign.category.category_name : "Unknown"
         td= @campaign.donation_target

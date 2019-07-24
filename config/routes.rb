@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'users/profil/:id', to: 'users#index', as: 'users_index'
   resources :campaign_complaints
+  resources :doas
   resources :campaigns
   resources :products
   resources :suppliers

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_035617) do
+ActiveRecord::Schema.define(version: 2019_07_24_080658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,23 @@ ActiveRecord::Schema.define(version: 2019_07_24_035617) do
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "doa_statuses", force: :cascade do |t|
+    t.string "status_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doas", force: :cascade do |t|
+    t.string "title"
+    t.text "doa"
+    t.text "doa_desc"
+    t.integer "doa_status_id", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.date "expired_at"
   end
 
   create_table "products", force: :cascade do |t|

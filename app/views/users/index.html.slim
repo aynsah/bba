@@ -1,5 +1,6 @@
 h2 Profil
-img src=""
+-if @user.photo?
+  =image_tag @user.photo.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "User Image"}
 p
   | Username : 
   = @user.name
@@ -13,7 +14,9 @@ p
 p Bio : 
 p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
 
-p= link_to "Edit Profil", edit_user_registration_path
+-if current_user.id == @user.id
+  p= link_to "Edit Profil", edit_user_registration_path
+  p= link_to "Wishlist Doa Ku", doas_path
 h2 Campaigns
 table
   tr
@@ -32,16 +35,19 @@ table
       td= campaign.user.name
       td= campaign.category ?  campaign.category.category_name? : "Unknown"
       td= campaign.campaign_timeout
-      td= link_to "Update", edit_campaign_path(campaign)
+      -if current_user.id == @user.id
+        td= link_to "Update", edit_campaign_path(campaign)
 br/
 br/
-h2 Complaints
-table
-  tr
-    th width="400" Dibuat Tanggal
-    th width="200" Campaign
 
-  - @complaints.each do |complaint|
+-if current_user.id == @user.id
+  h2 My Complaints
+  table
     tr
-      td= complaint.created_at
-      td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"
+      th width="400" Dibuat Tanggal
+      th width="200" Campaign
+
+    - @complaints.each do |complaint|
+      tr
+        td= complaint.created_at
+        td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"

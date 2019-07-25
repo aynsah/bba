@@ -8,7 +8,7 @@ class NewslettersController < ApplicationController
 		data = params[:body]
    		subject = params[:subject]
 
-		@emails = User.where("subcribed = true").pluck(:email)
+		@emails = User.where("subscribed = true").pluck(:email)
 
 		NewsletterMailer.send_mail(@emails,data,subject).deliver_now
 

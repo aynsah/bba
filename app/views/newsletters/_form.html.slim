@@ -2,5 +2,5 @@
 	br Subject: 
 	= text_field_tag 'subject', '', class: "form-control col-lg-12"
 	br Body:
-	= text_area_tag 'body', '', as: :ckeditor, class: "ckeditor"
+	= cktext_area_tag 'body', ''
 	= submit_tag "submit",:value => "submit", class: "btn btn-outline-secondary mt-4"

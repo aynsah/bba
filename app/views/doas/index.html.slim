@@ -9,8 +9,8 @@ table
 
     - @doas.each do |doa|
       tr
-        / # - simple_form_for  do |f| 
-        td= doa.doa_status.status_name
+        - form_tag , class: "form-inline mb-2 mt-4", method: => 'get' do |f| 
+          td= f.input :doa_status_id doa.doa_status.status_name
         td= doa.title
         td= doa.created_at
         td= doa.expired_at

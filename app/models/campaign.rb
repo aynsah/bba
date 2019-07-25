@@ -1,4 +1,5 @@
 class Campaign < ApplicationRecord
+
   belongs_to :user
   belongs_to :category
   has_many :campaign_complaints, dependent: :destroy

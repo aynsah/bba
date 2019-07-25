@@ -7,6 +7,10 @@ class DoasController < ApplicationController
   def show
   end
 
+  # def change_status
+  #   Doa.update_status
+  # end
+
   def new
     @doa = Doa.new
   end

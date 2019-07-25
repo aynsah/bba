@@ -9,6 +9,7 @@ table
 
     - @doas.each do |doa|
       tr
+        / # - simple_form_for  do |f| 
         td= doa.doa_status.status_name
         td= doa.title
         td= doa.created_at

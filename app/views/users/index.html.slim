@@ -1,53 +1,59 @@
-h2 Profil
--if @user.photo?
-  =image_tag @user.photo.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "User Image"}
-p
-  | Username : 
-  = @user.name
-p
-  | Address : 
-  = @user.address != "" && @user.address != nil ? @user.address : "Unknown"
-p
-  | Phone : 
-  = @user.phone != "" && @user.phone != nil ? @user.phone : "Unknown"
-
-p Bio : 
-p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
-
--if current_user.id == @user.id
-  p= link_to "Edit Profil", edit_user_registration_path
-  p= link_to "Wishlist Doa Ku", doas_path
-h2 Campaigns
-table
-  tr
-    th width="200" Photo
-    th width="200" Judul
-    th width="1000" colspan="2" Penggalang Dana
-    th width="200" Kategori
-    th width="200" Batas Waktu
-    th width="200" Update
-
-  - @campaigns.each do |campaign|
-    tr
-      td= campaign.image_campaign
-      td= link_to "#{campaign.campaign_title}", campaign
-      td= campaign.user.verified_user ? "Verified :": "No"
-      td= campaign.user.name
-      td= campaign.category ?  campaign.category.category_name? : "Unknown"
-      td= campaign.campaign_timeout
-      -if current_user.id == @user.id
-        td= link_to "Update", edit_campaign_path(campaign)
-br/
-br/
-
--if current_user.id == @user.id
-  h2 My Complaints
-  table
-    tr
-      th width="400" Dibuat Tanggal
-      th width="200" Campaign
-
-    - @complaints.each do |complaint|
+div class="container mt-4 mb-4"
+  h2 Profil
+  -if @user.photo?
+    =image_tag @user.photo.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "User Image"}
+  hr
+  p
+    | Username : 
+    = @user.name
+  hr
+  p
+    | Address : 
+    = @user.address != "" && @user.address != nil ? @user.address : "Unknown"
+  hr
+  p
+    | Phone : 
+    = @user.phone != "" && @user.phone != nil ? @user.phone : "Unknown"
+  
+  hr
+  p Bio : 
+  p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
+  
+  hr
+  -if current_user.id == @user.id
+    p= link_to "Edit Profil", edit_user_registration_path
+    p= link_to "Wishlist Doa Ku", doas_path
+  hr
+  h2 Campaigns
+  div class="row" align="center"
+    - @campaigns.each do |c|
+      div class="col-sm-4"
+        = link_to c, :class => "custom-card" do
+            div class="card mt-4"
+              = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
+              div class="card-body"
+                h5 class="card-title"
+                  = c.campaign_title
+              p class="card-text ml-4 text-muted"
+                | Penggalang Dana : 
+                = c.user.name
+                span>
+                = c.user.verified_user ? "(Verified) ": ""
+              ul class="list-group list-group-flush"
+                li class="list-group-item"
+                  | Donation Target : 
+                  = number_to_currency c.donation_target
+  br
+  br/
+  
+  -if current_user.id == @user.id
+    h2 My Complaints
+    table
       tr
-        td= complaint.created_at
-        td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"
+        th width="400" Dibuat Tanggal
+        th width="200" Campaign
+  
+      - @complaints.each do |complaint|
+        tr
+          td= complaint.created_at
+          td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"

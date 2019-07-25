@@ -1,10 +1,18 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
-
-<% if $pass %>
-  <p> This is Your Password </p>
-  <p><%= $pass %> </p>
-<% end %>
+<div class="container">
+	<div class="col-sm-6">
+		<div class="card mt-4">
+			<div class="card-body">
+				<h5 class="card-title">Welcome <%= @email %>!</h5>
+				
+				<p class="card-text">You can confirm your account email through the link below:</p>
+				
+				<p class="card-text"><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+				
+				<% if $pass %>
+				  <p class="card-text"> This is Your Password </p>
+				  <p class="card-text"><%= $pass %> </p>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

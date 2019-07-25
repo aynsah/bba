@@ -9,7 +9,8 @@ a.custom-card:hover {
  	transition: 0.2s;
 }
 .card:hover{
-	background-color: rgba(66,139,202,0.1);
+	border-color: rgb(66,139,202);
+	border-width: 1px;
 	-webkit-transition: 0.2s;
  	transition: 0.2s;
 }

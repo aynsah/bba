@@ -11,10 +11,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="padding-top: 56px;">
     <div>
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <b><%= link_to "BBA", root_path, class: "navbar-brand" %></b>
+      <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <b><%= link_to "BBA", root_path, class: "navbar-brand text-primary" %></b>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"      aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -73,7 +73,7 @@
     <% end %>
 
     </div>
-    <div>
+    <div class="mt-8">
       <%= yield %>
     </div>
   </body>

@@ -14,3 +14,12 @@ a.custom-card:hover {
 	-webkit-transition: 0.2s;
  	transition: 0.2s;
 }
+
+.card-img-top{
+	background-color: rgba(0,0,0,0.5);
+	background-size:cover;
+	background-position:center;
+	background-repeat:no-repeat;
+	max-width: 100%;
+	width: auto !important;
+}

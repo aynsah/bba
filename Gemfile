@@ -31,7 +31,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem "will_paginate", "~> 3.1.7" 
 gem 'bootstrap-sass'
-gem 'bootstrap-will_paginate'
+gem 'will_paginate-bootstrap4'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

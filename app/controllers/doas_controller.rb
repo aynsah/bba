@@ -1,11 +1,11 @@
 class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
   def index
-    @doas = Doa.all
+    @doas = Doa.all.order(created_at: :desc)
   end
   
-  def change_status
-    if @doas = Doa.update_status(params[:doa_status_id], params[:id])
+  def change_status()
+    if @doas = Doa.update_status(params.require(change_status_path).permit(:doa_status_id), params[:id])
       respond_to do |format|
         format.js
         format.html

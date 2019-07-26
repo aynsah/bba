@@ -17,3 +17,7 @@
 //= require social-share-button
 //= require jquery
 //= require jquery_ujs
+
+function change() {
+  alert("Hello");
+}

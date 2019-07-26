@@ -1,11 +1,19 @@
-- @doas.each do |doa|
-  tr class="#{doa.id}"
-    td id="status-doa"
-      = form_tag change_status_path(doa.id), class: "form-inline mb-2 mt-4", :method => 'get', remote: true  do
-        = select_tag :doa_status_id, options_from_collection_for_select( DoaStatus.all, :id, :status_name, doa.doa_status.id)
-        = submit_tag
-    td= doa.doa_status.status_name
-    td= doa.title
-    td= doa.created_at
-    td= doa.expired_at
-    td= link_to "Show", doa
+table id="table-doa"
+  tr
+    th width="200" Status
+    th width="200" Status
+    th width="200" Doa
+    th width="200" Dibuat Tanggal
+    th width="200" Masa Tenggang
+    th width="200" Action
+
+    - @doas.each do |doa|
+      tr class="#{doa.id}"
+        td id="status-doa"
+          = form_for change_status_path(doa.id), class: "form-inline mb-2 mt-4", :method => 'get'  do |f|
+            = f.collection_select(:doa_status_id, DoaStatus.all, :id, :status_name, {:selected => doa.doa_status.id}, {:data => {:remote => true, :url => change_status_path(doa.id)}}  )
+        td= doa.doa_status.status_name
+        td= doa.title
+        td= doa.created_at
+        td= doa.expired_at
+        td= link_to "Show", doa

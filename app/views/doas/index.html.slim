@@ -1,18 +1,12 @@
 = link_to "new", new_doa_path
-table
+
+table id="table-doa"
   tr
+    th width="200" Status
     th width="200" Status
     th width="200" Doa
     th width="200" Dibuat Tanggal
     th width="200" Masa Tenggang
     th width="200" Action
-
-    - @doas.each do |doa|
-      tr
-        - form_tag , class: "form-inline mb-2 mt-4", method: => 'get' do |f| 
-          td= f.input :doa_status_id doa.doa_status.status_name
-        td= doa.title
-        td= doa.created_at
-        td= doa.expired_at
-        td= link_to "Show", doa
-             
+    
+    = render partial: "doas", locales: {doas: @doas}

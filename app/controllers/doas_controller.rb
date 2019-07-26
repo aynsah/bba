@@ -3,13 +3,19 @@ class DoasController < ApplicationController
   def index
     @doas = Doa.all
   end
+  
+  def change_status
+    if @doas = Doa.update_status(params[:doa_status_id], params[:id])
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    end
+  end
+
 
   def show
   end
-
-  # def change_status
-  #   Doa.update_status
-  # end
 
   def new
     @doa = Doa.new

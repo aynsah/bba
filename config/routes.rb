@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'users/profil/:id', to: 'users#index', as: 'users_index'
+  get '/doas/change-status/:id', to: "doas#change_status", as: 'change_status'
   resources :campaign_complaints
   resources :doas
   resources :campaigns

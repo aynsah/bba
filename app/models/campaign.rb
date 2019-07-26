@@ -7,7 +7,7 @@ class Campaign < ApplicationRecord
   validates :donation_target, presence: true, length: { in: 4..10}
 
   mount_uploader :image_campaign, AvatarUploader
-  
+
   def self.search(filter1, filter2)
     if filter1 != "All" && filter2 == "All"
       where('category_id like ?', "%#{filter1}%").joins(:user)

@@ -21,5 +21,5 @@ a.custom-card:hover {
 	background-position:center;
 	background-repeat:no-repeat;
 	max-width: 100%;
-	width: auto !important;
+	width: auto;
 }

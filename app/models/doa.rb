@@ -6,8 +6,9 @@ class Doa < ApplicationRecord
     puts current_status
     doa = Doa.find(id_doa)
     doa.update(current_status)
-
-    return Doa.all.order(created_at: :desc)
+    
+    @doaOnProgress = Doa.where("doa_status_id = 1").order(created_at: :desc)
+    @doaGranted = Doa.where("doa_status_id = 2").order(created_at: :desc)
   end
 
 end

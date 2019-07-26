@@ -1,12 +1,4 @@
-= link_to "new", new_doa_path
-
-table id="table-doa"
-  tr
-    th width="200" Status
-    th width="200" Status
-    th width="200" Doa
-    th width="200" Dibuat Tanggal
-    th width="200" Masa Tenggang
-    th width="200" Action
-    
-    = render partial: "doas", locales: {doas: @doas}
+div class="container mt-4 mb-4"
+	= link_to "new", new_doa_path
+	br
+	= render partial: "doas", locales: {doas: @doas}

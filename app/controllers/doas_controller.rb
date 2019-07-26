@@ -1,7 +1,8 @@
 class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
   def index
-    @doas = Doa.all
+    @doaOnProgress = Doa.where("doa_status_id = 1")
+    @doaGranted = Doa.where("doa_status_id = 2")
   end
   
   def change_status
@@ -23,6 +24,7 @@ class DoasController < ApplicationController
 
   def create
     @doa = Doa.new(doa_params)
+    @doa.validate!
     @doa.save
     redirect_to doas_path
   end

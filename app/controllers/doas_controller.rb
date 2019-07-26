@@ -1,12 +1,13 @@
 class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
   def index
-    @doaOnProgress = Doa.where("doa_status_id = 1").order(created_at: :desc)
-    @doaGranted = Doa.where("doa_status_id = 2").order(created_at: :desc)
+    @status = DoaStatus.all
+    @doas = Doa.all.order(created_at: :desc)
   end
   
   def change_status()
     if @doas = Doa.update_status(params.require(change_status_path).permit(:doa_status_id), params[:id])
+      @status = DoaStatus.all
       respond_to do |format|
         format.js
         format.html

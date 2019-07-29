@@ -1,7 +1,6 @@
-$('#search-output-table').append('<%= j render @campaigns %>');
+$('#search-output-table').append('<%= j render(@campaigns) %>');
 <% if @campaigns.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @campaigns %>');
+  $('.pagination').replaceWith('<%= j will_paginate(@campaigns) %>');
 <% else %>
-  $(window).off('scroll');
   $('.pagination').remove();
 <% end %>

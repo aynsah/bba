@@ -1,13 +1,13 @@
 class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
   def index
-    @status = DoaStatus.all
+    @statuses = DoaStatus.all
     @doas = Doa.where("user_id = ?", "#{current_user.id}").order(created_at: :desc)
   end
   
   def change_status()
-    if @doas = Doa.update_status(params.require(change_status_path).permit(:doa_status_id), params[:id])
-      @status = DoaStatus.all
+    if @doas = Doa.update_status(params.require(change_status_path).permit(:doa_status_id), params[:id], current_user.id)
+      @statuses = DoaStatus.all
       respond_to do |format|
         format.js
         format.html
@@ -34,14 +34,16 @@ class DoasController < ApplicationController
   end
 
   def update
-    @doa.update(campaign_params)
-    redirect_to campaigns_path
+    @doa.update(doa_params)
+    redirect_to doas_path
   end
 
   private
     def find_doa
       if Doa.exists?(params[:id])
        @doa = Doa.find(params[:id])
+      else
+        redirect_to root_path
       end
     end
 

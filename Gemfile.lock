@@ -314,6 +314,7 @@ DEPENDENCIES
   devise
   duktape
   jbuilder (~> 2.5)
+  jquery-rails
   mini_magick
   omniauth
   omniauth-facebook (~> 1.4.0)

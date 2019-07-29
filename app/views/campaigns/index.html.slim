@@ -15,7 +15,7 @@ div class="container mt-4 mb-4"
 	    | Submit
 	
 	div id="search-output-table"
-	  = render partial: "table", locales: {campaigns: @campaigns}
+	  = render @campaigns
 
 	div class="col-lg-12 mt-4" align="center"
-  		= will_paginate @campaigns #, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, :class => "mx-auto"
+  	= will_paginate @campaigns

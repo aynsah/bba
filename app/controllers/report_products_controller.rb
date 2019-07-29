@@ -14,7 +14,7 @@ class ReportProductsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to month_product_path(@month) }
 			format.csv { send_data @reports.to_csv, filename: "monthly-product-report-#{Date.today}.csv"}
-			format.xls { send_data @reports.to_csv(col_sep: "\t") }
+			format.xls { send_data @reports.to_csv(col_sep: "\t"), filename: "monthly-product-report-#{Date.today}.xls" }
 		end
 	end
 end

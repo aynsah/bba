@@ -5,12 +5,9 @@ class NewslettersController < ApplicationController
 	end
 
 	def create
-		data = params[:body]
-   		subject = params[:subject]
-
 		@emails = User.where("subscribed = true").pluck(:email)
 
-		NewsletterMailer.send_mail(@emails,data,subject).deliver_now
+		NewsletterMailer.with(email: @email).send_mail.deliver_later
 
 		redirect_to root_path, notice: 'Mails was successfully sent.'
 	end

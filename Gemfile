@@ -73,6 +73,7 @@ gem 'rails_admin_rollincode'
 gem "devise"
 
 gem 'omniauth'
+gem 'veritrans'
 
 gem 'omniauth-google-oauth2'
 

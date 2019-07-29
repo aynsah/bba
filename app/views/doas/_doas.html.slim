@@ -1,10 +1,5 @@
 div class="container"
   - @status.each do |status|
-    div class="col-lg-2" style="display:inline-block"
-      = link_to "#{status.status_name}"
-  br/
-  br/
-  - @status.each do |status|
     h3= status.status_name
     table id="1" class="table"
     	tr
@@ -13,13 +8,13 @@ div class="container"
     		th width="200" Dibuat Tanggal
     		th width="200" Masa Tenggang
     		th width="200" Action
-      	- @doas.where("doa_status_id = #{status.id}").each do |doa|
+      	- @doas.where("doa_status_id = ?", "#{status.id}").each do |doa|
       	  tr class="#{doa.id}"
       	    td id="status-doa"
               = form_for change_status_path(doa.id), class: "form-inline mb-2 mt-4", :method => 'get'  do |f|
-                = f.collection_select(:doa_status_id, DoaStatus.all, :id, :status_name, {:selected => doa.doa_status.id}, {:data => {:remote => true, :url => change_status_path(doa.id)}}  )
+                = f.collection_select(:doa_status_id, @status, :id, :status_name, {:selected => doa.doa_status.id}, {:data => {:remote => true, :url => change_status_path(doa.id)}}  )
       	    td = doa.title
-      	    td = doa.created_at
+      	    td = doa.created_at.to_date
       	    td = doa.expired_at
       	    td = link_to "Show", doa
 

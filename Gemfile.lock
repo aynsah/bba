@@ -63,7 +63,7 @@ GEM
       sassc (>= 2.0.0)
     builder (3.2.3)
     byebug (11.0.1)
-    capybara (3.26.0)
+    capybara (3.27.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -99,6 +99,7 @@ GEM
       warden (~> 1.2.3)
     duktape (2.3.0.0)
     erubi (1.8.0)
+    excon (0.65.0)
     execjs (2.7.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -280,6 +281,8 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
+    veritrans (2.3.0)
+      excon (~> 0.20)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -329,6 +332,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
+  veritrans
   web-console (>= 3.3.0)
   will_paginate (~> 3.1.7)
   will_paginate-bootstrap4

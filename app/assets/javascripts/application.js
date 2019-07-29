@@ -16,8 +16,5 @@
 //= require_tree .
 //= require social-share-button
 //= require jquery
+//= require credit_card_form
 //= require jquery_ujs
-
-function change() {
-  alert("Hello");
-}

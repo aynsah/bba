@@ -24,7 +24,13 @@
     	= social_share_button_tag(@campaign.campaign_title)
 	
     	br
-    	- if current_user
-    		= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+    	= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+        br
+        = link_to "Give Donation", new_payment_path
+
+        if current_user.id == @campaign.user_id
+          br
+          = link_to "Update Campaign", edit_campaign_path(@campaign)
+
 - else
     p Campaign ini telah dihapus

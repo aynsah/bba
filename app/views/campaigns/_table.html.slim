@@ -10,6 +10,9 @@
             p class="card-text ml-4 text-muted"
               | Penggalang Dana : 
               = c.user.name
+              br/
+              | Sisa Waktu : 
+              = Campaign.date_after(c.campaign_timeout)
               span>
               = c.user.verified_user ? "(Verified) ": ""
             ul class="list-group list-group-flush"

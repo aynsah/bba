@@ -2,7 +2,7 @@ class CampaignsController < ApplicationController
   before_action :find_campaign, only: [:show, :edit, :update, :destroy]
 
   def index
-    @campaigns = Campaign.search(params[:category_filter],params[:user_filter]).order(created_at: :desc).paginate(page: params[:page], per_page: 6)
+    @campaigns = Campaign.filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter]).order(created_at: :desc).paginate(page: params[:page], per_page: 6)
     respond_to do |format|
       format.html
       format.js { render json: @campaigns }

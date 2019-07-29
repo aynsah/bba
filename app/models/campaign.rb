@@ -1,5 +1,5 @@
 class Campaign < ApplicationRecord
-
+  include Filterable
   belongs_to :user
   belongs_to :category
   has_many :campaign_complaints, dependent: :destroy
@@ -8,25 +8,29 @@ class Campaign < ApplicationRecord
 
   mount_uploader :image_campaign, AvatarUploader
 
-  def self.search(filter1, filter2)
-    if filter1 != "All" && filter2 == "All"
-      where('category_id like ?', "%#{filter1}%").joins(:user)
-    elsif filter1 != "All" && filter2 == "Public User"
-      where('category_id like ? and users.verified_user = ?', "%#{filter1}%", "false").joins(:user)
-    elsif filter1 != "All" && filter2 == "Verified User"
-      where('category_id like ? and users.verified_user = ?', "%#{filter1}%", "true").joins(:user)
-    else
-      all
-    end
-  end
-
   def self.date_after(campaign_timeout)
+    changed_timeout = ""
     timeout = (campaign_timeout - Date.today).to_i
-    if timeout == 0
-      timeout = "< 1"
+    if timeout < 1
+      changed_timeout = "Selesai"
+    elsif timeout == 0
+      changed_timeout = "< 1 Hari"
+    else
+      if (timeout.days)/1.year != 0
+        total_year = (timeout.days)/1.year
+        timeout %= total_year
+      end
+      if (timeout.days)/1.months != 0
+        total_months = (timeout.days)/1.months
+        timeout %= total_months
+      end
+      total_days = timeout
+
+      changed_timeout += total_year.to_s + " tahun " if total_year != nil
+      changed_timeout += total_months.to_s + " bulan " if total_months != nil
+      changed_timeout += total_days.to_s + " hari " if total_days != 0
     end
-    timeout = timeout.to_s + " Hari"
-    return timeout
+    return changed_timeout
   end
 
 end

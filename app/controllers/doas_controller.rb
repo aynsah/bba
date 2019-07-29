@@ -2,7 +2,7 @@ class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
   def index
     @status = DoaStatus.all
-    @doas = Doa.all.order(created_at: :desc)
+    @doas = Doa.where("user_id = ?", "#{current_user.id}").order(created_at: :desc)
   end
   
   def change_status()

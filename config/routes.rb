@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :payments do
+    collection do
+      post :receive_webhook
+    end
+  end
   get 'users/profil/:id', to: 'users#index', as: 'users_index'
   get '/doas/change-status/:id', to: "doas#change_status", as: 'change_status'
   resources :campaign_complaints
@@ -14,9 +19,7 @@ Rails.application.routes.draw do
   get 'campaign_complaints/campaign/:id', to: "campaign_complaints#show_all", as: 'show_all_complaints'
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_supplier_report/:month', to: "report_suppliers#monthly", as: 'month_supplier'
-  
-  # get 'campaigns/:id/report-abuse', to: "campaign_complaints#new", as: 'campaign_complaints'
-  # post 'campaigns/:id/report-abuse', to: "campaign_complaints#create"
+
 
   get 'newsletters', to: 'newsletters#index'
   post 'newsletters/create', to: 'newsletters#create'

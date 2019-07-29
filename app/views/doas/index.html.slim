@@ -1,4 +1,9 @@
 div class="container mt-4 mb-4"
   = link_to "new", new_doa_path
   br
+  - @status.each do |status|
+    div class="col-lg-2" style="display:inline-block"
+      = link_to "#{status.status_name}"
+  br/
+  br/
   = render partial: "doas", locales: {doas: @doas}

@@ -3,19 +3,19 @@ div class="container mt-4 mb-4"
 	  = link_to "New", new_campaign_path
 	
 	= form_tag campaigns_path, class: "form-inline mb-2 mt-4", :method => 'get' do
-	  = select_tag :category_filter,  options_from_collection_for_select( Category.all, :id, :category_name, params[:category_filter]), class: "	form-control col-lg-3", prompt: 'All'
+	  = select_tag :category_filter,  options_from_collection_for_select( Category.all, :id, :category_name, params[:category_filter]), class: "	form-control col-lg-2", prompt: 'All'
 	    
-	  = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-3 	ml-2"
+	  = select_tag :user_filter,  options_for_select(["All", "Verified User", "Public User" ], params[:user_filter]), class: "form-control col-lg-2 ml-2"
 
-	  = select_tag :status_filter,  options_for_select(["All", "On Progress", "Unachieved", "Finished" ], params[:status_filter]), class: "form-control col-lg-3 	ml-2"
+	  = select_tag :status_filter,  options_for_select(["All", "On Progress", "Unachieved", "Finished" ], params[:status_filter]), class: "form-control col-lg-2 ml-2"
 
-	  = text_field_tag :search_filter, params[:search_filter], placeholder: 'Search', class: "form-control col-lg-3 ml-2"
+	  = text_field_tag :search_filter, params[:search_filter], placeholder: 'Search', class: "form-control col-lg-4 ml-2"
 	    
-	  = button_tag(type: "submit", class: "btn btn-outline-secondary ml-4") do
+	  = button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-1 ml-2") do
 	    | Submit
 	
 	div id="search-output-table"
 	  = render @campaigns
 
 	div class="col-lg-12 mt-4" align="center"
-  	= will_paginate @campaigns
+  	= will_paginate @campaigns, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, :class => "mx-auto"

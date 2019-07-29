@@ -15,8 +15,14 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    @campaign.save
-    redirect_to campaigns_path
+
+    respond_to do |format|
+      if @campaign.save
+        @emails = User.where("subscribed = true").pluck(:email)
+        NewsletterMailer.with(email: @emails, campaign: @campaign).send_mail.deliver_now
+        format.html { redirect_to(campaigns_path, notice: 'Campaign was successfully created')}
+      end
+    end
   end
 
   def edit

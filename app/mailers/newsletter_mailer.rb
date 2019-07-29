@@ -1,6 +1,7 @@
 class NewsletterMailer < ApplicationMailer
-  def send_mail(email,data,subject)
-    @body = data
-    mail bcc: email, subject: subject
+  def send_mail
+    @email = params[:email]
+    @campaign = params[:campaign]
+    mail bcc: @email, subject: 'New Campaign on BBA'
   end
 end

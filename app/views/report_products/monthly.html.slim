@@ -31,6 +31,12 @@ div class="container mt-4 mb-4"
 				td
 					b = @price
 	br
+
+	b = link_to 'Export (CSV)', month_product_export_path(month: Date.today.strftime("%B"), format: "csv")
+	span>
+	b = link_to 'Export (XLS)', month_product_export_path(month: Date.today.strftime("%B"), format: "xls")
+
+	br
 	
 	table class="table"
 		tr

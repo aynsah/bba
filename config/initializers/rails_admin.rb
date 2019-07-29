@@ -44,4 +44,9 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.excluded_models << "ReportDonation"
+  config.excluded_models << "ReportProduct"
+  config.excluded_models << "ReportSupplier"
+
 end

@@ -29,7 +29,7 @@ gem 'social-share-button'
 gem 'ckeditor'
 gem 'carrierwave'
 gem 'mini_magick'
-gem "will_paginate", "~> 3.1.7" 
+gem "will_paginate"
 gem 'bootstrap-sass'
 gem 'will_paginate-bootstrap4'
 # Use ActiveStorage variant

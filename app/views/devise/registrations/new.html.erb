@@ -16,8 +16,8 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-    <%= f.input :subcribed, as: :boolean, label: "Subscribe to our newsletter" do %>
-      <%= f.check_box :subcribed, {:checked=>true}, "true", "false" %>
+    <%= f.input :subscribed, as: :boolean, label: "Subscribe to our newsletter" do %>
+      <%= f.check_box :subscribed, {:checked=>true}, "true", "false" %>
     <% end %>
 
   </div>

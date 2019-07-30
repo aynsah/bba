@@ -33,6 +33,7 @@ gem "will_paginate"
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'will_paginate-bootstrap4'
+gem 'jquery-ui-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -68,16 +69,10 @@ gem "slim-rails"
 gem 'remotipart' #, github: 'mshibuya/remotipart'
 
 gem 'rails_admin'#, github: 'sferik/rails_admin'
-
 gem 'rails_admin_rollincode'
-
 gem "devise"
-
 gem 'omniauth'
 gem 'veritrans'
-
 gem 'omniauth-google-oauth2'
-
 gem 'omniauth-facebook', '~> 1.4.0'
-
 gem 'by_star', git: "git://github.com/radar/by_star"

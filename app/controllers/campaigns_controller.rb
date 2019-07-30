@@ -2,7 +2,7 @@ class CampaignsController < ApplicationController
   before_action :find_campaign, only: [:show, :edit, :update, :destroy]
 
   def index
-    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter]).order(created_at: :desc)
+    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], params[:data1], params[:data2]).order(created_at: :desc)
     respond_to do |format|
       format.html
       format.js

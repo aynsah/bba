@@ -12,3 +12,18 @@ $(document).ready(function () {
     $(window).scroll();
   }
 });
+
+$(document).ready(function() {
+    var slider = $("#the_slider").slider({
+        range: true,
+        min: 0,
+        max: 100,
+        values: [0, 100],
+        slide: function(event, ui) {
+            $("#data1").val(ui.values[0] * 10000000);
+            $("#data2").val(ui.values[1] * 10000000);
+        }
+    });
+    $("#data1").val(slider.slider("values")[0] * 10000000);
+    $("#data2").val(slider.slider("values")[1] * 10000000);
+});

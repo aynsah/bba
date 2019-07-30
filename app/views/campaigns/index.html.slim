@@ -1,7 +1,7 @@
 div class="container mt-4 mb-4"
 	- if current_user 
 	  = link_to "New", new_campaign_path
-	
+
 	= form_tag campaigns_path, class: "form-inline mb-2 mt-4", :method => 'get' do
 	  = select_tag :category_filter,  options_from_collection_for_select( Category.all, :id, :category_name, params[:category_filter]), class: "	form-control col-lg-2", prompt: 'All'
 	    

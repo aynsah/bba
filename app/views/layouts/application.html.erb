@@ -8,6 +8,7 @@
     <%= stylesheet_link_tag    'style.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js' %>
     <%= javascript_include_tag Ckeditor.cdn_url %>
   </head>
 
@@ -76,5 +77,6 @@
     <div class="mt-8">
       <%= yield %>
     </div>
+
   </body>
 </html>

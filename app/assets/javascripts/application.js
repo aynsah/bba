@@ -18,3 +18,4 @@
 //= require jquery
 //= require credit_card_form
 //= require jquery_ujs
+//= require bootstrap

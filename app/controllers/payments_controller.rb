@@ -10,8 +10,7 @@ class PaymentsController < ApplicationController # :nodoc:
     @payment = make_payment
 
     if params[:type] == "vtweb"
-      @result = Veritrans.charge(
-        payment_type: "VTWEB",
+      @result = Veritrans.create_snap_redirect_url(
         transaction_details: {
           order_id: @payment.order_id,
           gross_amount: @payment.amount

@@ -4,8 +4,7 @@ module Filterable
   module ClassMethods
     def filter(category_filter, user_filter, status_filter, search_filter, donation_filter1, donation_filter2)
       donation_filter1 = 0 if donation_filter1.to_i < 0
-      donation_filter2 = 1000000000 if donation_filter2.to_i > 1000000000
-
+      donation_filter2 = 1000000000 if donation_filter2.to_i > 1000000000 || donation_filter2.to_i == 0
       results = self.where(nil).joins(:user)
       results = results.category_id(category_filter) if category_filter.present? && category_filter != "All"
       results = filtering_users(results,user_filter) if user_filter.present?

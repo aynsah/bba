@@ -13,7 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require_tree
 //= require social-share-button
 //= require jquery
 //= require credit_card_form

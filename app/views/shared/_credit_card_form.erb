@@ -1,5 +1,5 @@
 <%= form_for @payment, html: {class: "veritrans-payment-form"} do |f| %>
-  <%= f.hidden_field :token_id %>
+  <%= f.hidden_field :token_id, id: "payment_token_id" %>
   <input type="submit" style="display: none">
   <p>
     <%= f.label :amount %>

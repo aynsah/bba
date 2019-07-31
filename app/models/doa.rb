@@ -9,4 +9,11 @@ class Doa < ApplicationRecord
     return Doa.where("user_id = ?", user_id).order(created_at: :desc)
   end
 
+  def self.filter(doa_filter)
+    if doa_filter
+      return where('doa_status_id = ?', doa_filter)
+    else
+      return all
+    end
+  end
 end

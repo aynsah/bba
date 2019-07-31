@@ -1,4 +1,8 @@
 //= require jquery
+//= require jquery-ui
+function currencyFormat(num) {
+  return 'Rp.' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
 
 $(document).ready(function () {
   if ($('.pagination').length && $('#search-output-table').length) {
@@ -20,10 +24,10 @@ $(document).ready(function() {
         max: 100,
         values: [0, 100],
         slide: function(event, ui) {
-            $("#data1").val(ui.values[0] * 10000000);
-            $("#data2").val(ui.values[1] * 10000000);
+            $("#data1").val(currencyFormat(ui.values[0] * 10000000));
+            $("#data2").val(currencyFormat(ui.values[1] * 10000000));
         }
     });
-    $("#data1").val(slider.slider("values")[0] * 10000000);
-    $("#data2").val(slider.slider("values")[1] * 10000000);
+    $("#data1").val(currencyFormat(slider.slider("values")[0] * 10000000));
+    $("#data2").val(currencyFormat(slider.slider("values")[1] * 10000000));
 });

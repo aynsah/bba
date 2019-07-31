@@ -1,4 +1,14 @@
 h1 New Campaign
 
 h3 
-	| Campaign Name : #{@campaign.campaign_title}
+	| Nama Campaign : #{@campaign.campaign_title}
+p 
+	| #{@campaign.campaign_desc}
+br
+p
+	| #{@campaign.additional_text}
+
+p 
+	| Target Donasi : #{@campaign.donation_target}
+	br
+	| Batas Waktu : #{@campaign.campaign_timeout}

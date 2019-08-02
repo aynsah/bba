@@ -2,6 +2,7 @@ class Campaign < ApplicationRecord
   include Filterable
   belongs_to :user
   belongs_to :category
+  has_many :donations
   has_many :campaign_complaints, dependent: :destroy
 
   validates :donation_target, presence: true, length: { in: 4..10}

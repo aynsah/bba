@@ -1,0 +1,5 @@
+h3 Donation
+- @donations.each do |donate|
+  p= link_to "#{donate.user.name}", root_path
+  p= "Rp. #{donate.donation_amount}"
+  hr

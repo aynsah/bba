@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :campaign_complaints, dependent: :destroy
   has_many :campaigns, dependent: :destroy
-  has_many :doas
+  has_many :doas, dependent: :destroy
+  has_many :donations
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

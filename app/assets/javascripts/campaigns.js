@@ -33,3 +33,16 @@ $(document).ready(function() {
     $("#data1").val(currencyFormat(slider.slider("values")[0] * 10000000));
     $("#data2").val(currencyFormat(slider.slider("values")[1] * 10000000));
 });
+
+function show_snap(campaign_id, token){
+  alert(token);
+  snap.pay(token, {
+    onSuccess: function(res) { $.ajax({
+      url: "/campaigns/save-donation/" + campaign_id,
+      type: "POST"
+    }); },
+    // you may also implement:
+    // onPending
+    onError: function(res) { alert("Error Donasi dibatalkan");},
+  });
+}

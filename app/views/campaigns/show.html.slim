@@ -22,12 +22,20 @@
     	    td= raw @campaign.additional_text
 	
     	= social_share_button_tag(@campaign.campaign_title)
-	
-    	br
-    	= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new", :campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
-        br
-        = link_to "Give Donation", new_payment_path
 
+      	br
+        = simple_form_for campaign_path(@campaign.id), remote: true do |f|
+          = f.input :donation_amount
+          = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+          = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
+          = f.submit 'Donate'
+        = hidden_field_tag 'snap_token', @snap_token
+        br
+        div id="donation-table"
+          = render partial: "donation", locales: {donations: @donations}
+
+      	= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+        br
         if current_user.id == @campaign.user_id
           br
           = link_to "Update Campaign", edit_campaign_path(@campaign)

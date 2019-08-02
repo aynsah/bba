@@ -10,7 +10,7 @@ module Filterable
       results = results.category_id(category_filter) if category_filter.present? && category_filter != "All"
       results = filtering_users(results,user_filter) if user_filter.present?
       results = filtering_status(results,status_filter) if status_filter.present?
-      results = results.where(donation_target: donation_filter1...donation_filter2) if donation_filter1.present? && donation_filter2.present?
+      results = results.where(donation_target: donation_filter1...donation_filter2.to_i + 1) if donation_filter1.present? && donation_filter2.present?
       results = results.where('campaign_title like ? or users.name like ?', "%#{search_filter}%", "%#{search_filter}%") if search_filter.present? && search_filter != ""
 
       results
@@ -30,7 +30,7 @@ module Filterable
       if status_filter == "On Progress"
         return results.where("campaign_timeout > ?", Date.today)
       elsif status_filter == "Unachieved"
-        return results.where(nil)
+        return results.group("campaigns.id, users.id").having("sum(donations.donation_amount) < campaigns.donation_target").joins(:donations)
       elsif status_filter == "Finished"
         return results.where("campaign_timeout < ?", Date.today)
       else

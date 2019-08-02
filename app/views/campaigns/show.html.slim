@@ -24,12 +24,15 @@
     	= social_share_button_tag(@campaign.campaign_title)
 
       	br
-        = simple_form_for campaign_path(@campaign.id), remote: true do |f|
-          = f.input :donation_amount
-          = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
-          = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
-          = f.submit 'Donate'
-        = hidden_field_tag 'snap_token', @snap_token
+        - if @donations.sum(:donation_amount) < @campaign.donation_target
+          = simple_form_for campaign_path(@campaign.id), remote: true do |f|
+            = f.input :donation_amount
+            = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+            = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
+            = f.submit 'Donate'
+          = hidden_field_tag 'snap_token', @snap_token
+        - else
+          p Donation Campaign Closed
         br
         div id="donation-table"
           = render partial: "donation", locales: {donations: @donations}

@@ -1,5 +1,8 @@
 h3 Donation
+h4= number_to_currency(@donations.sum(:donation_amount))
+br/
+hr
 - @donations.each do |donate|
   p= link_to "#{donate.user.name}", root_path
-  p= "Rp. #{donate.donation_amount}"
+  p= number_to_currency(donate.donation_amount)
   hr

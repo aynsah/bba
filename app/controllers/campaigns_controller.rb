@@ -40,6 +40,7 @@ class CampaignsController < ApplicationController
 
   def save_donation
     $donation.save
+    @donations = Donation.where(:campaign_id => params[:id])
     respond_to do |format|
       format.js { render :action => "show" }
     end

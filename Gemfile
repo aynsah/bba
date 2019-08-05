@@ -76,3 +76,4 @@ gem 'veritrans'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook', '~> 1.4.0'
 gem 'by_star', git: "git://github.com/radar/by_star"
+gem 'bootstrap-email'

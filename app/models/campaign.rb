@@ -34,4 +34,19 @@ class Campaign < ApplicationRecord
     return changed_timeout
   end
 
+  RailsAdmin.config do |config|
+    config.total_columns_width = 1000
+    config.model Campaign do
+
+      list do
+        field :id
+        field :campaign_title 
+        field :category
+        field :donation_target
+        field :user
+      end
+
+    end
+  end
+
 end

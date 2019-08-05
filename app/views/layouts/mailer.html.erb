@@ -2,12 +2,13 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag "newsletter", media: "all" %>
     <style>
       /* Email styles need to be inline */
     </style>
   </head>
 
-  <body>
+  <body class="bg-light">
     <%= yield %>
   </body>
 </html>

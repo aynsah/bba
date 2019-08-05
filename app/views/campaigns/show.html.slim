@@ -1,5 +1,5 @@
 - if @campaign
-	div class="container mt-4"
+	div class="container mt-4 mb-4"
 		- if current_user
     	p= link_to "New", new_campaign_path
     	table
@@ -15,7 +15,7 @@
     	  tr
     	    td= @campaign.image_campaign
     	    td= @campaign.campaign_title
-    	    td= @campaign.category ?  @campaign.category.category_name : "Unknown"
+    	    td= @campaign.category ? @campaign.category.category_name : "Unknown"
     	    td= @campaign.donation_target
     	    td= @campaign.campaign_timeout
     	    td= raw @campaign.campaign_desc

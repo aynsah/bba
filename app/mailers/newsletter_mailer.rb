@@ -2,6 +2,9 @@ class NewsletterMailer < ApplicationMailer
   def send_mail
     @email = params[:email]
     @campaign = params[:campaign]
-    mail bcc: @email, subject: 'New Campaign on BBA'
+    make_bootstrap_mail(
+    	bcc: @email, 
+    	subject: 'New Campaign on BBA'
+    )
   end
 end

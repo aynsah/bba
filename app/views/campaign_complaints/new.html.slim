@@ -1,16 +1,18 @@
 -if Campaign.exists?(params[:campaign_id])
-  h2 Send a campaign report
+  .container
+    br/
+    h2 Send a campaign report
 
-  - if current_user
-    = simple_form_for @campaign_complaint, :method => :post do |f|
-      .form-group
-        = f.input :complaint_category_id, :collection => ComplaintCategory.all,:label_method => :category_name,:value_method => :id
-        = f.input :complaint, as: :ckeditor, input_html: { class: 'ckeditor'}
-        = f.input :campaign_id, :as => :hidden, :input_html => { :value => params[:campaign_id] }
+    - if current_user
+      = simple_form_for @campaign_complaint, :method => :post do |f|
+        .form-group
+          = f.input :complaint_category_id, :collection => ComplaintCategory.all,:label_method => :category_name,:value_method => :id, include_blank: false
+          = f.input :complaint, as: :ckeditor, input_html: { class: 'ckeditor'}
+          = f.input :campaign_id, :as => :hidden, :input_html => { :value => params[:campaign_id] }
 
-        = f.submit "Send"
+          = f.submit "Send"
 
-  - else
-      - controller.redirect_to new_user_session_path
+    - else
+        - controller.redirect_to new_user_session_path
 - else
   p Post telah habis masa waktu atau telah dihapus oleh admin

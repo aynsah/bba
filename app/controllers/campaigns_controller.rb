@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
   def index
-    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)).order(created_at: :desc)
+    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)).order(created_at: :desc).where(:approved => true)
     respond_to do |format|
       format.html
       format.js
@@ -43,7 +43,10 @@ class CampaignsController < ApplicationController
       if @campaign.save
         @emails = User.where("subscribed = true").pluck(:email)
         NewsletterMailer.with(email: @emails, campaign: @campaign).send_mail.deliver_now
-        format.html {redirect_to( campaigns_path, notice: 'Campaign was succesfully created')}
+        format.html {redirect_to( campaigns_path, notice: 'Campaign was succesfully created, waiting for admin to approval')}
+      else 
+        @campaign.valid?
+        format.html {redirect_to( new_campaign_path, alert: @campaign.errors.full_messages[0])}
       end
     end
   end

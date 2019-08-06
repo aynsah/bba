@@ -39,7 +39,6 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-
     respond_to do |format|
       if @campaign.save
         @emails = User.where("subscribed = true").pluck(:email)

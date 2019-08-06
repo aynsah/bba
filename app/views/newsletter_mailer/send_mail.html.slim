@@ -1,14 +1,14 @@
-h1 New Campaign
-
-h3 
-	| Nama Campaign : #{@campaign.campaign_title}
-p 
-	| #{@campaign.campaign_desc}
-br
-p
-	| #{@campaign.additional_text}
-
-p 
-	| Target Donasi : #{@campaign.donation_target}
-	br
-	| Batas Waktu : #{@campaign.campaign_timeout}
+div class="container" align="center"
+	div class="card"
+		div class="card-body"
+			div class="row"
+				h3 #{@campaign.campaign_title.titleize}
+			div class="row"
+				h5 #{@campaign.additional_text}
+			hr
+			
+			div class="row"
+				div class="col-lg-6"
+					| Target Donasi : #{number_to_currency @campaign.donation_target}
+				div class="col-lg-6"
+					| Batas Waktu : #{@campaign.campaign_timeout}

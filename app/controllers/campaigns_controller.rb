@@ -1,5 +1,7 @@
 class CampaignsController < ApplicationController
   before_action :find_campaign, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery with: :null_session, :only => [:receive_webhook]
+  skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
   def index
     @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)).order(created_at: :desc)
@@ -39,12 +41,7 @@ class CampaignsController < ApplicationController
   end
 
   def save_donation
-<<<<<<< HEAD
-    $donation.save
-    @donations = Donation.where(:campaign_id => params[:id])
-=======
     @donations = Donation.where(:campaign_id => params[:id]).where('donation_status = ? or user_id = ?',"completed", "#{current_user.id}")
->>>>>>> eb738b9fef1f6c90a4e272ee19aa226b0b3c3ef6
     respond_to do |format|
       format.js { render :action => "show", notice: 'Donasi sedang di proses'}
     end
@@ -52,20 +49,11 @@ class CampaignsController < ApplicationController
 
   def donate
     $donation = Donation.new(donation_params)
-<<<<<<< HEAD
-    donation_id = Donation.exists? ? Donation.last.id.to_i + 1 : 1
-
-    response = Veritrans.create_widget_token(
-      transaction_details: {
-        order_id: "Donation-#{$donation.campaign_id}-#{donation_id}",
-=======
     donation_id = Donation.any? ? Donation.last.id + 1 : 1
     $donation.id = donation_id 
-
     response = Veritrans.create_widget_token(
       transaction_details: {
         order_id: "Donation-#{$donation.campaign_id}-#{$donation.id}_#{Time.now.to_s(:number)}",
->>>>>>> eb738b9fef1f6c90a4e272ee19aa226b0b3c3ef6
         gross_amount: $donation.donation_amount.to_i
       },
       customer_details: {

@@ -10,28 +10,6 @@ class CampaignsController < ApplicationController
       format.js
     end
   end
-
-  def receive_webhook
-    post_body = request.body.read
-    callback_params = Veritrans.decode_notification_json(post_body)
-
-    verified_data = Veritrans.status(callback_params['transaction_id'])
-
-    if verified_data.status_code != 404
-      case verified_data.data[:transaction_status]
-      when "expired", "cancel"
-        Campaign.notification_canceled(verified_data.data[:order_id])
-      when "capture"
-        Campaign.notification_captured(verified_data.data[:order_id])
-      when "settlement"
-        Campaign.notification_completed(verified_data.data[:order_id])
-      end
-
-      render text: "ok"
-    else
-      render text: "ok", :status => :not_found
-    end
-  end
   
   def new
     @campaign = Campaign.new
@@ -39,6 +17,7 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
+    
     respond_to do |format|
       if @campaign.save
         @emails = User.where("subscribed = true").pluck(:email)
@@ -75,7 +54,6 @@ class CampaignsController < ApplicationController
     $donation = Donation.new(donation_params)
     donation_id = Donation.any? ? Donation.last.id + 1 : 1
     $donation.id = donation_id 
-
     response = Veritrans.create_widget_token(
       transaction_details: {
         order_id: "Donation-#{$donation.campaign_id}-#{$donation.id}_#{Time.now.to_s(:number)}",

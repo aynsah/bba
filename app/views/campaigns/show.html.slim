@@ -10,10 +10,14 @@
       br/
       br/
       = number_to_currency(@campaign.donation_target)
-      p= @campaign.campaign_timeout
-
+      
       p= raw @campaign.campaign_desc
       p= raw @campaign.additional_text
+
+      hr
+
+      p 
+        | Batas waktu : #{@campaign.campaign_timeout}
 	
     	= social_share_button_tag(@campaign.campaign_title)
 

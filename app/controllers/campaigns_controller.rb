@@ -15,12 +15,12 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-
+    
     respond_to do |format|
       if @campaign.save
         @emails = User.where("subscribed = true").pluck(:email)
         NewsletterMailer.with(email: @emails, campaign: @campaign).send_mail.deliver_now
-        format.html { redirect_to(campaigns_path, notice: 'Campaign was successfully created')}
+        format.html {redirect_to( campaigns_path, notice: 'Campaign was succesfully created')}
       end
     end
   end
@@ -39,20 +39,33 @@ class CampaignsController < ApplicationController
   end
 
   def save_donation
+<<<<<<< HEAD
     $donation.save
     @donations = Donation.where(:campaign_id => params[:id])
+=======
+    @donations = Donation.where(:campaign_id => params[:id]).where('donation_status = ? or user_id = ?',"completed", "#{current_user.id}")
+>>>>>>> eb738b9fef1f6c90a4e272ee19aa226b0b3c3ef6
     respond_to do |format|
-      format.js { render :action => "show" }
+      format.js { render :action => "show", notice: 'Donasi sedang di proses'}
     end
   end
 
   def donate
     $donation = Donation.new(donation_params)
+<<<<<<< HEAD
     donation_id = Donation.exists? ? Donation.last.id.to_i + 1 : 1
 
     response = Veritrans.create_widget_token(
       transaction_details: {
         order_id: "Donation-#{$donation.campaign_id}-#{donation_id}",
+=======
+    donation_id = Donation.any? ? Donation.last.id + 1 : 1
+    $donation.id = donation_id 
+
+    response = Veritrans.create_widget_token(
+      transaction_details: {
+        order_id: "Donation-#{$donation.campaign_id}-#{$donation.id}_#{Time.now.to_s(:number)}",
+>>>>>>> eb738b9fef1f6c90a4e272ee19aa226b0b3c3ef6
         gross_amount: $donation.donation_amount.to_i
       },
       customer_details: {

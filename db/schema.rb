@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_08_01_074634) do
     t.integer "donation_amount"
     t.integer "user_id"
     t.integer "campaign_id"
+    t.string "donation_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

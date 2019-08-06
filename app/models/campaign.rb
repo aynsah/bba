@@ -1,5 +1,6 @@
 class Campaign < ApplicationRecord
   include Filterable
+  include Notification
   belongs_to :user
   belongs_to :category
   has_many :donations
@@ -33,5 +34,6 @@ class Campaign < ApplicationRecord
     end
     return changed_timeout
   end
+
 
 end

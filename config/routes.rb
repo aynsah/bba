@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   post 'campaigns/save-donation/:id', to: 'campaigns#save_donation', as: 'save_donation'
   post 'campaigns/:id', to: 'campaigns#donate', as: 'campaign_donate'
+  match "notification/handle" => "campaigns#receive_webhook", via: [:post]
   get 'campaign_complaints/campaign/:id', to: "campaign_complaints#show_all", as: 'show_all_complaints'
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_product_report_export/:month', to: "report_products#export", as: 'month_product_export'

@@ -7,7 +7,8 @@ module Notification
     end
     
     def notification_captured(order_id) 
-
+      $donation.donation_status = "processed"
+      $donation.save
     end
 
     def notification_completed(order_id) 
@@ -15,7 +16,7 @@ module Notification
     end
 
     def find_donation(order_id)
-      donation_id = order_id.slice(-(order_id.reverse.index('-'))...order_id.length)
+      donation_id = order_id.slice(-(order_id.reverse.index('-'))...order_id.index('_'))
       donation = Donation.find(donation_id)
       return donation
     end

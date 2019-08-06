@@ -20,10 +20,6 @@ div class="container mt-4 mb-4"
   p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
   
   hr
-  -if current_user.id == @user.id
-    p= link_to "Edit Profil", edit_user_registration_path
-    p= link_to "Wishlist Doa Ku", doas_path
-  hr
   h2 Campaigns
   div class="row" align="center"
     - @campaigns.each do |c|
@@ -57,3 +53,22 @@ div class="container mt-4 mb-4"
         tr
           td= complaint.created_at
           td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"
+
+  br/
+  br/
+  br/
+  -if current_user.id == @user.id
+    h2 My Donation
+    table
+      tr
+        th width="400" Campaign
+        th width="200" Jumlah Donasi
+        th width="200" Status
+        th width="200" Tanggal
+  
+      - @donations.each do |donation|
+        tr
+          td= link_to "#{donation.campaign.campaign_title}", campaign_path(donation.campaign_id)
+          td= number_to_currency(donation.donation_amount)
+          td= donation.donation_status
+          td= donation.created_at.to_date

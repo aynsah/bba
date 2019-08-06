@@ -40,23 +40,22 @@
             <li class="nav-item">
                 <%= link_to "Campaign", campaigns_path, class: "nav-link" %>
             </li>
-            <li class="nav-item">
-              <% if current_user && current_user.admin == true %>
-                <%= link_to "Wishlist Doa", doas_path, class: "nav-link" %>
-              <% end %>
-            </li>
           </ul>
 
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item dropdown">
               <% if current_user %>
-                <%= link_to "#{current_user.name}", users_index_path(current_user.id), class: "nav-link" %>
+                <%= link_to "Hi, #{current_user.name}", "#", { :class => "nav-link dropdown-toggle", :id => "navbarDropdown", :role => "button", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" } %>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to "Profil", users_index_path(current_user.id), class: "dropdown-item" %>
+                  <%= link_to "Wishlist Doa", doas_path, class: "dropdown-item" %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
+                </div>
               <% end %>
             </li>
             <li class="nav-item">
-                <% if current_user %>
-                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
-                <% else %> 
+                <% if !current_user %>
                   <%= link_to "Login", new_user_session_path, class: "btn btn-outline-success" %>
                 <% end %>
             </li>
@@ -73,11 +72,13 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-
     </div>
+
     <div class="mt-8">
       <%= yield %>
     </div>
+
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-server-k4plJ-jwu2s_m3W0i5WA7fSo"></script> 
+    
   </body>
 </html>

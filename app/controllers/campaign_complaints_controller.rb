@@ -11,7 +11,7 @@ class CampaignComplaintsController < ApplicationController
       redirect_to(campaigns_path, notice: 'Complaint has been sent')
     else
       @ca
-      redirect_to(new_campaign_complaint_path, error: @campaign_complaint.errors.full_messages[0])
+      redirect_to("/campaign_complaints/new?campaign_id=#{@campaign_complaint.campaign_id}", alert: @campaign_complaint.errors.full_messages[0])
     end
   end
 

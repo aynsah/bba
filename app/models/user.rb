@@ -14,10 +14,11 @@ class User < ApplicationRecord
 
   before_save { email.downcase! }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
+  validates :email, presence: true, length: { maximum: 255, message: "too long" },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 8 }
+  validates :password, presence: {message: "can't be blank"}, length: { minimum: 8, message: "too short" }
+  validates :name, presence: {message: "can't be blank"}, length: {minimum: 6, message: "too short"}
 
   mount_uploader :photo, AvatarUploader
   def self.new_with_session(params, session)

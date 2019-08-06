@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :find_campaign, only: [:show, :edit, :update, :destroy]
+  before_action :find_campaign, only: [:show, :edit, :update, :destroy, :save_donation]
   protect_from_forgery with: :null_session, :only => [:receive_webhook]
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
@@ -10,7 +10,30 @@ class CampaignsController < ApplicationController
       format.js
     end
   end
-  
+
+  def receive_webhook
+    post_body = request.body.read
+    callback_params = Veritrans.decode_notification_json(post_body)
+
+    verified_data = Veritrans.status(callback_params['transaction_id'])
+
+    if verified_data.status_code != 404
+      case verified_data.data[:transaction_status]
+      when "capture"
+        Campaign.notification_captured(verified_data.data[:order_id])
+
+      when "settlement"
+        Campaign.notification_completed(verified_data.data[:order_id])
+
+      when "expired", "cancel"
+        Campaign.notification_canceled(verified_data.data[:order_id])
+      end
+      render text: "ok"
+    else
+      render text: "ok", :status => :not_found
+    end
+  end
+
   def new
     @campaign = Campaign.new
   end
@@ -34,8 +57,12 @@ class CampaignsController < ApplicationController
   end
 
   def update
-    @campaign.update(campaign_params)
-    redirect_to campaigns_path
+    if @campaign.update(campaign_params)
+      redirect_to(campaigns_path, notice: 'Campaign Updated')
+    else
+      @campaign.valid?
+      redirect_to(edit_campaign_path, alert: @campaign.errors.full_messages[0])
+    end
     
   end
 
@@ -76,6 +103,8 @@ class CampaignsController < ApplicationController
     def find_campaign
       if Campaign.exists?(params[:id])
         @campaign = Campaign.find(params[:id])
+      else
+        redirect_to(campaigns_path, alert: "Campaign doesn't exists")
       end
     end
 

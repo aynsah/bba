@@ -1,6 +1,6 @@
 class CampaignsController < ApplicationController
   before_action :find_campaign, only: [:show, :edit, :update, :destroy]
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :null_session, :only => [:receive_webhook]
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
   def index

@@ -1,6 +1,16 @@
 h3 Donation
 h4= number_to_currency(@donations.sum(:donation_amount))
 br/
+- if @donations.sum(:donation_amount) < @campaign.donation_target
+  = simple_form_for campaign_path(@campaign.id), remote: true do |f|
+    = f.input :donation_amount
+    = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+    = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
+    = f.submit 'Donate'
+  = hidden_field_tag 'snap_token', @snap_token
+- else
+  p Donation Campaign Closed
+br
 hr
 - @donations.each do |donate|
   p

@@ -1,47 +1,31 @@
 - if @campaign
 	div class="container mt-4 mb-4"
 		- if current_user
-    	p= link_to "New", new_campaign_path
-    	table
-    	  tr
-    	    th width="150" Photo
-    	    th width="150" Judul
-    	    th width="150" Kategori
-    	    th width="150" Target donasi
-    	    th width="150" Batas Waktu
-    	    th width="150" Deskripsi
-    	    th width="150" Tambahan
-	
-    	  tr
-    	    td= @campaign.image_campaign
-    	    td= @campaign.campaign_title
-    	    td= @campaign.category ? @campaign.category.category_name : "Unknown"
-    	    td= @campaign.donation_target
-    	    td= @campaign.campaign_timeout
-    	    td= raw @campaign.campaign_desc
-    	    td= raw @campaign.additional_text
+    	 p= link_to "New", new_campaign_path
+    .container
+      h3= @campaign.campaign_title
+      p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user_id)
+      br/
+      = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
+      br/
+      br/
+      = number_to_currency(@campaign.donation_target)
+      p= @campaign.campaign_timeout
+
+      p= raw @campaign.campaign_desc
+      p= raw @campaign.additional_text
 	
     	= social_share_button_tag(@campaign.campaign_title)
 
-      	br
-        - if @donations.sum(:donation_amount) < @campaign.donation_target
-          = simple_form_for campaign_path(@campaign.id), remote: true do |f|
-            = f.input :donation_amount
-            = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
-            = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
-            = f.submit 'Donate'
-          = hidden_field_tag 'snap_token', @snap_token
-        - else
-          p Donation Campaign Closed
-        br
-        div id="donation-table"
-          = render partial: "donation", locales: {donations: @donations}
+      br
+      div id="donation-table"
+        = render partial: "donation", locales: {donations: @donations}
 
-      	= link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+      = link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id, :user_id => current_user.id, :method => :get}
+      br
+      if current_user.id == @campaign.user_id
         br
-        if current_user.id == @campaign.user_id
-          br
-          = link_to "Update Campaign", edit_campaign_path(@campaign)
+        = link_to "Update Campaign", edit_campaign_path(@campaign)
 
 - else
     p Campaign ini telah dihapus

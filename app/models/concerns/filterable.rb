@@ -30,7 +30,12 @@ module Filterable
       if status_filter == "On Progress"
         return results.where("campaign_timeout > ?", Date.today)
       elsif status_filter == "Unachieved"
-        return results.group("campaigns.id, users.id").having("sum(donations.donation_amount) < campaigns.donation_target").joins(:donations)
+        campaigns = Array.new
+        results.each do |result|
+          campaign_donation = Donation.where(:campaign_id => result.id, :donation_status => 'completed').sum('donation_amount')
+          campaigns << result if result.donation_target > campaign_donation
+        end
+        return Campaign.where(id: campaigns.map(&:id))
       elsif status_filter == "Finished"
         return results.where("campaign_timeout < ?", Date.today)
       else

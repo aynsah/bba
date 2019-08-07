@@ -33,6 +33,9 @@ div class="container mt-4 mb-4"
               p class="card-text ml-4 text-muted"
                 | Penggalang Dana : 
                 = c.user.name
+                br/
+                | Approved :
+                = c.approved
                 span>
                 = c.user.verified_user ? "(Verified) ": ""
               ul class="list-group list-group-flush"

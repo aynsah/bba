@@ -7,9 +7,12 @@ class CampaignComplaintsController < ApplicationController
     user = current_user.id
     @campaign_complaint = CampaignComplaint.new(campaign_complaint_params)
     @campaign_complaint.user_id = user
-    @campaign_complaint.validate!
-    @campaign_complaint.save
-    redirect_to root_path
+    if @campaign_complaint.save
+      redirect_to(campaigns_path, notice: 'Complaint has been sent')
+    else
+      @ca
+      redirect_to("/campaign_complaints/new?campaign_id=#{@campaign_complaint.campaign_id}", alert: @campaign_complaint.errors.full_messages[0])
+    end
   end
 
   def show

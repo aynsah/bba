@@ -71,7 +71,7 @@ class CampaignsController < ApplicationController
   end
 
   def save_donation
-    @donations = Donation.where(:campaign_id => params[:id]).where('donation_status = ? or user_id = ?',"completed", "#{current_user.id}")
+    @donations = Donation.where(:campaign_id => params[:id], :donation_status => "completed")
     respond_to do |format|
       format.js { render :action => "show", notice: 'Donasi sedang di proses'}
     end

@@ -3,14 +3,13 @@
 		- if current_user
     	 p= link_to "New", new_campaign_path
     .container
-      h3= @campaign.campaign_title
+      h3= @campaign.campaign_title.titleize
       p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user_id)
       br/
       p= @campaign.image_campaign.url
       = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
       br/
       br/
-      = number_to_currency(@campaign.donation_target)
       
       p= raw @campaign.campaign_desc
       p= raw @campaign.additional_text
@@ -19,6 +18,8 @@
 
       p 
         | Batas waktu : #{@campaign.campaign_timeout}
+        br
+        | Target Donasi : #{number_to_currency(@campaign.donation_target)}
 	
     	= social_share_button_tag(@campaign.campaign_title)
 

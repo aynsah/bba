@@ -57,6 +57,18 @@ class Campaign < ApplicationRecord
         field :user
       end
 
+      show do
+        field :id
+        field :campaign_title 
+        field :category
+        field :donation_target
+        field :campaign_desc
+        field :additional_text
+        field :image_campaign
+        field :user
+        field :donations
+      end
+
     end
   end
 

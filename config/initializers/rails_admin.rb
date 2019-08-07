@@ -1,4 +1,5 @@
 RailsAdmin.config do |config|
+  config.compact_show_view = false
   ### Popular gems integration
   config.authorize_with do
     redirect_to main_app.root_path unless current_user.admin == true
@@ -48,5 +49,8 @@ RailsAdmin.config do |config|
   config.excluded_models << "ReportDonation"
   config.excluded_models << "ReportProduct"
   config.excluded_models << "ReportSupplier"
+  config.excluded_models << "Ckeditor::Asset"
+  config.excluded_models << "Ckeditor::Picture"
+  config.excluded_models << "Ckeditor::AttachmentFile"
 
 end

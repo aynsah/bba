@@ -35,7 +35,7 @@ module Filterable
           campaign_donation = Donation.where(:campaign_id => result.id, :donation_status => 'completed').sum('donation_amount')
           campaigns << result if result.donation_target > campaign_donation
         end
-        return Campaign.where(id: campaigns.map(&:id))
+        return results.where(id: campaigns.map(&:id))
       elsif status_filter == "Finished"
         return results.where("campaign_timeout < ?", Date.today)
       else

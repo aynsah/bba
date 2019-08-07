@@ -2,7 +2,7 @@
 	div class="container mt-4 mb-4"
 		- if current_user
     	 p= link_to "New", new_campaign_path
-    .container
+    div class="container mt-4 mb-4"
       h3= @campaign.campaign_title.titleize
       p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user_id)
       br/
@@ -20,7 +20,7 @@
         br
         | Target Donasi : #{number_to_currency(@campaign.donation_target)}
 	
-    	= social_share_button_tag(@campaign.campaign_title)
+     	= social_share_button_tag(@campaign.campaign_title)
 
       br
       - if current_user 
@@ -33,4 +33,4 @@
         = link_to "Update Campaign", edit_campaign_path(@campaign)
 
 - else
-    p Campaign ini tidak ada Atau telah dihapus
+    p Campaign ini tidak ada Atau telah dihapus 

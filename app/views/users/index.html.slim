@@ -20,7 +20,7 @@ div class="container mt-4 mb-4"
   p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
   
   hr
-  h2 Campaigns
+  h2 My Campaigns
   div class="row" align="center"
     - @campaigns.each do |c|
       div class="col-sm-4"
@@ -33,6 +33,7 @@ div class="container mt-4 mb-4"
               p class="card-text ml-4 text-muted"
                 | Penggalang Dana : 
                 = c.user.name
+                br/
                 | Approved :
                 = c.approved
                 span>

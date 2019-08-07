@@ -67,7 +67,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @donations = Donation.where(:campaign_id => params[:id])
+    @donations = Donation.where(:campaign_id => params[:id], :donation_status => "completed")
   end
 
   def save_donation

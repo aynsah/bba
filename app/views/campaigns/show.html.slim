@@ -6,12 +6,13 @@
       h3= @campaign.campaign_title.titleize
       p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user_id)
       br/
-      p= @campaign.image_campaign.url
       = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
       br/
       br/
       
       p= raw @campaign.campaign_desc
+      br/
+      hr/
       p= raw @campaign.additional_text
 
       hr

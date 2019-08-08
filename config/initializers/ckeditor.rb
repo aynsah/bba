@@ -7,9 +7,7 @@ Ckeditor.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'ckeditor/orm/active_record'
-  
-  # //cdn.ckeditor.com/<version.number>/<distribution>/ckeditor.js
-  config.cdn_url = "//cdn.ckeditor.com/4.6.1/basic/ckeditor.js"
+
   # Allowed image file types for upload.
   # Set to nil or [] (empty array) for all file types
   # By default: %w(jpg jpeg png gif tiff)
@@ -18,7 +16,7 @@ Ckeditor.setup do |config|
   # Allowed flash file types for upload.
   # Set to nil or [] (empty array) for all file types
   # By default: %w(jpg jpeg png gif tiff)
-  # config.flash_file_types = %w(swf)
+  config.flash_file_types = %w(jpg jpeg png gif tiff)
 
   # Allowed attachment file types for upload.
   # Set to nil or [] (empty array) for all file types
@@ -28,7 +26,7 @@ Ckeditor.setup do |config|
   # Setup authorization to be run as a before filter
   # By default: there is no authorization.
   # config.authorize_with :cancancan
-
+  config.cdn_url = "//cdn.ckeditor.com/4.6.1/basic/ckeditor.js"
   # Override parent controller CKEditor inherits from
   # By default: 'ApplicationController'
   # config.parent_controller = 'MyController'

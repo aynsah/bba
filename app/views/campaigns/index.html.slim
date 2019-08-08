@@ -1,7 +1,6 @@
 div class="container mt-4 mb-10"
 	div class="row"
-		- if current_user 
-		  = link_to "Buat Campaign Baru", new_campaign_path, :class => "btn btn-primary"
+		= link_to "Buat Campaign baru", new_campaign_path, :class => "btn btn-primary"
 		button class="btn btn-outline-info ml-2 float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" Filter
 
 	div class="collapse col-lg-12" id="collapseExample"

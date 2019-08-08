@@ -26,11 +26,11 @@
       - if current_user 
         div id="donation-table"
           = render partial: "donation", locales: {donations: @donations}
-      = link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
+      = link_to "Laporkan campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
       br
       if current_user.id == @campaign.user_id
         br
-        = link_to "Update Campaign", edit_campaign_path(@campaign)
+        = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
 
 - else
     p Campaign ini tidak ada Atau telah dihapus 

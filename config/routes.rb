@@ -20,12 +20,17 @@ Rails.application.routes.draw do
   post 'campaigns/:id', to: 'campaigns#donate', as: 'campaign_donate'
   match "notification/handle" => "campaigns#receive_webhook", via: [:post]
   get 'campaign_complaints/campaign/:id', to: "campaign_complaints#show_all", as: 'show_all_complaints'
+
+  #MONTHLY REPORT
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_product_report_export/:month', to: "report_products#export", as: 'month_product_export'
   get 'monthly_supplier_report/:month', to: "report_suppliers#monthly", as: 'month_supplier'
 
-
+  #NEWSLETTER
   get 'newsletters', to: 'newsletters#index'
   post 'newsletters/create', to: 'newsletters#create'
+
+  get 'cek_resi/cek', to: 'cek_resi#cek', as: 'cek_resi_cek'
+  get 'cek_resi', to: 'cek_resi#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

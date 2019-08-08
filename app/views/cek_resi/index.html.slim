@@ -1,0 +1,12 @@
+div class="container h-100"
+	div class="row h-100 align-items-center"
+		div class="col-sm-10 mx-auto"
+			div class="card h-100" align="center"
+				div class="card-body"
+					h3 class="card-title text-primary"
+						| Masukan Order ID
+					= form_tag cek_resi_cek_path, class: "form-inline col-lg-12 mx-auto", :method => 'get' do
+						= text_field_tag :resi, nil, placeholder: 'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-12"
+						br
+						= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-3 mt-5 mb-5 mx-auto") do
+							| Cek Status Transaksi

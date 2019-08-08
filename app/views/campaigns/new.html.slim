@@ -1,21 +1,19 @@
 - controller.redirect_to new_user_session_path unless current_user
-    div class="container mt-4 mb-4"
-        = simple_form_for(@campaign) do |f|
-          - if @campaign.errors.any?
-            h4 Error:
-            - @campaign.errors.full_messages.each do |message|
-              p message
-          .form-group
-            = f.input :image_campaign, as: :file, input_html: { :required => "true" }
-            = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id, include_blank: false
-            = f.input :campaign_title, required: true
-            = f.input :donation_target, as: :decimal
-            = "maksimal target donasi sejumlah 1 Miliyar"
-            = f.input :campaign_timeout, as: :date, start_year: Date.today.year
-            = f.input :campaign_desc, as: :ckeditor, input_html: { class: 'ckeditor'}
-            = f.input :additional_text, as: :ckeditor, input_html: { class: 'ckeditor'}
-            = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+div class="container mt-4 mb-4"
+    = simple_form_for(@campaign) do |f|
+      - if @campaign.errors.any?
+        h4 Error:
+        - @campaign.errors.full_messages.each do |message|
+          p message
+      .form-group
+        = f.input :image_campaign, as: :file, input_html: { :required => "true" }
+        = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id, include_blank: false
+        = f.input :campaign_title, required: true
+        = f.input :donation_target, as: :decimal
+        = "maksimal target donasi sejumlah 1 Miliyar"
+        = f.input :campaign_timeout, as: :date, start_year: Date.today.year
+        = f.input :campaign_desc, as: :ckeditor, input_html: { class: 'ckeditor'}
+        = f.input :additional_text, as: :ckeditor, input_html: { class: 'ckeditor'}
+        = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
     
-            = f.submit "Create Campaign"
-
-        - 
+        = f.submit "Buat Campaign"

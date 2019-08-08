@@ -28,6 +28,8 @@
       - if current_user 
         div id="donation-table"
           = render partial: "donation", locales: {donations: @donations}
+      - else
+        p Harap login terlebih dahulu untuk memberikan donasi
       = link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
       br
       if current_user.id == @campaign.user_id

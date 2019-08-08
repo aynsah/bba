@@ -1,5 +1,5 @@
-div class="container mt-4 mb-4"
-    - if current_user
+- controller.redirect_to new_user_session_path unless current_user
+    div class="container mt-4 mb-4"
         = simple_form_for(@campaign) do |f|
           - if @campaign.errors.any?
             h4 Error:
@@ -17,6 +17,5 @@ div class="container mt-4 mb-4"
             = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
     
             = f.submit "Create Campaign"
-    
-    - else
-        - controller.redirect_to new_user_session_path
+
+        - 

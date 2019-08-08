@@ -1,14 +1,15 @@
-div class="container mt-4 mb-4"
-  h2= @doa.title
-  p= @doa.doa_status.status_name
-  
-  p= raw @doa.doa
-  hr
-  p= raw @doa.doa_desc
-  hr
-  p 
-    | Dibuat : 
-    = @doa.created_at
-  p
-    | Berakhir : 
-    = @doa.expired_at
+- controller.redirect_to doas_path unless current_user.id == @doa.user_id || current_user.admin == true 
+  div class="container mt-4 mb-4"
+    h2= @doa.title
+    p= @doa.doa_status.status_name
+    
+    p= raw @doa.doa
+    hr
+    p= raw @doa.doa_desc
+    hr
+    p 
+      | Dibuat : 
+      = @doa.created_at
+    p
+      | Berakhir : 
+      = @doa.expired_at

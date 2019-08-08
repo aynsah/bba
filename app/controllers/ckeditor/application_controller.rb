@@ -16,7 +16,6 @@ class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
     if asset.save
       render asset_response.success(config.relative_url_root)
     else
-      asset.validate!
       render asset_response.errors
     end
   end

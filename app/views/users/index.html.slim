@@ -1,5 +1,5 @@
 div class="container mt-4 mb-4"
-  h2 Profil
+  h2 Profil Saya
   -if @user.photo?
     =image_tag @user.photo.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "User Image"}
   hr
@@ -21,7 +21,7 @@ div class="container mt-4 mb-4"
   
   hr
   h2 My Campaigns
-  div class="row" align="center"
+  div class="row"
     - @campaigns.each do |c|
       div class="col-sm-4"
         = link_to c, :class => "custom-card" do
@@ -29,7 +29,7 @@ div class="container mt-4 mb-4"
               = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
               div class="card-body"
                 h5 class="card-title"
-                  = c.campaign_title
+                  = c.campaign_title.titleize
               p class="card-text ml-4 text-muted"
                 | Penggalang Dana : 
                 = c.user.name

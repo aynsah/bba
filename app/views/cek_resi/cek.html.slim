@@ -1,0 +1,23 @@
+.container.mt-4.mb-4.h-100
+  .row.align-items-center
+    .col-sm-3
+      ul.list-group
+        li.list-group-item.active Order ID
+        li.list-group-item Transaction ID
+        li.list-group-item Payment Type
+        li.list-group-item Transaction Status
+        li.list-group-item Transaction Time
+        li.list-group-item Bank
+        li.list-group-item Gross Amount
+    .col-sm-9
+  		ul.list-group
+  			li.list-group-item.active = @transaction.order_id
+  			li.list-group-item = @transaction.transaction_id
+  			li.list-group-item = @transaction.payment_type
+  			li.list-group-item = @transaction.transaction_status
+  			li.list-group-item = @transaction.transaction_time
+  			li.list-group-item = @transaction.bank
+  			li.list-group-item = number_to_currency(@transaction.gross_amount)
+  .row.mt-4.align-items-center
+  	.col-lg-12
+  		= link_to 'Back', cek_resi_path, :class => "btn btn-outline-secondary"

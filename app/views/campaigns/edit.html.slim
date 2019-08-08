@@ -1,17 +1,18 @@
 -if current_user.id == @campaign.user_id
-  h2 Edit Campaign
+  .container
+    h2 Edit Campaign
 
-  = simple_form_for(@campaign) do |f|
+    = simple_form_for(@campaign) do |f|
 
-    .form-group
-      = f.input :image_campaign
-      = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id,:include_blank => false
-      = f.input :campaign_title, required: true
-      = f.input :donation_target, as: :decimal
-      = f.input :campaign_timeout, as: :date
-      = f.input :campaign_desc, as: :text
-      = f.input :additional_text, as: :text
-      = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+      .form-group
+        = f.input :image_campaign
+        = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id,:include_blank => false
+        = f.input :campaign_title, required: true
+        = f.input :donation_target, as: :decimal
+        = f.input :campaign_timeout, as: :date
+        = f.input :campaign_desc, as: :ckeditor, input_html: { class: 'ckeditor'}
+        = f.input :additional_text, as: :ckeditor, input_html: { class: 'ckeditor'}
+        = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
 
       = f.submit "Create Campaign"
 -else

@@ -6,7 +6,7 @@ module Notification
       find_donation(order_id).update(:donation_status => "canceled")
     end
     
-    def notification_captured(order_id) 
+    def notification_captured() 
       $donation.donation_status = "processed"
       $donation.save
     end

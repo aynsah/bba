@@ -20,11 +20,9 @@ class CampaignsController < ApplicationController
     if verified_data.status_code != 404
       case verified_data.data[:transaction_status]
       when "capture"
-        Campaign.notification_captured(verified_data.data[:order_id])
-
+        Campaign.notification_captured()
       when "settlement"
         Campaign.notification_completed(verified_data.data[:order_id])
-
       when "expired", "cancel"
         Campaign.notification_canceled(verified_data.data[:order_id])
       end

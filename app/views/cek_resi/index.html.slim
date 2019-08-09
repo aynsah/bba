@@ -3,12 +3,12 @@ div class="container h-100"
 		div class="col-sm-10 mx-auto"
 			div class="card h-100" align="center"
 				div class="card-body"
-					h3 class="card-title text-primary"
+					h3 class="card-title text-primary mb-1 mt-2"
 						| Masukan Order ID
-					= form_tag cek_resi_cek_path, class: "form-inline col-lg-12 mx-auto", :method => 'get' do
-						= text_field_tag :resi, nil, placeholder: 'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-12"
+					= form_tag cek_resi_cek_path, class: "col-lg-12", :method => 'get' do
+						= text_field_tag :resi, nil, placeholder: 'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-8 text-center mx-auto"
 						br
-						= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-3 mt-5 mb-5 mx-auto") do
+						= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-3 mt-2 mb-5 mx-auto") do
 							| Cek Status Transaksi
 					p class="text-muted"
 						| *Cek Order ID di Email anda setelah melakukan transaksi

@@ -9,18 +9,18 @@ div class="container mt-4 mb-4"
   hr
   p
     | Address : 
-    = @user.address != "" && @user.address != nil ? @user.address : "Unknown"
+    = @user.address != "" && @user.address != nil ? @user.address : "Tidak diketahui"
   hr
   p
     | Phone : 
-    = @user.phone != "" && @user.phone != nil ? @user.phone : "Unknown"
+    = @user.phone != "" && @user.phone != nil ? @user.phone : "Tidak diketahui"
   
   hr
   p Bio : 
-  p = @user.bio != "" && @user.bio != nil ? @user.bio : "Unknown"
+  p = @user.bio != "" && @user.bio != nil ? @user.bio : "Tidak diketahui"
   
   hr
-  h2 My Campaigns
+  h2 Campaign Saya
   div class="row"
     - @campaigns.each do |c|
       div class="col-sm-4"
@@ -46,7 +46,7 @@ div class="container mt-4 mb-4"
   br/
   
   -if current_user.id == @user.id || current_user.admin == true 
-    h2 My Complaints
+    h2 Komplaint yang saya ajukan
     table
       tr
         th width="400" Dibuat Tanggal
@@ -61,7 +61,7 @@ div class="container mt-4 mb-4"
   br/
   br/
   -if current_user.id == @user.id || current_user.admin == true 
-    h2 My Donation
+    h2 Donasi saya
     table
       tr
         th width="400" Campaign

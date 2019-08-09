@@ -7,7 +7,7 @@
       donation_filter2 = 1000000000 if donation_filter2.to_i > 1000000000 || donation_filter2.to_i == 0
 
       results = self.where(nil)
-      results = results.category_id(category_filter) if category_filter.present? && category_filter != "All"
+      results = results.category_id(category_filter) if category_filter.present? && category_filter != "Semua"
       results = filtering_users(results,user_filter) if user_filter.present?
       results = filtering_status(results,status_filter) if status_filter.present?
       results = results.where(donation_target: donation_filter1..donation_filter2) if donation_filter1.present? && donation_filter2.present?
@@ -28,16 +28,16 @@
     end
 
     def filtering_status(results,status_filter)
-      if status_filter == "On Progress"
+      if status_filter == "Sedang Berjalan"
         return results.where("campaign_timeout > ?", Date.today)
-      elsif status_filter == "Unachieved"
+      elsif status_filter == "Belum Tercapai"
         campaigns = Array.new
         results.each do |result|
           campaign_donation = Donation.where(:campaign_id => result.id, :donation_status => 'completed').sum('donation_amount')
           campaigns << result if result.donation_target > campaign_donation
         end
         return results.where(id: campaigns.map(&:id))
-      elsif status_filter == "Finished"
+      elsif status_filter == "Telah Selesai"
         return results.where("campaign_timeout < ?", Date.today)
       else
         return results

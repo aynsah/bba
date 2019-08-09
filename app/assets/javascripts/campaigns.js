@@ -12,7 +12,7 @@ $(document).ready(function () {
       var url = $('.pagination .page-item:last a').attr('href');
       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 60) {
         $.getScript(url);
-        $('.pagination').text("Loading more Campaigns");
+        $('.pagination').text("Menampilkan lebih banyak Campaign");
       }
     });
     $(window).scroll();

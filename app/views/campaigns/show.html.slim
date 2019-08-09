@@ -1,7 +1,5 @@
 - if @campaign.present? && @campaign.approved == true
 	div class="container mt-4 mb-4"
-		- if current_user
-    	 p= link_to "New", new_campaign_path
     div class="container mt-4 mb-4"
       h3= @campaign.campaign_title.titleize
       p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user_id)
@@ -30,7 +28,7 @@
           = render partial: "donation", locales: {donations: @donations}
       - else
         p Harap login terlebih dahulu untuk memberikan donasi
-      = link_to "Report this campaign", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
+      = link_to "Laporkan Campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
       br
       if current_user.id == @campaign.user_id
         br

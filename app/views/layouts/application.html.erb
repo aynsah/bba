@@ -40,9 +40,6 @@
             <li class="nav-item">
                 <%= link_to "Campaign", campaigns_path, class: "nav-link" %>
             </li>
-            <li class="nav-item">
-                <%= link_to "Cek Resi", cek_resi_path, class: "nav-link" %>
-            </li>
           </ul>
 
           <ul class="navbar-nav">
@@ -52,6 +49,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <%= link_to "Profil", users_index_path(current_user.id), class: "dropdown-item" %>
                   <%= link_to "Wishlist Doa", doas_path, class: "dropdown-item" %>
+                  <%= link_to "Cek Resi", cek_resi_path, class: "dropdown-item" %>
                   <div class="dropdown-divider"></div>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
                 </div>

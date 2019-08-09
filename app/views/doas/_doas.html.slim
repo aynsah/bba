@@ -16,7 +16,7 @@ div class="btn-group mt-4" style="display:inline-block"
     		th width="200" Status
     		th width="200" Doa
     		th width="200" Dibuat Tanggal
-    		th width="200" Masa Tenggang
+    		th width="200" Target Waktu Pencapaian
     		th width="200" colspan="3" Action
       	- @doas.where("doa_status_id = ?", "#{status.id}").each do |doa|
       	  tr class="#{doa.id}"
@@ -26,8 +26,8 @@ div class="btn-group mt-4" style="display:inline-block"
             td = doa.title
       	    td = doa.created_at.to_date
       	    td = doa.expired_at
-      	    td = link_to "Show", doa
-            td = link_to "Update", edit_doa_path(doa.id)
-            td = link_to 'Delete', doa, data: { confirm: 'Are you sure?' }, method: :delete, remote: true
+      	    td = link_to "Lihat", doa
+            td = link_to "Ubah", edit_doa_path(doa.id)
+            td = link_to 'Hapus', doa, data: { confirm: 'Are you sure?' }, method: :delete, remote: true
 
     br/

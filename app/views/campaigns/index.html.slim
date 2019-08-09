@@ -25,14 +25,13 @@ div class="container mt-4 mb-4"
 				= select_tag :status_filter,  options_for_select(["Semua", "Sedang Berjalan", "Belum Tercapai", "Telah Selesai" ], params[:status_filter]), class: "form-control col-md-2"
 			br/
 			p Filter Donasi
-			= text_field_tag :data1, :data1, class: "form-control col-lg-2", style: "display: inline"
+			= text_field_tag :data1, 'Rp.0', class: "form-control col-lg-2", style: "display: inline"
 			| &nbsp; - &nbsp;
-			= text_field_tag :data2, :data2, class: "form-control col-lg-2", style: "display: inline"
+			= text_field_tag :data2, 'Rp.1,000,000,000', class: "form-control col-lg-2", style: "display: inline"
 			br/
 			br/
 			div id="the_slider" class="col-md-4 ml-2"
 			br/
-
 			= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-1 ml-2") do 
 	  			 | Submit
 

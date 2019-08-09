@@ -17,4 +17,7 @@ hr
   	= link_to "#{donate.user.name}", root_path
   	br
   	= number_to_currency(donate.donation_amount)
+    br/
+    -if current_user.admin == true
+      = link_to "Refund donasi ini", refund_donation_path(:order_id => "Donation-#{donate.campaign_id}-#{donate.id}_#{donate.created_at.to_s(:number)}"), data: { confirm: 'Anda yakin untuk mengembalikan donasi ini?' }
   hr

@@ -1,4 +1,6 @@
  div class="row"
+  br/
+  = 'Campaign tidak ada' unless @campaigns.any?
   - @campaigns.each do |c|
     div class="col-sm-4 mt-2 mb-4"
       = link_to c, :class => "custom-card" do

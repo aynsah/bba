@@ -1,4 +1,4 @@
-module Filterable
+  module Filterable
   extend ActiveSupport::Concern
 
   module ClassMethods
@@ -6,17 +6,18 @@ module Filterable
       donation_filter1 = 0 if donation_filter1.to_i < 0
       donation_filter2 = 1000000000 if donation_filter2.to_i > 1000000000 || donation_filter2.to_i == 0
 
-      results = self.where(nil).joins(:user).select("users.*, campaigns.*")
+      results = self.where(nil)
       results = results.category_id(category_filter) if category_filter.present? && category_filter != "All"
       results = filtering_users(results,user_filter) if user_filter.present?
       results = filtering_status(results,status_filter) if status_filter.present?
-      results = results.where(donation_target: donation_filter1...donation_filter2.to_i + 1) if donation_filter1.present? && donation_filter2.present?
+      results = results.where(donation_target: donation_filter1..donation_filter2) if donation_filter1.present? && donation_filter2.present?
       results = results.where('campaign_title like ? or users.name like ?', "%#{search_filter}%", "%#{search_filter}%") if search_filter.present? && search_filter != ""
 
       results
     end
 
     def filtering_users(results,user_filter)
+      results = results.joins(:user)
       if user_filter == "Verified User"
         return results.where('users.verified_user = true')
       elsif user_filter == "Public User"

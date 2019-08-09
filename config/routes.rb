@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'campaigns/refund-donation/:order_id', to: 'campaigns#refund', as: 'refund_donation'
   resources :payments do
     collection do
       post :receive_webhook

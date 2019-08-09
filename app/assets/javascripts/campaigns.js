@@ -35,7 +35,6 @@ $(document).ready(function() {
 });
 
 function show_snap(campaign_id, token){
-  alert(token);
   snap.pay(token, {
     onSuccess: function(res) { $.ajax({
       url: "/campaigns/save-donation/" + campaign_id,

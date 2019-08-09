@@ -26,7 +26,7 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
   config.navigation_static_links = {
     'Google' => 'http://www.google.com',
-    'Home' => 'http://28a14d7b.ngrok.io/'
+    'Home' => 'http://0128d874.ngrok.io/'
   }
   config.navigation_static_label = "Custom Links"
 

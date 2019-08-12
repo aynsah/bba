@@ -20,6 +20,9 @@ $(document).ready(function () {
   }
 });
 
+function show_filter(){
+  $('#collapseExample').animate({height: "toggle"}, 500);
+}
 $(document).ready(function() {
     var slider = $("#the_slider").slider({
         range: true,

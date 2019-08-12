@@ -33,11 +33,12 @@ div class="container mt-4 mb-4"
               p class="card-text ml-4 text-muted"
                 | Penggalang Dana : 
                 = c.user.name
+                - if c.user.verified_user
+                  i &#10003;
                 br/
                 | Approved :
                 = c.approved
-                span>
-                = c.user.verified_user ? "(Verified) ": ""
+                span
               ul class="list-group list-group-flush"
                 li class="list-group-item"
                   | Donation Target : 

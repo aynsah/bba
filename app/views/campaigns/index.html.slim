@@ -2,7 +2,7 @@ div class="container mt-4 mb-4"
 	div class="row mb-2"
 		div class="col-lg-12"
 			= link_to "Buat Campaign baru", new_campaign_path, :class => "btn btn-primary"
-			button class="btn btn-outline-info ml-2 float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" Filter
+			button class="btn btn-outline-info ml-2 float-right btn-filter" onclick="show_filter();" Filter
 
 	div class="collapse container col-lg-12" id="collapseExample"
 		= form_tag campaigns_path, :method => 'get' do

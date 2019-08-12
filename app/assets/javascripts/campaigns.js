@@ -1,3 +1,7 @@
+//= require turbolinks
+//= require jquery
+//= require jquery-ui
+
 function currencyFormat(num) {
   return 'Rp.' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
@@ -15,6 +19,9 @@ $(document).ready(function () {
   }
 });
 
+function show_filter(){
+  $('#collapseExample').animate({height: "toggle"}, 500);
+}
 $(document).on('turbolinks:load', function() {
     var slider = $("#the_slider").slider({
         range: true,

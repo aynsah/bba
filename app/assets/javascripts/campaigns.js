@@ -19,11 +19,12 @@ $(document).ready(function () {
     $(window).scroll();
   }
 });
-
+alert('hi');
 function show_filter(){
   $('#collapseExample').animate({height: "toggle"}, 500);
 }
 $(document).ready(function() {
+    alert('hello');
     var slider = $("#the_slider").slider({
         range: true,
         min: 0,

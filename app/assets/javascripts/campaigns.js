@@ -1,8 +1,3 @@
-//= require_tree
-//= require jquery
-//= require jquery-ui
-//= require jquery_ujs
-
 function currencyFormat(num) {
   return 'Rp.' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
@@ -20,7 +15,7 @@ $(document).ready(function () {
   }
 });
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     var slider = $("#the_slider").slider({
         range: true,
         min: 0,

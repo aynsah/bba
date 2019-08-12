@@ -7,10 +7,6 @@
     <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag    'style.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js' %>
-    <%= javascript_include_tag Ckeditor.cdn_url %>
-
   </head>
 
   <body style="padding-top: 56px;">
@@ -80,6 +76,9 @@
     </div>
 
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-server-k4plJ-jwu2s_m3W0i5WA7fSo"></script> 
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js' %>
+    <%= javascript_include_tag Ckeditor.cdn_url %>
     
   </body>
 </html>

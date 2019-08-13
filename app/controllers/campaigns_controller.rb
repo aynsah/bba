@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :find_campaign, only: [:show, :edit, :update, :destroy, :save_donation]
+  before_action :find_campaign, only: [:show, :edit, :update, :destroy, :save_donation, :approval]
   protect_from_forgery with: :null_session, :only => [:receive_webhook]
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
@@ -99,6 +99,10 @@ class CampaignsController < ApplicationController
     respond_to do |format|
       format.js { render :js => "show_snap(#{$donation.campaign_id},\"" + "#{@snap_token}" + "\")"; }
     end
+  end
+
+  def approval
+    @campaign.update(:approved => true)
   end
 
   def refund

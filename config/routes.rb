@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   #CEK RESI
   get 'donation/check', to: 'donations#cek', as: 'donation_track'
-  get 'donations', to: 'donations#index' as: 'donations'
+  get 'donations', to: 'donations#show', as: 'donations'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

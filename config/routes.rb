@@ -31,7 +31,10 @@ Rails.application.routes.draw do
   get 'newsletters', to: 'newsletters#index'
   post 'newsletters/create', to: 'newsletters#create'
 
+  #CEK RESI
   get 'cek_resi/cek', to: 'cek_resi#cek', as: 'cek_resi_cek'
   get 'cek_resi', to: 'cek_resi#index'
+
+  get 'orders', to: 'transaction#index', as: 'orders'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

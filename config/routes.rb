@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :campaigns
   resources :products
   resources :suppliers
+  resources :donationss
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -30,10 +31,6 @@ Rails.application.routes.draw do
   #NEWSLETTER
   get 'newsletters', to: 'newsletters#index'
   post 'newsletters/create', to: 'newsletters#create'
-
-  #CEK RESI
-  get 'donation/check', to: 'donations#cek', as: 'donation_track'
-  get 'donations', to: 'donations#show', as: 'donations'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

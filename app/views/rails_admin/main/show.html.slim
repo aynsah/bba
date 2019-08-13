@@ -21,3 +21,7 @@ css:
                 = field.label
               td
                 = raw field.pretty_value
+- if @model_name = "Campaign"
+  = javascript_include_tag 'approve.js'
+  button onclick="approve()"
+    | Approve

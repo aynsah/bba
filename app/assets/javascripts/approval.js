@@ -1,0 +1,3 @@
+function approve(campaign_id) {
+  // body...
+}

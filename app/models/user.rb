@@ -21,13 +21,6 @@ class User < ApplicationRecord
   validates :name, presence: {message: "can't be blank"}, length: {minimum: 6, message: "too short"}
 
   mount_uploader :photo, AvatarUploader
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
-      end
-    end
-  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
@@ -37,6 +30,7 @@ class User < ApplicationRecord
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
+      user.photo = auth.info.image
       user.save
     end
   end

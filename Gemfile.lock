@@ -334,7 +334,7 @@ DEPENDENCIES
   jquery-ui-rails
   mini_magick
   omniauth
-  omniauth-facebook (~> 1.4.0)
+  omniauth-facebook
   omniauth-google-oauth2
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)

@@ -69,6 +69,7 @@ div class="container mt-4 mb-4"
         th width="200" Jumlah Donasi
         th width="200" Status
         th width="200" Tanggal
+        th width="200" Info
   
       - @donations.each do |donation|
         tr
@@ -76,3 +77,4 @@ div class="container mt-4 mb-4"
           td= number_to_currency(donation.donation_amount)
           td= donation.donation_status
           td= donation.created_at.to_date
+          td= link_to "Cek Resi", cek_resi_cek_path(:resi => donation.order_id)

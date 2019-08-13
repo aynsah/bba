@@ -19,6 +19,9 @@ class Campaign < ApplicationRecord
     end
   end
 
+  def self.calculate_donation(campaign, donations)
+    return campaign.donation_target - donations.sum(:donation_amount)
+  end
 
   def self.date_after(campaign_timeout)
     changed_timeout = ""

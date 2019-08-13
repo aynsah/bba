@@ -20,4 +20,6 @@
   			li.list-group-item = number_to_currency(@transaction.gross_amount)
   .row.mt-4.align-items-center
   	.col-lg-12
-  		= link_to 'Back', cek_resi_path, :class => "btn btn-outline-secondary"
+      = link_to 'Back', :back, :class => "btn btn-outline-secondary"
+      if current_user.admin == true
+        = link_to "Refund donasi ini", refund_donation_path(:order_id => @transaction.order_id), data: { confirm: 'Anda yakin untuk mengembalikan donasi ini?' }, :class => "btn btn-outline-secondary"

@@ -27,7 +27,6 @@ RailsAdmin.config do |config|
   config.navigation_static_links = {
     'Google' => 'http://www.google.com',
     'Home' => 'http://localhost:3000',
-    'Transactions' => 'http://localhost:3000/orders'
   }
   config.navigation_static_label = "Custom Links"
 

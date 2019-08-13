@@ -1,4 +1,4 @@
-class CekResiController < ApplicationController
+class DonationController < ApplicationController
 	def index
 
 	end

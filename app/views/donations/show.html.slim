@@ -5,7 +5,7 @@ div class="container h-100"
 				div class="card-body"
 					h3 class="card-title text-primary mb-1 mt-2"
 						| Masukan Order ID
-					= form_tag cek_resi_cek_path, class: "col-lg-12", :method => 'get' do
+					= form_tag donation_track_path, class: "col-lg-12", :method => 'get' do
 						= text_field_tag :resi, nil, placeholder: 'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-8 text-center mx-auto"
 						br
 						= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-3 mt-2 mb-5 mx-auto") do

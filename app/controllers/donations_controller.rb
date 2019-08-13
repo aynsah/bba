@@ -1,6 +1,7 @@
 class DonationController < ApplicationController
-	def index
+	before_action :set_product
 
+	def show
 	end
 
 	def cek
@@ -10,6 +11,8 @@ class DonationController < ApplicationController
 		end
 	end
 
-	def error
-	end
+	private
+		def set_donation
+			@donation = Donation.find(params[:id])
+		end
 end

@@ -7,5 +7,4 @@ function copyclipboard() {
   $("body").append($temp);
   $temp.val($('#order-id').text()).select();
   document.execCommand("copy");
-  alert('copied');
 }

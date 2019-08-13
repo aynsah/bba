@@ -16,5 +16,4 @@
 //= require social-share-button
 //= require jquery
 //= require jquery-ui
-//= require jquery_ujs
 //= require rails-ujs

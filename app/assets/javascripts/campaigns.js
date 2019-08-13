@@ -18,7 +18,6 @@ $(document).ready(function () {
     $(window).scroll();
   }
 });
-alert('hi');
 function show_filter(){
   $('#collapseExample').animate({height: "toggle"}, 500);
 }
@@ -47,4 +46,16 @@ function show_snap(campaign_id, token){
     // onPending
     onError: function(res) { alert("Error Donasi dibatalkan");},
   });
+}
+
+function amount_check(donation_needed){
+  var amount = $('#_campaigns_37_donation_amount').val();
+    if (amount > donation_needed){
+      $('#submit').attr("disabled", true);
+      $('#donation-hint').css('opacity','1');
+    }
+    else{
+      $('#submit').attr("disabled", false);
+      $('#donation-hint').css('opacity','0');
+    }
 }

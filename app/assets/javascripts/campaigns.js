@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', function () {
 });
 
 function show_filter(){
-  $('#collapseExample').animate({height: "toggle"}, 500);
+  $('#collapseExample').animate({height: "toggle"}, 300);
 }
 $(document).on('turbolinks:load', function() {
     var slider = $("#the_slider").slider({

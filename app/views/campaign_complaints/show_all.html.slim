@@ -1,15 +1,16 @@
-h1= @campaign.campaign_title
-p= @campaign.user.name
-br/
-h4 Komplain dari user :
-- @complaints.each do |complaint|
-  h6
-    = link_to "#{complaint.user.name}", users_index_path(current_user.id)
-    br/
-    = complaint.complaint_category.category_name
-  p 
-    = raw complaint.complaint
-  p
-    | Dikirim :
-    = complaint.created_at
+.container.mt-4.mb-4
+  h1= @campaign.campaign_title
+  p= @campaign.user.name
   br/
+  h4 Komplain dari user :
+  - @complaints.each do |complaint|
+    h6
+      = link_to "#{complaint.user.name}", users_index_path(current_user.id)
+      br/
+      = complaint.complaint_category.category_name
+    p 
+      = raw complaint.complaint
+    p
+      | Dikirim :
+      = complaint.created_at
+    br/

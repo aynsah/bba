@@ -26,7 +26,8 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
   config.navigation_static_links = {
     'Google' => 'http://www.google.com',
-    'Home' => 'http://localhost:3000'
+    'Home' => 'http://localhost:3000',
+    'Resi' => 'http://localhost:3000/order_id'
   }
   config.navigation_static_label = "Custom Links"
 

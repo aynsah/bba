@@ -6,7 +6,7 @@ function currencyFormat(num) {
   return 'Rp.' + num.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
-$(document).ready(function () {
+$(document).on('turbolinks:load', function () {
   if ($('.pagination').length && $('#search-output-table').length) {
     $(window).scroll(function() {
       var url = $('.pagination .page-item:last a').attr('href');

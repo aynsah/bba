@@ -9,6 +9,7 @@ module Notification
     def notification_captured() 
       $donation.donation_status = "processed"
       $donation.save
+      $reportdonation.save
     end
 
     def notification_completed(order_id) 

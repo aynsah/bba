@@ -83,9 +83,13 @@ class CampaignsController < ApplicationController
     $donation = Donation.new(donation_params)
     $reportdonation = ReportDonation.new(donation_params)
     donation_id = Donation.any? ? Donation.last.id + 1 : 1
-    $donation.id = donation_id 
+    $donation.id = donation_id
     $donation.created_at = Date.today.to_s(:number)
     $donation.order_id = "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
+
+    $reportdonation.id = $donation.id
+    $reportdonation.created_at = $donation.created_at
+    $reportdonation.order_id = $donation.order_id
 
     response = Veritrans.create_widget_token(
       transaction_details: {

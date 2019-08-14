@@ -1,15 +1,9 @@
 div class="container mt-4 mb-4"
     h2 Edit Wishlist
-    
-    - if current_user
-        = simple_form_for(@doa) do |f|
-          .form-group
-            = f.input :title, label: 'Nama Doa'
-            = f.input :doa, as: :ckeditor, input_html: { class: 'ckeditor'}, label: 'Doa'
-            = f.input :doa_desc, as: :ckeditor, input_html: { class: 'ckeditor'}, label: 'Deskripsi Doa'
-            = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
-    
-            = f.submit "Create Campaign"
-    
-    - else
-        - controller.redirect_to new_user_session_path
+    = simple_form_for(@doa) do |f|
+      .form-group
+        = f.input :title, label: 'Nama Doa'
+        = f.input :doa, as: :ckeditor, input_html: { class: 'ckeditor'}, label: 'Doa'
+        = f.input :doa_desc, as: :ckeditor, input_html: { class: 'ckeditor'}, label: 'Deskripsi Doa'
+        = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+        = f.submit "Create Campaign"

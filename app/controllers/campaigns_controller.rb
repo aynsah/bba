@@ -33,6 +33,7 @@ class CampaignsController < ApplicationController
   end
 
   def new
+    redirect_to new_user_session_path unless current_user
     @campaign = Campaign.new
   end
 
@@ -52,6 +53,7 @@ class CampaignsController < ApplicationController
   end
 
   def edit
+    only_user_and_admin(@campaign)
   end
 
   def update
@@ -67,6 +69,7 @@ class CampaignsController < ApplicationController
   def show
     @donations = Donation.where(:campaign_id => params[:id]).where('donation_status = ? or donation_status = ?', 'completed', 'processed')
     @donation_needed = Campaign.calculate_donation(@campaign, @donations)
+    only_user_and_admin(@campaign) unless @campaign.status == "approved"
   end
 
   def save_donation
@@ -118,6 +121,7 @@ class CampaignsController < ApplicationController
   end
 
   def refund
+    only_admin
   end
 
   private

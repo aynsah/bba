@@ -2,14 +2,18 @@ class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
 
   def index
-    display_all_doas
-    respond_to do |format|
-      format.js
-      format.html
+    if current_user
+      display_all_doas
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    else
+      redirect_to new_user_session_path
     end
   end
   
-  def change_status()
+  def change_status
     if @doas = Doa.update_status(params.require(change_status_path).permit(:doa_status_id), params[:id], current_user.id)
       @statuses = DoaStatus.all
       respond_to do |format|
@@ -29,9 +33,11 @@ class DoasController < ApplicationController
   end
 
   def show
+    only_user_and_admin(@doa)
   end
 
   def new
+    redirect_to new_user_session_path unless current_user
     @doa = Doa.new
   end
 
@@ -43,6 +49,7 @@ class DoasController < ApplicationController
   end
 
   def edit
+    only_user_and_admin(@doa)
   end
 
   def update

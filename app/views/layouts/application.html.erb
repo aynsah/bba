@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag    'style.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application' %>
@@ -49,6 +50,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <%= link_to "Profil", users_index_path(current_user.name), class: "dropdown-item" %>
                   <%= link_to "Wishlist Doa", doas_path, class: "dropdown-item" %>
+                  <%= link_to "Cek Resi", cek_resi_path, class: "dropdown-item" %>
                   <div class="dropdown-divider"></div>
                   <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
                 </div>

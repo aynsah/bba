@@ -1,0 +1,14 @@
+.container.mt-4.mb-4
+	.row.h-100.align-items-center
+		.col-lg-10.mx-auto
+			.card.h-100 align="center"
+				.card-body align="center"
+					h3.card-title.text-primary
+						| Cek Resi
+					h5.card-title.text-secondary
+						| Masukan Order ID
+					= form_tag donation_cek_path(:id), class: "form-inline col-lg-12 mx-auto", :method => 'get' do
+						= text_field_tag :id, nil, placeholder:'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-12"
+						br
+						= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-2") do
+							| Submit

@@ -29,7 +29,7 @@ class User < ApplicationRecord
       $pass = user.password
       user.provider = auth.provider
       user.uid = auth.uid
-      user.name = auth.info.name
+      $username = auth.info.name
       user.photo = auth.info.image
       user.save
     end

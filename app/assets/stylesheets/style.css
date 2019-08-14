@@ -28,3 +28,11 @@ a.custom-card:hover {
 	max-width: 100%;
 	width: auto;
 }
+
+.white{
+	color: #fff;
+}
+
+.pointer{
+	cursor: pointer;
+}

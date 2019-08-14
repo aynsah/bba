@@ -8,7 +8,7 @@ div class="container h-100"
             | Refund Donasi
           h5 class="card-title text-secondary"
             | Masukkan Order ID
-          = form_tag donation_track_path, class: "form-inline col-lg-12 mx-auto", :method => 'get' do
-            = text_field_tag :resi, nil, placeholder: 'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-12", value: params[:order_id], disabled: true
+          = form_tag donation_path, class: "form-inline col-lg-12 mx-auto", :method => 'get' do
+            = text_field_tag :id, nil, placeholder: 'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-12", value: params[:order_id], disabled: true
           br
           = link_to "Refund Donasi", "https://api.sandbox.midtrans.com/v2/#{params[:order_id]}/refund", method: :post

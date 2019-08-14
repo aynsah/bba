@@ -77,4 +77,4 @@ div class="container mt-4 mb-4"
           td= number_to_currency(donation.donation_amount)
           td= donation.donation_status
           td= donation.created_at.to_date
-          td= link_to "Cek Resi", donation_path(:resi => donation.order_id)
+          td= link_to "Cek Resi", donation_path(:id => donation.id)

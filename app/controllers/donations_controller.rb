@@ -1,5 +1,5 @@
-class DonationController < ApplicationController
-	before_action :set_product, only: [:show]
+class DonationsController < ApplicationController
+	before_action :set_donation, only: [:show]
 
 	def show
 	end

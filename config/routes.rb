@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :campaigns
   resources :products
   resources :suppliers
-  resources :donationss
+  resources :donations
   mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }

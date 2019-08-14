@@ -48,7 +48,7 @@
               <% if current_user %>
                 <%= link_to "Hi, #{current_user.name}", "#", { :class => "nav-link dropdown-toggle", :id => "navbarDropdown", :role => "button", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" } %>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "Profil", users_index_path(current_user.id), class: "dropdown-item" %>
+                  <%= link_to "Profil", users_index_path(current_user.name), class: "dropdown-item" %>
                   <%= link_to "Wishlist Doa", doas_path, class: "dropdown-item" %>
                   <%= link_to "Cek Resi", cek_resi_path, class: "dropdown-item" %>
                   <div class="dropdown-divider"></div>

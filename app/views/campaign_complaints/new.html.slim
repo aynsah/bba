@@ -2,7 +2,6 @@
   .container
     br/
     h2 Send a campaign report
-    - controller.redirect_to new_user_session_path unless current_user
     =simple_form_for @campaign_complaint, :method => :post do |f|
       .form-group
         = f.input :complaint_category_id, :collection => ComplaintCategory.all,:label_method => :category_name,:value_method => :id, include_blank: false

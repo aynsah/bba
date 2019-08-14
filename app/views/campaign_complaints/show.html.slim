@@ -1,8 +1,6 @@
 .container.mt-4.mb-4
-	- controller.redirect_to campaigns_path unless current_user.admin == true
-	
 	h1= @campaign.campaign_title
-	p= link_to "#{@campaign.user.name}", users_index_path(current_user.id)
+	p= link_to "#{@campaign.user.name}", users_index_path(current_user.name)
 	br/
 	h4 
 	  | Komplain dari user : 
@@ -12,7 +10,7 @@
 	br/
 	h6 
 	  | Dikirim oleh : 
-	  = link_to "#{@complaint.user.name}", users_index_path(current_user.id)
+	  = link_to "#{@complaint.user.name}", users_index_path(current_user.name)
 	h7
 	  | Dikirim :
 	  = @complaint.created_at

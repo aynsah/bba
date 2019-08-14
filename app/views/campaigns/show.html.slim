@@ -1,8 +1,8 @@
-- if @campaign.present? && @campaign.approved == true
+- if @campaign.present? && @campaign.status == "approved"
 	div class="container mt-4 mb-4"
     div class="container mt-4 mb-4"
       h3= @campaign.campaign_title.titleize
-      p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user_id)
+      p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user.name)
       br/
       = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
       br/
@@ -30,9 +30,10 @@
         p Harap login terlebih dahulu untuk memberikan donasi
       = link_to "Laporkan Campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
       br
-      if current_user.id == @campaign.user_id
-        br
-        = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
+      - if current_user
+        - if current_user.id == @campaign.user_id
+          br
+          = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
 
 - else
-    p Campaign ini tidak ada Atau telah dihapus 
+    p Campaign ini tidak ada Atau telah dihapus

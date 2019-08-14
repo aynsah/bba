@@ -1,7 +1,5 @@
 div class="container mt-4 mb-4"
     h2 Tambahkan doa baru
-    
-    - controller.redirect_to new_user_session_path unless current_user
     = simple_form_for(@doa) do |f|
         .form-group
             = f.input :title, label: 'Nama doa'

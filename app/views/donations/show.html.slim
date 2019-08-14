@@ -16,7 +16,7 @@
                 	i class="fa fa-clipboard white pointer" aria-hidden="true"
   			li.list-group-item = @donation.id
   			li.list-group-item = @donation.donation_status
-  			li.list-group-item = @donation.created_at
+  			li.list-group-item = @donation.created_at.strftime("%A, %d/%m/%Y")
   			li.list-group-item = number_to_currency(@donation.donation_amount)
   .row.mt-4.align-items-center
   	.col-lg-12

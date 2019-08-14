@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
   def index
-    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)).order(created_at: :desc).where(:approved => true)
+    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)).order(created_at: :desc).where(:status => "approved")
     respond_to do |format|
       format.html
       format.js
@@ -102,7 +102,14 @@ class CampaignsController < ApplicationController
   end
 
   def approval
-    @campaign.update(:approved => true)
+    case params[:status_data]
+    when "approve"
+      @campaign.update_attribute("status", "approved")
+    when "decline"
+      @campaign.update_attribute("status", "declined")
+    when "block"
+      @campaign.update_attribute("status", "blocked")
+    end
   end
 
 

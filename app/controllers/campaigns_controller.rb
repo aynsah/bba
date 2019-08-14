@@ -107,6 +107,7 @@ class CampaignsController < ApplicationController
 
 
   def decline
+    puts "declined"
   end
 
   def refund

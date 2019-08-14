@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "home#index"
   post 'campaigns/approval/:id', to: 'campaigns#approval', as: 'approve_campaign'
+  post 'campaigns/decline/:id', to: 'campaigns#decline', as: 'decline_campaign'
   post 'campaigns/save-donation/:id', to: 'campaigns#save_donation', as: 'save_donation'
   post 'campaigns/:id', to: 'campaigns#donate', as: 'campaign_donate'
   match "notification/handle" => "campaigns#receive_webhook", via: [:post]

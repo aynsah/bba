@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :find_campaign, only: [:show, :edit, :update, :destroy, :save_donation, :approval]
+  before_action :find_campaign, only: [:show, :edit, :update, :destroy, :save_donation, :approval, :decline]
   protect_from_forgery with: :null_session, :only => [:receive_webhook]
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
@@ -103,6 +103,10 @@ class CampaignsController < ApplicationController
 
   def approval
     @campaign.update(:approved => true)
+  end
+
+
+  def decline
   end
 
   def refund

@@ -24,4 +24,6 @@ css:
 - if @model_name = "Campaign" && @object.approved == false
   = javascript_include_tag 'approval.js'
   button onclick="approve(#{@object.id})"
-    | Approve
+    | Setujui
+  button onclick="decline(#{@object.id})"
+    | Tolak

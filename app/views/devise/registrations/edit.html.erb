@@ -11,6 +11,7 @@
     <%= f.input :phone, as: :tel, label: 'No Telephone' %>
     <%= f.input :address, label: 'Alamat' %>
     <%= f.input :bio, label: 'Biodata', as: :ckeditor%>
+    <%= f.input :subscribed, as: :boolean, label: "Berlangganan newsletter kami" do %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>

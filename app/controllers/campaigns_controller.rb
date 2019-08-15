@@ -41,7 +41,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
     
     respond_to do |format|
-      if @campaign.save && @report.save
+      if @campaign.save
         @emails = User.where("subscribed = true").pluck(:email)
         NewsletterMailer.with(email: @emails, campaign: @campaign).send_mail.deliver_now
         format.html {redirect_to( campaigns_path, notice: 'Campaign was succesfully created, waiting for admin to approval')}
@@ -118,11 +118,6 @@ class CampaignsController < ApplicationController
     when "block"
       @campaign.update_attribute("status", "blocked")
     end
-  end
-
-
-  def decline
-    puts "declined"
   end
 
   def refund

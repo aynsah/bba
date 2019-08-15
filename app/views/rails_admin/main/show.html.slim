@@ -27,7 +27,7 @@ css:
     button onclick="approve(#{@object.id}, approve)"
       | Setujui Campaign
   - if @object.status == "unchecked"
-    button onclick="decline(#{@object.id}, decline)"
+    button onclick="approve(#{@object.id}, decline)"
       | Tolak Campaign
   - if @object.status == "approved"
     button onclick="approve(#{@object.id}, block)"

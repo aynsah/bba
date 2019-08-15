@@ -2,6 +2,7 @@ class NewsletterMailer < ApplicationMailer
   def send_mail
     @email = params[:email]
     @campaign = params[:campaign]
+    attachments.inline["img"] = File.read(Rails.root.join("public/#{@campaign.image_campaign.url}"))
     make_bootstrap_mail(
     	from: 'BBA <bba@email.com>',
     	bcc: @email, 

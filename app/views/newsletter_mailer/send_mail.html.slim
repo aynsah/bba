@@ -1,6 +1,6 @@
 div class="container" align="center"
 	div class="card"
-		= image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
+		= image_tag attachments["img"].url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
 		div class="card-body"
 			div class="row" align="center"
 				h3 #{@campaign.campaign_title.titleize}

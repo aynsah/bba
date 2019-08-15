@@ -17,7 +17,7 @@ div class="container mt-4 mb-4"
   
   hr
   p Bio : 
-  p = @user.bio != "" && @user.bio != nil ? @user.bio : "Tidak diketahui"
+  p= raw @user.bio != "" && @user.bio != nil ? @user.bio : "Tidak diketahui"
   hr
   
   - if current_user

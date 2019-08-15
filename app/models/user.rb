@@ -17,7 +17,8 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255, message: "too long" },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :password, presence: {message: "can't be blank"}, length: { minimum: 8, message: "too short" }
+  validates :password, presence: {message: "can't be blank"}, on: :create
+  validates :password, length: { minimum: 8, message: "too short" }, on: :create
   validates :name, presence: {message: "can't be blank"}, length: {minimum: 6, message: "too short"}, uniqueness: { message: "Username ini sudah dipakai" }
 
   mount_uploader :photo, AvatarUploader

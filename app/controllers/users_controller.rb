@@ -17,13 +17,13 @@ class UsersController < ApplicationController
     def profil_create
       @user = User.find(current_user.id)
       @user.update(started_params)
-      redirect_to root_path
+      redirect_to root_path(:id => current_user.id)
     end
 
 
     private
       def started_params
-        params.require('/getting-started').permit(:photo, :name, :address, :phone, :bio, :password, :password_confirmation)
+        devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
       end
 
 end

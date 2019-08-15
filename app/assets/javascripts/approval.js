@@ -13,13 +13,3 @@ function approve(campaign_id, status) {
     }
   });
 }
-
-function decline(campaign_id) {
-  $.ajax({
-    url: "/campaigns/decline/" + campaign_id,
-    type: "POST",  
-    success:function(data) {
-      alert("Penolakan berhasil!"); 
-    }
-  });
-}

@@ -8,6 +8,7 @@ module Notification
     
     def notification_captured() 
       $donation.donation_status = "processed"
+      $reportdonation.donation_status = $donation.donation_status
       $donation.save
       $reportdonation.save
     end

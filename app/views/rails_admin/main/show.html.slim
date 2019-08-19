@@ -21,14 +21,23 @@ css:
                 = field.label
               td
                 = raw field.pretty_value
-- if params[:model_name] == "campaign" 
-  = javascript_include_tag 'approval.js'
-  - if @object.status == "unchecked" || @object.status == "declined" || @object.status == "blocked"
-    button onclick="approve(#{@object.id}, 'approve')"
-      | Setujui Campaign
-  - if @object.status == "unchecked"
-    button onclick="approve(#{@object.id}, 'decline')"
-      | Tolak Campaign
-  - if @object.status == "approved"
-    button onclick="approve(#{@object.id}, 'block')"
-      | Sembunyikan Campaign
+        - if params[:model_name] == "campaign" 
+          = javascript_include_tag 'approval.js'
+          - if @object.status == "unchecked" || @object.status == "declined" || @object.status == "blocked"
+            tr
+              th
+              td
+                button.btn.btn-info onclick="approve(#{@object.id}, 'approve')"
+                  | Setujui Campaign
+          - if @object.status == "unchecked"
+            tr
+              th
+              td
+                button.btn.btn-info onclick="approve(#{@object.id}, 'decline')"
+                  | Tolak Campaign
+          - if @object.status == "approved"
+            tr
+              th
+              td
+                button.btn.btn-info onclick="approve(#{@object.id}, 'block')"
+                  | Sembunyikan Campaign

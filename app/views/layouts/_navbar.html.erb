@@ -1,0 +1,44 @@
+<div>
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+    <b><%= link_to "BBA", root_path, class: "navbar-brand text-primary" %></b>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <%= link_to "Beranda", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <% if current_user && current_user.admin == true %>
+              <%= link_to "Admin Dashboard", rails_admin_path, class: "nav-link" %>
+            <% end %>
+            <span class="sr-only">(current)</span>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Campaign", campaigns_path, class: "nav-link" %>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <% if current_user %>
+            <%= link_to "Hi, #{current_user.name}", "#", { :class => "nav-link dropdown-toggle", :id => "navbarDropdown", :role => "button", 'data-toggle' => "dropdown", 'aria-haspopup' => "true", 'aria-expanded' => "false" } %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Profil", users_index_path(current_user.name), class: "dropdown-item" %>
+              <%= link_to "Wishlist Doa", doas_path, class: "dropdown-item" %>
+              <%= link_to "Cek Resi", cek_resi_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %>
+            </div>
+          <% end %>
+        </li>
+        <li class="nav-item">
+            <% if !current_user %>
+              <%= link_to "Login", new_user_session_path, class: "btn btn-outline-success" %>
+            <% end %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

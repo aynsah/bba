@@ -12,18 +12,7 @@ class UsersController < ApplicationController
 
     def getting_started
       @user = User.find(current_user.id)
+      redirect_to edit_registration_path(current_user) unless (@user.phone.nil? || @user.phone == "") && (@user.address.nil? || @user.address == "") && ( @user.bio.nil? || @user.bio = "")
+      $username = @user.name if @user.provider.nil?
     end
-
-    def profil_create
-      @user = User.find(current_user.id)
-      @user.update(started_params)
-      redirect_to root_path(:id => current_user.id)
-    end
-
-
-    private
-      def started_params
-        devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-      end
-
 end

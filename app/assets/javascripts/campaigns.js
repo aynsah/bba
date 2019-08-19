@@ -49,7 +49,7 @@ function show_snap(campaign_id, token){
 }
 
 function amount_check(donation_needed){
-  var amount = $('#_campaigns_37_donation_amount').val();
+  var amount = $('.donation_campaign').eq(0).val();
     if (amount > donation_needed){
       $('#submit').attr("disabled", true);
       $('#donation-hint').css('opacity','1');

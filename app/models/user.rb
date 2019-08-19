@@ -30,7 +30,12 @@ class User < ApplicationRecord
       $pass = user.password
       user.provider = auth.provider
       user.uid = auth.uid
-      $username = auth.info.name
+      user.name = auth.info.name
+      guest_number = 0
+      while(User.where(:name => user.name).any?)
+        user.name += "#{guest_number}"
+        guest_number += 1
+      end
       user.photo = auth.info.image
       user.save
     end

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get 'campaigns/refund-donation/:order_id', to: 'campaigns#refund', as: 'refund_donation'
   resources :payments do
     collection do
       post :receive_webhook
     end
   end
   get 'users/profil/:name', to: 'users#index', as: 'users_index'
+  get 'getting-started', to: 'users#getting_started', as: 'getting_started'
+  post 'getting-started', to: 'users#profil_create', as: 'profil_create'
   get '/doas/change-status/:id', to: "doas#change_status", as: 'change_status'
   resources :campaign_complaints
   resources :doas
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   resources :donations
   mount Ckeditor::Engine => '/ckeditor'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',registrations: "users/registrations",confirmations: 'users/confirmations' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "home#index"
   post 'campaigns/approval/:id', to: 'campaigns#approval', as: 'approve_campaign'
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   get 'cek_resi', to: 'home#cek_resi'
 
   get 'donation/cek', to: 'donations#cek', as: 'donation_cek'
+  get 'campaigns/refund-donation/:order_id', to: 'campaigns#refund', as: 'refund_donation'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

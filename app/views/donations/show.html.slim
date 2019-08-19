@@ -3,8 +3,7 @@
   .row.align-items-center
     .col-sm-3
       ul.list-group
-        li.list-group-item.active.h-100 Order ID
-        li.list-group-item Donation ID
+        li.list-group-item.active.h-100 Donation ID
         li.list-group-item Donation Status
         li.list-group-item Donated At
         li.list-group-item Donation Amount
@@ -14,7 +13,6 @@
                 span id="order-id" = @donation.order_id
                 span id='copyclip' class="pointer float-right" onclick="copyclipboard();" 
                 	i class="fa fa-clipboard white pointer" aria-hidden="true"
-  			li.list-group-item = @donation.id
   			li.list-group-item = @donation.donation_status
   			li.list-group-item = @donation.created_at.strftime("%A, %d/%m/%Y")
   			li.list-group-item = number_to_currency(@donation.donation_amount)

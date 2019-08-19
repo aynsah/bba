@@ -42,8 +42,6 @@ class CampaignsController < ApplicationController
     
     respond_to do |format|
       if @campaign.save
-        @emails = User.where("subscribed = true").pluck(:email)
-        NewsletterMailer.with(email: @emails, campaign: @campaign).send_mail.deliver_now
         format.html {redirect_to( campaigns_path, notice: 'Campaign was succesfully created, waiting for admin to approval')}
       else 
         @campaign.valid?
@@ -113,6 +111,10 @@ class CampaignsController < ApplicationController
     case params[:status_data]
     when "approve"
       @campaign.update_attribute("status", "approved")
+      @emails = User.where("subscribed = true").pluck(:email)
+      NewsletterMailer.with(email: @emails, campaign: @campaign).send_mail.deliver_now
+      @campaignstarter = User.where("subscribed = true").pluck(:email)
+        NewsletterMailer.with(email: @campaignstarter, campaign: @campaign).approved_mail.deliver_now
     when "decline"
       @campaign.update_attribute("status", "declined")
     when "block"

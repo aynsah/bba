@@ -27,6 +27,9 @@
                 hint: "Masukkan password untuk mengubah pengaturan",
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
+    <%= f.input :subscribed, as: :boolean, label: "Berlangganan newsletter kami" do %>
+      <%= f.check_box :subscribed, {:checked=> :subscribed}, "true", "false" %>
+    <% end %>
   </div>
 
   <div class="form-actions">

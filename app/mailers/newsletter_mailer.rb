@@ -9,4 +9,14 @@ class NewsletterMailer < ApplicationMailer
     	subject: 'New Campaign on BBA'
     )
   end
+
+  def approved_mail
+  	@email = params[:email]
+  	@campaign = params[:campaign]
+  	make_bootstrap_mail(
+  		from: 'BBA <bba@email.com>',
+  		to: @email,
+  		subject: 'Campaign Approved'
+  	)
+  end
 end

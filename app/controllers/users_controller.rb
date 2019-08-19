@@ -9,4 +9,21 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
+    def getting_started
+      @user = User.find(current_user.id)
+    end
+
+    def profil_create
+      @user = User.find(current_user.id)
+      @user.update(started_params)
+      redirect_to root_path(:id => current_user.id)
+    end
+
+
+    private
+      def started_params
+        devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
+      end
+
 end

@@ -70,5 +70,6 @@ Rails.application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
-  config.action_mailer.asset_host = 'http://localhost:3000'
+  config.action_controller.asset_host = 'http://d2d8a401.ngrok.io'
+  config.action_mailer.asset_host = 'http://d2d8a401.ngrok.io'
 end

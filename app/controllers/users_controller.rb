@@ -11,8 +11,12 @@ class UsersController < ApplicationController
   end
 
     def getting_started
-      @user = User.find(current_user.id)
-      redirect_to edit_registration_path(current_user) unless (@user.phone.nil? || @user.phone == "") && (@user.address.nil? || @user.address == "") && ( @user.bio.nil? || @user.bio = "")
-      $username = @user.name if @user.provider.nil?
+      if current_user
+        @user = User.find(current_user.id)
+        redirect_to edit_registration_path(current_user) unless (@user.phone.nil? || @user.phone == "") && (@user.address.nil? || @user.address == "") && ( @user.bio.nil? || @user.bio = "")
+        $username = @user.name if @user.provider.nil?
+      else
+        redirect_to new_user_session_path
+      end
     end
 end

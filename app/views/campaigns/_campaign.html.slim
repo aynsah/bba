@@ -1,24 +1,26 @@
  div class="row"
   br/
   = 'Campaign tidak ada' unless @campaigns.any?
-  - @campaigns.each do |c|
+  - @campaigns.each do |campaign|
     div class="col-sm-4 mt-2 mb-4"
-      = link_to c, :class => "custom-card" do
+      = link_to campaign, :class => "custom-card" do
           div class="card h-100"
-            = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive", :input_html => { :alt => "Campaign Image"}
+            = image_tag campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive", :input_html => { :alt => "Campaign Image"}
             div class="card-body"
               h5 class="card-title"
-                = c.campaign_title.titleize
+                = campaign.campaign_title.titleize
             p class="card-text ml-4 text-muted"
               | Penggalang Dana : 
-              = c.user.name
+              = campaign.user.name
               br/
               | Sisa Waktu : 
-              = Campaign.date_after(c.campaign_timeout)
-              span>
-              = c.user.verified_user ? "(Verified) ": ""
+              = Campaign.date_after(campaign.campaign_timeout)
+              span
+              = campaign.user.verified_user ? "(Verified) ": ""
+            div class="progress" style="height:3px"
+              div class="progress-bar" style="width:#{ Campaign.calculate_donation(campaign) /  campaign.donation_target * 100 }%"
             ul class="list-group list-group-flush"
               li class="list-group-item"
                 | Target Donasi : 
-                = number_to_currency c.donation_target
+                = number_to_currency campaign.donation_target
   br

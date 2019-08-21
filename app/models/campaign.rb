@@ -19,7 +19,8 @@ class Campaign < ApplicationRecord
     end
   end
 
-  def self.calculate_donation(campaign, donations)
+  def self.calculate_donation(campaign)
+    donations = Donation.where(:campaign_id => campaign.id).where('donation_status = ? or donation_status = ?', 'completed', 'processed')
     return campaign.donation_target - donations.sum(:donation_amount)
   end
 

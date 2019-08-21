@@ -5,7 +5,9 @@ div class="container mt-4 mb-4"
         - @campaign.errors.full_messages.each do |message|
           p message
       .form-group
-        = f.input :image_campaign, as: :file, input_html: { :required => "true" }
+        div id="image-user" onclick="trigger_campaign_file();" style="display:inline-block"
+            = image_tag @campaign.image_campaign.url , height: "200px", label: false, :class=>"card-img-top", :input_html => { :alt => "User Image"}, :id => "img"
+        = f.input :image_campaign, as: :file, input_html: {:style => 'opacity:0', :required => "true"} 
         = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id, include_blank: false
         = f.input :campaign_title, required: true
         = f.input :donation_target, as: :decimal

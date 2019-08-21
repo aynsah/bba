@@ -7,7 +7,7 @@ br/
     span id='donation-hint' style="opacity:0;color:red"
     = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
     = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
-    = f.submit 'Donate', :id => 'submit'
+    = f.submit 'Donate', :id => 'submit', :class => "btn btn-primary"
   = hidden_field_tag 'snap_token', @snap_token
 - else
   p Donasi untuk Campaign ini telah ditutup

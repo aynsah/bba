@@ -72,3 +72,4 @@ Rails.application.configure do
   }
   config.action_mailer.asset_host = 'https://8d05d2ce.ngrok.io'
   config.action_controller.asset_host = "https://8d05d2ce.ngrok.io"
+end

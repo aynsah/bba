@@ -12,6 +12,7 @@ module Bba
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
+    config.serve_static_assets = true
 
   	config.action_controller.asset_host = 'http://d2d8a401.ngrok.io'
   	config.action_mailer.asset_host = 'http://d2d8a401.ngrok.io'

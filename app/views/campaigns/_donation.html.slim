@@ -3,7 +3,7 @@ h4= number_to_currency(@donations.sum(:donation_amount))
 br/
 - if @donations.sum(:donation_amount) < @campaign.donation_target
   = simple_form_for campaign_path(@campaign.id), remote: true do |f|
-    = f.input :donation_amount, label: 'Jumlah Donasi', input_html: {:oninput => "amount_check(#{@donation_needed})", autocomplete: 'off'}
+    = f.input :donation_amount, label: 'Jumlah Donasi', input_html: {:oninput => "amount_check(#{@donation_needed})", autocomplete: 'off', class: "donation_campaign"}
     small id='donation-hint' style='opacity:0;'
       = "Batas donasi yang dimasukkan sejumlah #{number_to_currency(@donation_needed)}"
     = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }

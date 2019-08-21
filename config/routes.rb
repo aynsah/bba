@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
   get 'users/profil/:name', to: 'users#index', as: 'users_index'
   get 'getting-started', to: 'users#getting_started', as: 'getting_started'
-  post 'getting-started', to: 'users#profil_create', as: 'profil_create'
   get '/doas/change-status/:id', to: "doas#change_status", as: 'change_status'
   resources :campaign_complaints
   resources :doas

@@ -5,7 +5,7 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  config.action_mailer.default_url_options = {host: "c175d5f5.ngrok.io"}
+  config.action_mailer.default_url_options = {host: "02acdaa1.ngrok.io"}
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -71,6 +71,6 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   
-  config.action_controller.asset_host = 'http://d2d8a401.ngrok.io'
-  config.action_mailer.asset_host = 'http://d2d8a401.ngrok.io'
+  config.action_controller.asset_host = 'http://02acdaa1.ngrok.io'
+  config.action_mailer.asset_host = 'http://02acdaa1.ngrok.io'
 end

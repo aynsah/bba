@@ -1,10 +1,17 @@
 module CampaignsHelper
   def current_donation(campaign)
-    ( campaign.donations.sum(:donation_amount) /  campaign.donation_target ) * 100 
+    ( campaign.donations.sum(:donation_amount) * 100 ) /  campaign.donation_target 
   end
 
-  def rounding_off_donation(donation_amount)
-    donation_amount = 1000 if donation_amount.to_i < 1000
+  def rounding_off_donation(donation_amount, campaign_id)
+    donation_target = Campaign.find(campaign_id).donation_target
+
+    if donation_amount.to_i < 1000
+      donation_amount = 1000 
+    elsif donation_amount.to_i > donation_target
+      donation_amount = donation_target
+    end
+
     (donation_amount.to_i / 1000 ).ceil * 1000
   end
 

@@ -78,7 +78,11 @@ class CampaignsController < ApplicationController
   end
 
   def donate
-    donation_amount = params['/campaigns/' + params[:id]][:donation_amount] = rounding_off_donation(params['/campaigns/' + params[:id]][:donation_amount])
+    donation_amount = params['/campaigns/' + params[:id]][:donation_amount] = 
+    rounding_off_donation(
+      params['/campaigns/' + params[:id]][:donation_amount],
+      params['/campaigns/' + params[:id]][:campaign_id]
+    )
 
     $donation = Donation.new(donation_params)
     $reportdonation = ReportDonation.new(donation_params)

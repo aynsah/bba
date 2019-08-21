@@ -1,12 +1,11 @@
 div class="container" align="center"
 	div class="card"
-		= image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
 		div class="card-body"
 			div class="row" align="center"
-				h3 #{@campaign.campaign_title.titleize}
+				h3.text-center #{@campaign.campaign_title.titleize}
 				br
-			div class="row" align="center"
-				h5 #{raw @campaign.additional_text}
+			div class="row"
+				= image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
 			hr
 			
 			div class="row"

@@ -27,3 +27,16 @@ $(function(){
   });
 
 });
+
+function check(){
+  var password = $('#user_password').val();
+  var password_confirmation = $('#user_password_confirmation').val();
+  if( password == password_confirmation){
+    $('#confirmation-caption').css('display', 'none');
+    $('#btn-user').attr('disabled', false);
+  }
+  else{
+    $('#confirmation-caption').css('display', 'initial');
+    $('#btn-user').attr('disabled', true);
+  }
+}

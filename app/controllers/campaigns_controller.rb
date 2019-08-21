@@ -42,7 +42,7 @@ class CampaignsController < ApplicationController
     
     respond_to do |format|
       if @campaign.save
-        format.html {redirect_to( campaigns_path, notice: 'Campaign was succesfully created, waiting for admin to approval')}
+        format.html {redirect_to( campaigns_path, notice: 'Campaign telah berhasil dibuat. Silahkan tunggu admin untuk menyetujui')}
       else 
         @campaign.valid?
         format.html {redirect_to( new_campaign_path, alert: @campaign.errors.full_messages[0])}
@@ -61,12 +61,11 @@ class CampaignsController < ApplicationController
       @campaign.valid?
       redirect_to(edit_campaign_path, alert: @campaign.errors.full_messages[0])
     end
-    
   end
 
   def show
     @donations = Donation.where(:campaign_id => params[:id]).where('donation_status = ? or donation_status = ?', 'completed', 'processed')
-    @donation_needed = Campaign.calculate_donation(@campaign, @donations)
+    @donation_needed = Campaign.calculate_donation(@campaign)
     only_user_and_admin(@campaign) unless @campaign.status == "approved"
   end
 
@@ -80,14 +79,8 @@ class CampaignsController < ApplicationController
   def donate
     $donation = Donation.new(donation_params)
     $reportdonation = ReportDonation.new(donation_params)
-    donation_id = Donation.any? ? Donation.last.id + 1 : 1
-    $donation.id = donation_id
-    $donation.created_at = Date.today.to_s(:number)
-    $donation.order_id = "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
-
-    $reportdonation.id = $donation.id
-    $reportdonation.created_at = $donation.created_at
-    $reportdonation.order_id = $donation.order_id
+    set_donation_keys
+    payment_methods = set_payment_method # (params['/campaigns/' + params[:id]][:donation_amount])
 
     response = Veritrans.create_widget_token(
       transaction_details: {
@@ -98,7 +91,8 @@ class CampaignsController < ApplicationController
         first_name: current_user.name,
         email: current_user.email,
         phone: current_user.phone
-      }
+      },
+      enabled_payments: payment_methods
     )
     @snap_token = response.token
 
@@ -135,12 +129,28 @@ class CampaignsController < ApplicationController
       end
     end
 
-  private
     def donation_params
       params.require('/campaigns/' + params[:id]).permit(:donation_amount, :user_id, :campaign_id)
     end
 
     def campaign_params
       params.require(:campaign).permit(:image_campaign, :category_id, :campaign_title, :donation_target, :campaign_timeout, :campaign_desc, :additional_text, :user_id)
+    end
+
+    def set_donation_keys
+      $reportdonation.id = $donation_id = Donation.any? ? Donation.last.id + 1 : 1
+      $reportdonation.created_at = $donation.created_at = Date.today.to_s(:number)
+      $reportdonation.order_id = $donation.order_id = "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
+    end
+
+    def set_payment_method
+      if $donation.donation_amount >= 10000
+        payment = ["credit_card", "mandiri_clickpay", "cimb_clicks", "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "mandiri_ecash",
+                  "permata_va", "bca_va", "bni_va", "other_va", "gopay", "indomaret","danamon_online", "akulaku"]
+        return payment
+      else
+        payment = ["gopay", "akulaku"] 
+        return payment
+      end
     end
 end

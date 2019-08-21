@@ -1,5 +1,6 @@
 class DoasController < ApplicationController
   before_action :find_doa, only: [:show, :edit, :update, :destroy]
+  before_action :check_doa_status, only: [:create]
 
   def index
     if current_user
@@ -73,5 +74,9 @@ class DoasController < ApplicationController
     def display_all_doas
       @doas = Doa.filter(params[:doa_filter]).where("user_id = ?", "#{current_user.id}").order(created_at: :desc)
       @statuses = DoaStatus.all
+    end
+
+    def check_doa_status
+      DoaStatus.new(:id => 1,:status_name => "Berjalan").save unless DoaStatus.any?
     end
 end

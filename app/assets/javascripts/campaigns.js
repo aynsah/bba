@@ -50,12 +50,56 @@ function show_snap(campaign_id, token){
 
 function amount_check(donation_needed){
   var amount = $('.donation_campaign').eq(0).val();
-    if (amount > donation_needed){
-      $('#submit').attr("disabled", true);
-      $('#donation-hint').css('opacity','1');
+  var donation_message = null;
+    if (amount < 1000){
+      donation_message = "Minimal donasi yang dimasukkan adalah Rp.1.000";
+    }
+    else if ( amount % 1000 != 0){
+      donation_message = "Donasi harus berkelipatan ribuan";
+    }
+    else if (amount > donation_needed){
+      donation_message = "Batas donasi yang dimasukkan sejumlah " + currencyFormat(donation_needed);
     }
     else{
+      donation_message = null;
+    }
+    if(amount == ""){
+      donation_message = null;
+    }
+    if (!donation_message){
       $('#submit').attr("disabled", false);
       $('#donation-hint').css('opacity','0');
     }
+    else{
+      $('#donation-hint').text(donation_message);
+      $('#submit').attr("disabled", true);
+      $('#donation-hint').css('opacity','1');
+    }
 }
+
+function trigger_campaign_file() {
+   $("#campaign_image_campaign").trigger('click');
+}
+
+$(function(){
+  $('#campaign_image_campaign').change(function(){
+    var input = this;
+    var url = $(this).val();
+    alert(url);
+    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) 
+     {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+           $('#img').attr('src', e.target.result);
+        }
+       reader.readAsDataURL(input.files[0]);
+    }
+    else
+    {
+      $('#img').attr('src', '/assets/no_preview.png');
+    }
+  });
+
+});

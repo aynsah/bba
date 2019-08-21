@@ -4,11 +4,10 @@ br/
 - if @donations.sum(:donation_amount) < @campaign.donation_target
   = simple_form_for campaign_path(@campaign.id), remote: true do |f|
     = f.input :donation_amount, label: 'Jumlah Donasi', input_html: {:oninput => "amount_check(#{@donation_needed})", autocomplete: 'off', class: "donation_campaign"}
-    small id='donation-hint' style='opacity:0;'
-      = "Batas donasi yang dimasukkan sejumlah #{number_to_currency(@donation_needed)}"
+    span id='donation-hint' style="opacity:0;color:red"
     = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
     = f.input :campaign_id, :as => :hidden, :input_html => { :value => "#{@campaign.id}" }
-    = f.submit 'Donate', :id => 'submit'
+    = f.submit 'Donate', :id => 'submit', :class => "btn btn-primary"
   = hidden_field_tag 'snap_token', @snap_token
 - else
   p Donasi untuk Campaign ini telah ditutup

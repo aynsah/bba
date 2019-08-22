@@ -17,12 +17,13 @@ module CampaignsHelper
 
   def set_payment_method(donation_amount)
     if donation_amount.to_i >= 10000
-      payment = ["credit_card", "mandiri_clickpay", "cimb_clicks", "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "mandiri_ecash",
-                "permata_va", "bca_va", "bni_va", "other_va", "gopay", "indomaret","danamon_online", "akulaku"]
-      payment
+      payment = ["credit_card", "mandiri_clickpay", "cimb_clicks", "bca_klikbca", "bca_klikpay", "bri_epay",
+                 "echannel", "mandiri_ecash", "permata_va", "bca_va", "bni_va", "other_va", "gopay",
+                 "indomaret","danamon_online", "akulaku"]
     else
       payment = ["gopay", "akulaku"] 
-      payment
     end
+    
+    payment
   end
 end

@@ -10,16 +10,16 @@ class HomeController < ApplicationController
 	end
 
   def check_data
-    filled_data_count = 4
+    put_user_data
     flash[:info] = nil
 
     if current_user
-      filled_data_count -= 1 if current_user.photo.nil? ||  current_user.photo == ""
-      filled_data_count -= 1 if current_user.address.nil? ||  current_user.address == ""
-      filled_data_count -= 1 if current_user.phone.nil? ||  current_user.phone == ""
-      filled_data_count -= 1 if current_user.bio.nil? ||  current_user.bio == ""
 
-      flash[:info] = "Lengkapi data diri anda (#{filled_data_count} / 4)" unless filled_data_count == 4
+      @datas.each do |data|
+        @filled_data_count -= 1 if current_user.send(data).nil? ||  current_user.send(data) == ""
+      end
+
+      flash[:info] = "Lengkapi data diri anda (#{@filled_data_count} / #{@datas.count})" unless @filled_data_count == @datas.count
     end
   end
 end

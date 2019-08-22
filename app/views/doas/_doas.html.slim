@@ -22,12 +22,12 @@ div class="btn-group mt-4" style="display:inline-block"
       	  tr class="#{doa.id}"
       	    td id="status-doa"
               = form_for change_status_path(doa.id), :method => 'get'  do |f|
-                = f.collection_select(:doa_status_id, @statuses, :id, :status_name, {:selected => doa.doa_status.id}, {:data => {:remote => true, :url => change_status_path(doa.id)}})
+                = f.collection_select(:doa_status_id, @statuses, :id, :status_name, {:selected => doa.doa_status.id}, {:data => {:remote => true, :url => change_status_path(doa.id)}, :class => "form-control" }) 
             td = doa.title
       	    td = doa.created_at.to_date
       	    td = doa.expired_at
       	    td = link_to "Lihat", doa
             td = link_to "Ubah", edit_doa_path(doa.id)
-            td = link_to 'Hapus', doa, data: { confirm: 'Are you sure?' }, method: :delete, remote: true
+            td = link_to 'Hapus', doa, data: { confirm: 'Apakah anda yakin?' }, method: :delete, remote: true
 
     br/

@@ -11,16 +11,16 @@ div class="container mt-4"
       = f.input :phone, as: :tel, label: 'No Telephone' 
       = f.input :address, label: 'Alamat' 
       = f.input :bio, label: 'Biodata', as: :ckeditor
-      - unless @user.provider == nil
-        = f.input :password, input_html: { autocomplete: "new-password" } 
+      - unless @user.provider.nil?
+        = f.input :password
         = f.input :password_confirmation, input_html: {:oninput => "check();"}
       - else
-        = f.input :password, as: :hidden, input_html: { :value => $pass } 
-        = f.input :password_confirmation, as: :hidden, input_html: { :value => $pass }, input_html: {:oninput => "check();"}
+        = f.input :password, as: :hidden , input_html: { :value => $pass } 
+        = f.input :password_confirmation, as: :hidden , input_html: { :value => $pass, :oninput => "check();" }
       = f.input :current_password, as: :hidden, input_html: { :value => $pass}
       small style="display:none;color:red" id="confirmation-caption"
         | Password tidak cocok
       = f.input :subscribed, as: :boolean, label: "Berlangganan newsletter kami"
       div class="form-actions"
-        = f.button :submit, "Mulai", class: "btn-primary", :id => "btn-user", :disabled => true
+        = f.button :submit, "Mulai", class: "btn-primary", :id => "btn-user", :disabled => !@user.provider.nil?
 br

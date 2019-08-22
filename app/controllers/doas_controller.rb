@@ -15,7 +15,12 @@ class DoasController < ApplicationController
   end
   
   def change_status
-    if @doas = Doa.update_status(params.require(change_status_path).permit(:doa_status_id), params[:id], current_user.id)
+    if @doas = Doa.update_status(
+                    params.require(change_status_path).permit(:doa_status_id), 
+                    params[:id], 
+                    current_user.id
+                  )
+    
       @statuses = DoaStatus.all
       respond_to do |format|
         format.js { render :action => "index" }
@@ -34,7 +39,7 @@ class DoasController < ApplicationController
   end
 
   def show
-    only_user_and_admin(@doa)
+    only_user_and_admin @doa
   end
 
   def new
@@ -50,7 +55,7 @@ class DoasController < ApplicationController
   end
 
   def edit
-    only_user_and_admin(@doa)
+    only_user_and_admin @doa
   end
 
   def update
@@ -72,7 +77,10 @@ class DoasController < ApplicationController
     end
 
     def display_all_doas
-      @doas = Doa.filter(params[:doa_filter]).where("user_id = ?", "#{current_user.id}").order(created_at: :desc)
+      @doas = Doa.filter(params[:doa_filter])
+                 .where("user_id = ?", "#{current_user.id}")
+                 .order(created_at: :desc)
+
       @statuses = DoaStatus.all
     end
 

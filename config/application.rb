@@ -14,8 +14,8 @@ module Bba
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
     config.serve_static_assets = true
 
-    config.action_mailer.asset_host = "http://b76634e1.ngrok.io"
-    config.action_controller.asset_host = "http://b76634e1.ngrok.io"
+    config.action_mailer.asset_host = "http://be61f98b.ngrok.io"
+    config.action_controller.asset_host = "http://be61f98b.ngrok.io"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

@@ -1,4 +1,4 @@
-div class="container" align="center"
+div class="container mt-4 mb-4" align="center"
 	div class="card"
 		div class="card-body"
 			div class="row" align="center"
@@ -13,3 +13,10 @@ div class="container" align="center"
 					| Target Donasi : #{number_to_currency @campaign.donation_target}
 				div class="col-lg-6"
 					| Batas Waktu : #{@campaign.campaign_timeout}
+
+			hr
+
+			div class="row"
+				a.btn.btn-primary.btn-lg.mx-auto href="http://localhost:3000/campaigns/#{@campaign.id}"
+					h5.text-center
+						| Lihat lebih lanjut

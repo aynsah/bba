@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  include CampaignsHelper
   before_action :find_campaign, only: [:show, :edit, :update, :destroy, :save_donation, :approval, :decline]
   protect_from_forgery with: :null_session, :only => [:receive_webhook]
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
@@ -77,10 +78,13 @@ class CampaignsController < ApplicationController
   end
 
   def donate
+    donation_amount = params['/campaigns/' + params[:id]][:donation_amount] = rounding_off_donation(params['/campaigns/' + params[:id]][:donation_amount])
+
     $donation = Donation.new(donation_params)
     $reportdonation = ReportDonation.new(donation_params)
+
     set_donation_keys
-    payment_methods = set_payment_method # (params['/campaigns/' + params[:id]][:donation_amount])
+    payment_methods = set_payment_method donation_amount
 
     response = Veritrans.create_widget_token(
       transaction_details: {
@@ -143,14 +147,4 @@ class CampaignsController < ApplicationController
       $reportdonation.order_id = $donation.order_id = "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
     end
 
-    def set_payment_method
-      if $donation.donation_amount >= 10000
-        payment = ["credit_card", "mandiri_clickpay", "cimb_clicks", "bca_klikbca", "bca_klikpay", "bri_epay", "echannel", "mandiri_ecash",
-                  "permata_va", "bca_va", "bni_va", "other_va", "gopay", "indomaret","danamon_online", "akulaku"]
-        return payment
-      else
-        payment = ["gopay", "akulaku"] 
-        return payment
-      end
-    end
 end

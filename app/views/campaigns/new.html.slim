@@ -17,4 +17,4 @@ div class="container mt-4 mb-4"
         = f.input :additional_text, as: :ckeditor, input_html: { class: 'ckeditor'}
         = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
     
-        = f.submit "Buat Campaign"
+        = f.submit "Buat Campaign", input_html: { class: 'btn btn-outline-primary'}

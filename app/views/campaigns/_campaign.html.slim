@@ -18,7 +18,7 @@
               span
               = campaign.user.verified_user ? "(Verified) ": ""
             div class="progress" style="height:3px"
-              div class="progress-bar" style="width:#{ Campaign.calculate_donation(campaign) /  campaign.donation_target * 100 }%"
+              div class="progress-bar" style="width:#{ current_donation(campaign) }%"
             ul class="list-group list-group-flush"
               li class="list-group-item"
                 | Target Donasi : 

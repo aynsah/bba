@@ -5,7 +5,18 @@ class CampaignsController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:receive_webhook]
 
   def index
-    @campaigns = Campaign.paginate(page: params[:page], per_page: 6).filter(params[:category_filter], params[:user_filter], params[:status_filter], params[:search_filter], (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)).order(created_at: :desc).where(:status => "approved")
+    @campaigns = Campaign.paginate(page: params[:page], per_page: 6)
+                         .filter(
+                            params[:category_filter], 
+                            params[:user_filter], 
+                            params[:status_filter], 
+                            params[:search_filter], 
+                            (params[:data1].to_s.gsub(/['Rp.','.']/,'').to_i), 
+                            (params[:data2].to_s.gsub(/['Rp,','.']/,'').to_i)
+                          )
+                          .where(:status => "approved")
+                          .order(created_at: :desc)
+                          
     respond_to do |format|
       format.html
       format.js
@@ -27,6 +38,7 @@ class CampaignsController < ApplicationController
       when "expired", "cancel"
         Campaign.notification_canceled(verified_data.data[:order_id])
       end
+
       render text: "ok"
     else
       render text: "ok", :status => :not_found
@@ -43,16 +55,20 @@ class CampaignsController < ApplicationController
     
     respond_to do |format|
       if @campaign.save
-        format.html {redirect_to( campaigns_path, notice: 'Campaign telah berhasil dibuat. Silahkan tunggu admin untuk menyetujui')}
+        format.html {redirect_to( campaigns_path, 
+                                  notice: 'Campaign telah berhasil dibuat. Silahkan tunggu admin untuk menyetujui'
+                                )}
       else 
         @campaign.valid?
-        format.html {redirect_to( new_campaign_path, alert: @campaign.errors.full_messages[0])}
+        format.html {redirect_to( new_campaign_path, 
+                                  alert: @campaign.errors.full_messages[0]
+                                )}
       end
     end
   end
 
   def edit
-    only_user_and_admin(@campaign)
+    only_user_and_admin @campaign
   end
 
   def update
@@ -65,9 +81,11 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @donations = Donation.where(:campaign_id => params[:id]).where('donation_status = ? or donation_status = ?', 'completed', 'processed')
+    @donations = Donation.where(:campaign_id => params[:id])
+                         .where('donation_status = ? or donation_status = ?', 'completed', 'processed')
+
     @donation_needed = Campaign.calculate_donation(@campaign)
-    only_user_and_admin(@campaign) unless @campaign.status == "approved"
+    only_user_and_admin @campaign unless @campaign.status == "approved"
   end
 
   def save_donation
@@ -78,14 +96,18 @@ class CampaignsController < ApplicationController
   end
 
   def donate
-    donation_amount = params['/campaigns/' + params[:id]][:donation_amount] = rounding_off_donation(params['/campaigns/' + params[:id]][:donation_amount])
+    donation_amount = params['/campaigns/' + params[:id]][:donation_amount] = 
+    rounding_off_donation(
+      params['/campaigns/' + params[:id]][:donation_amount],
+      params['/campaigns/' + params[:id]][:campaign_id]
+    )
 
     $donation = Donation.new(donation_params)
     $reportdonation = ReportDonation.new(donation_params)
 
     set_donation_keys
     payment_methods = set_payment_method donation_amount
-
+    
     response = Veritrans.create_widget_token(
       transaction_details: {
         order_id: $donation.order_id,
@@ -142,9 +164,13 @@ class CampaignsController < ApplicationController
     end
 
     def set_donation_keys
-      $reportdonation.id = $donation_id = Donation.any? ? Donation.last.id + 1 : 1
-      $reportdonation.created_at = $donation.created_at = Date.today.to_s(:number)
-      $reportdonation.order_id = $donation.order_id = "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
+      $reportdonation.id = $donation.id = Donation.any? ? Donation.last.id + 1 : 1
+      $reportdonation.created_at = $donation.created_at = Time.now.to_s(:number)
+
+      $reportdonation.order_id = $donation.order_id = 
+      "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
+      puts $donation.order_id
+      
     end
 
 end

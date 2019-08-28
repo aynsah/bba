@@ -1,5 +1,6 @@
 class CampaignComplaintsController < ApplicationController
   before_action :check_complaint_category, only: [:new]
+  
   def new
     redirect_to new_user_session_path unless current_user
     @campaign_complaint = CampaignComplaint.new
@@ -12,14 +13,17 @@ class CampaignComplaintsController < ApplicationController
       redirect_to(campaigns_path, notice: 'Komplaint anda telah dikirim. Terima kasih')
     else
       @campaign_complaint.valid?
-      redirect_to("/campaign_complaints/new?campaign_id=#{@campaign_complaint.campaign_id}", alert: @campaign_complaint.errors.full_messages[0])
+      redirect_to(
+        "/campaign_complaints/new?campaign_id=#{ @campaign_complaint.campaign_id }",
+        alert: @campaign_complaint.errors.full_messages[0]
+      )
     end
   end
 
   def show
     @complaint = CampaignComplaint.find(params[:id])
     @campaign = Campaign.find(@complaint.campaign_id)
-    only_user_and_admin(@complaint)
+    only_user_and_admin @complaint
   end
 
   def show_all

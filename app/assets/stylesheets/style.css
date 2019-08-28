@@ -29,10 +29,70 @@ a.custom-card:hover {
 	width: auto;
 }
 
+.text-purple{
+	color: #7000c7!important;
+}
+
 .white{
 	color: #fff;
 }
 
 .pointer{
 	cursor: pointer;
+}
+
+.jumbotron{
+	background-image: url("http://localhost:3000/uploads/background.jpg");
+	background-size: cover;
+	max-height: 300px;
+	min-height: 300px;
+	padding: 0em;
+}
+
+.jumbotron-bg{
+	background-color: rgba(0,0,0,0.5);
+	min-height: 300px;
+	position: relative;
+}
+
+.pt{
+	padding-top: 100px;
+}
+
+.context-dark, .bg-gray-dark, .bg-primary {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+    color: #ffffff;
+}
+.nav-list li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-list li a:hover:before {
+    margin-left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 23px;
+    font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+.social-container .col {
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }

@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   #MONTHLY REPORT
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_product_report_export/:month', to: "report_products#export", as: 'month_product_export'
-  get 'monthly_supplier_report/:month', to: "report_suppliers#monthly", as: 'month_supplier'
+  
+  get 'monthly_donation_report/:month', to: "report_donation#monthly", as: 'month_donation'
+  get 'monthly_donation_report_export/:month', to: "report_donation#export", as: 'month_donation_export'
 
   #NEWSLETTER
   get 'newsletters', to: 'newsletters#index'

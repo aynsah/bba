@@ -1,0 +1,67 @@
+div class="container mt-4 mb-4"
+	h1 Monthly Report
+	
+	table class="table"
+		thead
+			tr
+				th Donation Amount
+				th Donator
+				th Campaign ID
+				th Donation ID
+				th Created at
+	
+		tbody
+			- @reports.each do |report|
+				tr
+					td = report.donation_amount
+					td = report.user.name
+					td = report.campaign_id
+					td = report.order_id
+					td = report.created_at
+	
+		tfoot
+			tr
+				td colspan="4" align="right"
+					b Total Donations
+				td 
+					b = @donation_count
+			tr
+				td colspan="4" align="right"
+					b Total Donation Amount
+				td
+					b = @donation_total
+	br
+
+	div.pb-2
+		b = link_to 'Export (XLS)', month_donation_export_path(month: Date.today.strftime("%B"), format: "xls"), class: "btn btn-outline-primary"
+
+	br
+	
+	table class="table"
+		tr
+			td 
+				b = link_to 'January', month_product_path("January")
+			td
+				b = link_to 'February', month_product_path("February")
+			td 
+			 	b = link_to 'March', month_product_path("March")
+			td
+				b = link_to 'April', month_product_path("April")
+			td
+				b = link_to 'May', month_product_path("May")
+			td
+				b = link_to 'June', month_product_path("June")
+			td
+				b = link_to 'July', month_product_path("July")
+			td
+				b = link_to 'August', month_product_path("August")
+			td
+				b = link_to 'September', month_product_path("September")
+			td
+				b = link_to 'October', month_product_path("October")
+			td
+				b = link_to 'November', month_product_path("November")
+			td
+				b = link_to 'December', month_product_path("December")
+	
+	= link_to 'Back', products_path, :class => "btn btn-outline-secondary"

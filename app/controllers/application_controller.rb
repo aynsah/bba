@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :only_user_and_admin, :only_admin
 
+  def put_user_data
+    @datas = [:photo, :address, :phone, :bio]
+    @filled_data_count = @datas.count
+  end
+
   def only_user_and_admin(data)
     if current_user
       redirect_to root_path unless current_user.id == data.user_id || current_user.admin == true

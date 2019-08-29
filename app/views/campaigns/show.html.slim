@@ -1,3 +1,9 @@
+css:
+  body{
+    background-color: #f0f1f7;
+  }
+
+
 - if @campaign.present? && @campaign.status == "approved"
    .container.mt-4.mb-4
      .row
@@ -20,6 +26,13 @@
              br
              | Target Donasi : #{number_to_currency(@campaign.donation_target)}
 
+         br
+         - if current_user
+           - if current_user.id == @campaign.user_id
+             .content
+               br
+               = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
+
 
        .col-md-4
          .content align="center"
@@ -34,11 +47,6 @@
              = render partial: "donation", locales: {donations: @donations}
 
 
-       br
-       - if current_user
-         - if current_user.id == @campaign.user_id
-           br
-           = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
 
 - else
     p Campaign ini tidak ada Atau telah dihapus

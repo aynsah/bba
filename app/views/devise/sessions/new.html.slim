@@ -1,0 +1,46 @@
+css:
+  body{
+    overflow:hidden;
+  }
+  .password{
+    margin-bottom:0;
+  }
+.container-fluid.registration-user
+  .container
+    .registration-box
+      .row style="height: 100%;"
+          .login-form.col-md-7.col-xs-12
+            h3 Please Login
+            p style="color: #666" Lorem ipsum dolor sit amet
+            = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .form-inputs
+                = f.input :email,
+                          required: false,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" }
+                = f.input :password,
+                          required: false,
+                          input_html: { autocomplete: "current-password" }
+                - if devise_mapping.recoverable?
+                  = link_to "Lupa Password?", new_password_path(resource_name)
+                br
+                br
+                = f.input :remember_me, label:'Ingat saya', as: :boolean if devise_mapping.rememberable?
+              .form-actions style="width:100%"
+                = f.button :submit, "Masuk", class: "submit-btn"
+                - if devise_mapping.registerable?
+                  div style="float:right;padding: 1vh 2vw;color:#222"
+                    = link_to "Daftar akun", new_registration_path(resource_name)
+              br
+              br
+              div align="center" width="100%"
+                - if devise_mapping.omniauthable?
+                  a href="#{omniauth_authorize_path(resource_name, resource_class.omniauth_providers[1])}"
+                    .omniauth-btn
+                      span Sign in menggunakan Google
+
+              br
+          .login-additional-text.col-md-5.col-md-offset-0.col-xs-0
+            br
+            h3 Please Login
+            h6 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt Lorem Ipsum

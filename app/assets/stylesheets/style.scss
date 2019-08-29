@@ -1,7 +1,9 @@
+$mainColor: #7000c7;
+$purpleHover: #7000f7;
+
 html,
 body{
 	height: 100%;
-  background-color: #f0f1f7;
 }
 
 a,
@@ -31,7 +33,7 @@ a:active {
 }
 
 .text-purple{
-	color: #7000c7!important;
+	color: $mainColor !important;
 }
 
 .white{
@@ -71,12 +73,12 @@ a:active {
 .btn-report{
 	border-radius: 4px;
 	padding: 10px 15px;
-  background-color: #7000c7;
+  background-color: $mainColor;
   color: white;
 	transition: 1s all;
 }
 .btn-report:hover{
-  background-color: #7000f7;
+  background-color:$purpleHover;
 	color: white;
 }
 .card:hover{
@@ -91,9 +93,17 @@ a:active {
     border-radius: 100%;
     margin: 1vh 1vw;
   }
+
+/*
+  Style Home
+*/
+
+
 .jumbotron{
 	background-image: url("http://localhost:3000/uploads/background.jpg");
 	background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 	max-height: 300px;
 	min-height: 300px;
 	padding: 0em;
@@ -145,4 +155,68 @@ ul, ol {
 }
 .social-container .col {
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/*
+  Style Registration
+*/
+
+.registration-user{
+  position: relative;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  background-color: #f0f1f7;
+}
+.registration-box{
+  border-radius: 1vw;
+  margin: 0 15vw;
+  padding: 5vh 2vw;
+  background-color: white;
+}
+.login-form{
+  padding: 0vh 2vw;
+}
+.login-additional-text{
+  text-align: center;
+  border-radius: 1vw;
+  padding: 6vh 2vw;
+  left: 16.67%;
+  position: relative;
+  background-color:$mainColor;
+  color: #eee;
+}
+.submit-btn{
+  background-color: $mainColor;
+  color:white;
+  padding: 1vh 4vw;
+}
+.submit-btn:hover{
+  background-color: $purpleHover;
+  color: white;
+}
+.omniauth-btn{
+  background-color: white;
+  box-shadow: 2px 2px 5px #ccc;
+  border-radius: 20px;
+  color: #555;
+  padding: 1.2vh 2vw;
+}
+h1,h2,h3,h4{
+  font-weight: bold;
+}
+ol{
+  padding-inline-start: 15px;
+}
+li{
+  padding-bottom: 10px;
+}
+
+h5{
+  line-height: 1.65;
+  letter-spacing: .2px;
 }

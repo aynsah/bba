@@ -12,79 +12,25 @@ br
 div class="container"
   div class="row"
     div class="col-lg-12 text-center"
-      h4.text-dark Latest Campaign
-	div class="row"
-	  - @campaigns.each do |c|
-    	div class="col-sm-4"
-    	  = link_to c, :class => "custom-card" do
-    	      div class="card h-100 mb-2 mt-2"
-    	        = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
-    	        div class="card-body"
-    	          h5 class="card-title"
-    	            = c.campaign_title
-    	        p class="card-text ml-4 text-muted"
-    	          | Penggalang Dana : 
-    	          = c.user.name
-    	          span>
-    	          = c.user.verified_user ? "(Verified) ": ""
-    	        ul class="list-group list-group-flush"
-    	          li class="list-group-item"
-    	            | Target Donasi : 
-    	            = number_to_currency c.donation_target
+      h4.text-dark Campaign Terbaru
+    - @campaigns.each do |c|
+     	div class="col-sm-4"
+     	  = link_to c, :class => "custom-card" do
+     	      div class="card h-100 mb-2 mt-2"
+     	        = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
+     	        div class="card-body"
+     	          h5 class="card-title"
+     	            = c.campaign_title
+     	        p class="card-text ml-4 text-muted"
+     	          | Penggalang Dana : 
+     	          = c.user.name
+     	          span>
+     	          = c.user.verified_user ? "(Verified) ": ""
+     	        ul class="list-group list-group-flush"
+     	          li class="list-group-item"
+     	            | Target Donasi : 
+     	            = number_to_currency c.donation_target
 	div class="row"
     div class="col-lg-12 mt-5"
       div align="center"
 		    = link_to "Lihat lebih banyak", campaigns_path, :class => "btn btn-outline-secondary mb-4"
-
-footer.section.footer-classic.context-dark style=("background: #7000c7") 
-  .container
-    .row.row-30
-      .col-md-4.col-xl-5.pt-4
-        .pr-xl-4
-          h1.white About Us
-        .pr-xl-4
-          p Kami adalah sebuah website donasi yang bertujuan untuk membantu setiap orang yang membutuhkan bantuan berbentuk donasi. Kami juga menyediakan sebuah wishlist doa yang bisa orang-orang gunakan.
-          /! Rights
-          p.rights
-            span © 
-            span.copyright-year 2019
-            span  
-            span Kelvin and Nathieq
-            span .
-            span &nbsp; All Rights Reserved.
-      .col-md-4.pt-4
-        h5.white Contacts
-        dl.contact-list
-          dt Address:
-          dd Jl. Pasang, No. 22, Cihapit
-        dl.contact-list
-          dt Email :
-          dd
-            a href="#"  bba@email.com
-        dl.contact-list
-          dt Phone :
-          dd +62 8123123123
-      .col-md-4.col-xl-3.pt-4
-        h5.white Links
-        ul.nav-list
-          li
-            a href="#"  Beranda
-          li
-            a href="#"  Campaigns
-          li
-            a href="#"  Wishlist Doa
-          li
-            a href="#"  Cek Resi
-  .row.no-gutters.social-container
-    .col
-      a.social-inner href="#" 
-        span.icon.mdi.mdi-facebook
-        span Facebook
-    .col
-      a.social-inner href="#" 
-        span.icon.mdi.mdi-instagram
-        span instagram
-    .col
-      a.social-inner href="#" 
-        span.icon.mdi.mdi-twitter
-        span twitter

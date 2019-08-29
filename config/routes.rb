@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   resources :donations
   mount Ckeditor::Engine => '/ckeditor'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',registrations: "users/registrations",confirmations: 'users/confirmations' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
+                                    registrations: 'users/registrations',
+                                    confirmations: 'users/confirmations',
+                                    sessions: 'users/sessions',
+                                    passwords: 'users/passwords' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "home#index"
   post 'campaigns/approval/:id', to: 'campaigns#approval', as: 'approve_campaign'
@@ -28,7 +32,6 @@ Rails.application.routes.draw do
   #MONTHLY REPORT
   get 'monthly_product_report/:month', to: "report_products#monthly", as: 'month_product'
   get 'monthly_product_report_export/:month', to: "report_products#export", as: 'month_product_export'
-  
   get 'monthly_donation_report/:month', to: "report_donation#monthly", as: 'month_donation'
   get 'monthly_donation_report_export/:month', to: "report_donation#export", as: 'month_donation_export'
 

@@ -1,0 +1,42 @@
+css:
+  body{
+    overflow:hidden;
+  }
+.container-fluid.registration-user
+  .container
+    .registration-box
+      .row style="height: 100%;"
+          .login-form.col-md-7.col-xs-12
+            h3 Please Login
+            p style="color: #666" Lorem ipsum dolor sit amet
+            = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .form-inputs
+                = f.input :email,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" }
+                = f.input :password,
+                          required: true,
+                          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                          input_html: { autocomplete: "new-password" }
+                = f.input :password_confirmation,
+                          required: true,
+                          input_html: { autocomplete: "new-password" }
+              .form-actions style="width:100%"
+                = f.button :submit, "Daftar", class: "submit-btn"
+                - if devise_mapping.registerable?
+                  div style="float:right;padding: 1vh 2vw;color:#222"
+                    = link_to "Masuk", new_session_path(resource_name)
+
+              br
+              div align="center" width="100%"
+                - if devise_mapping.omniauthable?
+                  a href="#{omniauth_authorize_path(resource_name, resource_class.omniauth_providers[1])}"
+                    .omniauth-btn
+                      span Sign in menggunakan Google
+
+              br
+          .login-additional-text.col-md-5.col-md-offset-0.col-xs-0
+            br
+            h3 Please Login
+            h6 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt Lorem Ipsum

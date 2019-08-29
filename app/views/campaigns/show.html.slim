@@ -1,39 +1,44 @@
 - if @campaign.present? && @campaign.status == "approved"
-	div class="container mt-4 mb-4"
-    div class="container mt-4 mb-4"
-      h3= @campaign.campaign_title.titleize
-      p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user.name)
-      br/
-      = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
-      br/
-      br/
-      
-      p= raw @campaign.campaign_desc
-      br/
-      hr/
-      p= raw @campaign.additional_text
+   .container.mt-4.mb-4
+     .row
+       .col-md-8
+         .content
+           h3= @campaign.campaign_title.titleize
+           p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user.name)
+           br
+           = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_htm => { :alt => "Campaign Image"}
+           br
+           br
+           
+           p= raw @campaign.campaign_desc
+           br
+           hr/
+           p= raw @campaign.additional_text
+           hr
+           p 
+             | Batas waktu : #{@campaign.campaign_timeout}
+             br
+             | Target Donasi : #{number_to_currency(@campaign.donation_target)}
 
-      hr
 
-      p 
-        | Batas waktu : #{@campaign.campaign_timeout}
-        br
-        | Target Donasi : #{number_to_currency(@campaign.donation_target)}
-	
-     	= social_share_button_tag(@campaign.campaign_title)
+       .col-md-4
+         .content align="center"
+           p Tertarik untuk membagikan Campaign ini?
+           = social_share_button_tag(@campaign.campaign_title)
+         .content align="center"
+           p Campaign terlihat mencurigakan? Laporkan sekarang
+           br
+           = link_to "Laporkan Campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id }, class: "btn-report"
+         .content.fixed-content
+           div id="donation-table"
+             = render partial: "donation", locales: {donations: @donations}
 
-      br
-      - if current_user 
-        div id="donation-table"
-          = render partial: "donation", locales: {donations: @donations}
-      - else
-        p Harap login terlebih dahulu untuk memberikan donasi
-      = link_to "Laporkan Campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id}
-      br
-      - if current_user
-        - if current_user.id == @campaign.user_id
-          br
-          = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
+
+       br
+       - if current_user
+         - if current_user.id == @campaign.user_id
+           br
+           = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
 
 - else
     p Campaign ini tidak ada Atau telah dihapus

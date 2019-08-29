@@ -1,11 +1,12 @@
 html,
 body{
 	height: 100%;
+  background-color: #f0f1f7;
 }
 
-a.custom-card,
-a.custom-card:hover {
-  color: inherit;
+a,
+a:hover,
+a:active {
   text-decoration: none;
 }
 
@@ -35,4 +36,54 @@ a.custom-card:hover {
 
 .pointer{
 	cursor: pointer;
+}
+#donation-table{
+  min-height: 75vh;
+  height: 75vh;
+	max-height: 75vh;
+}
+.content{
+	padding:4vh 2vw;
+	margin-bottom: 2vh;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 1px 1px 5px #ccc;
+}
+.fixed-content{
+	position: sticky;
+  top: calc(56px + 1.5rem);
+  overflow: auto;
+}
+.fixed-content::-webkit-scrollbar {
+    width: 0.35em;
+}
+ 
+.fixed-content::-webkit-scrollbar-track {
+}
+.fixed-content::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.btn-report{
+	border-radius: 4px;
+	padding: 10px 15px;
+  background-color: #7000c7;
+  color: white;
+	transition: 1s all;
+}
+.btn-report:hover{
+  background-color: #7000f7;
+	color: white;
+}
+.card:hover{
+	transition: 0.6s all;
+	transform: translateY(-10px);
+}
+.ssb-icon{
+    text-align: center;
+    width: 4vh !important;
+    height: 4vh !important;
+    line-height: calc(4vh + 2px);
+    border-radius: 100%;
+    margin: 1vh 1vw;
 }

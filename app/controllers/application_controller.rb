@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :only_user_and_admin, :only_admin
 
   def put_user_data
-    @datas = [:photo, :address, :phone, :bio]
+    @datas = [:address, :phone, :bio]
     @filled_data_count = @datas.count
   end
 

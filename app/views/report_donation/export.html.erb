@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Donation Amount</Data></Cell>
+        <Cell><Data ss:Type="String">Donator</Data></Cell>
+        <Cell><Data ss:Type="String">Campaign ID</Data></Cell>
+        <Cell><Data ss:Type="String">Donation ID</Data></Cell>
+        <Cell><Data ss:Type="String">Created at</Data></Cell>
+      </Row>
+    <% @reports.each do |report| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= report.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= report.donation_amount %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= report.user.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= report.campaign_id %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= report.order_id %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= report.created_at %></Data></Cell>
+      </Row>
+    <% end %>
+      <Row>
+        <Cell><Data ss:Type="String">Total Donations</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @reports.count %></Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">Total Donation Amount</Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @reports.sum(:donation_amount) %></Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>

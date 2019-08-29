@@ -165,10 +165,11 @@ class CampaignsController < ApplicationController
 
     def set_donation_keys
       $reportdonation.id = $donation.id = Donation.any? ? Donation.last.id + 1 : 1
-      $reportdonation.created_at = $donation.created_at = Date.today.to_s(:number)
+      $reportdonation.created_at = $donation.created_at = Time.now.to_s(:number)
 
       $reportdonation.order_id = $donation.order_id = 
       "Donation-#{$donation.campaign_id}-#{$donation.id}_#{$donation.created_at.to_s(:number)}"
+      puts $donation.order_id
       
     end
 

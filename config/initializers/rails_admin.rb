@@ -26,11 +26,10 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
 
   #CUSTOM LINK
-  #config.navigation_static_links = {
-  #  'Google' => 'http://www.google.com',
-  #  'Home' => 'http://localhost:3000',
-  #}
-  #config.navigation_static_label = "Custom Links"
+  config.navigation_static_links = {
+    'Report Donation' => "http://localhost:3000/monthly_donation_report/#{Date.today.strftime("%B")}"
+  }
+  config.navigation_static_label = " "
 
   config.actions do
     dashboard                     # mandatory

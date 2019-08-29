@@ -1,0 +1,2 @@
+module ReportDonationHelper
+end

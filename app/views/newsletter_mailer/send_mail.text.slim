@@ -1,12 +1,11 @@
-div class="container" align="center"
+div class="container mt-4 mb-4" align="center"
 	div class="card"
-		= image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
 		div class="card-body"
 			div class="row" align="center"
-				h3 #{@campaign.campaign_title.titleize}
+				h3.text-center #{@campaign.campaign_title.titleize}
 				br
-			div class="row" align="center"
-				h5 #{raw @campaign.additional_text}
+			div class="row"
+				= image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
 			hr
 			
 			div class="row"
@@ -14,3 +13,10 @@ div class="container" align="center"
 					| Target Donasi : #{number_to_currency @campaign.donation_target}
 				div class="col-lg-6"
 					| Batas Waktu : #{@campaign.campaign_timeout}
+
+			hr
+
+			div class="row"
+				a.btn.btn-primary.btn-lg.mx-auto href="http://localhost:3000/campaigns/#{@campaign.id}"
+					h5.text-center
+						| Lihat lebih lanjut

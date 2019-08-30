@@ -33,7 +33,7 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.name = auth.info.name
       guest_number = 0
-      while(User.where(:name => user.name).any?)
+      while(User.where(:name => user.name.split.join).any?)
         user.name += "#{guest_number}"
         guest_number += 1
       end

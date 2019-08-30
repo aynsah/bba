@@ -3,7 +3,6 @@ div class="container mt-4 mb-4"
 		div class="col-lg-12"
 			= link_to "Buat Campaign baru", new_campaign_path, :class => "btn btn-primary"
 			button class="btn btn-outline-info ml-2 float-right btn-filter" onclick="show_filter();" Filter
-
 	div class="collapse container col-lg-12" id="collapseExample"
 		= form_tag campaigns_path, :method => 'get' do
 			br/
@@ -34,9 +33,14 @@ div class="container mt-4 mb-4"
 			div class="row"
 				= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-1 ml-2") do 
 	  			 | Submit
+	  			 
+	br
+	br
 
 	div id="search-output-table"
 	  = render partial: "campaign", locales: {campaigns: @campaigns}
 
 	div class="col-lg-12 mt-4" align="center"
   	= will_paginate @campaigns, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, :class => "mx-auto"
+  	
+= render "layouts/footer"

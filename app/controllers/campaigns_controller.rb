@@ -52,19 +52,15 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
-    
-    respond_to do |format|
       if @campaign.save
-        format.html {redirect_to( campaigns_path, 
-                                  notice: 'Campaign telah berhasil dibuat. Silahkan tunggu admin untuk menyetujui'
-                                )}
+        redirect_to( campaigns_path, 
+                     notice: 'Campaign telah berhasil dibuat. Silahkan tunggu admin untuk menyetujui'
+                    )
       else 
         @campaign.valid?
-        format.html {redirect_to( new_campaign_path, 
-                                  alert: @campaign.errors.full_messages[0]
-                                )}
+        flash[:alert] = @campaign.errors.full_messages[0]
+        render :action => :new
       end
-    end
   end
 
   def edit

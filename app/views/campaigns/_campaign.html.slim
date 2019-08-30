@@ -7,7 +7,7 @@
           div class="card h-100"
             = image_tag campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive", :input_html => { :alt => "Campaign Image"}
             div class="card-body"
-              h5 class="card-title"
+              h5 class="card-title text-dark"
                 = campaign.campaign_title.titleize
             p class="card-text ml-4 text-muted"
               | Penggalang Dana : 
@@ -20,7 +20,7 @@
             div class="progress" style="height:3px"
               div class="progress-bar" style="width:#{ current_donation(campaign) }%"
             ul class="list-group list-group-flush"
-              li class="list-group-item"
+              li class="list-group-item purple-text"
                 | Target Donasi : 
                 = number_to_currency campaign.donation_target
   br

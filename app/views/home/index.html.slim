@@ -13,24 +13,29 @@ div class="container"
   div class="row"
     div class="col-lg-12 text-center"
       h4.text-dark Campaign Terbaru
-    - @campaigns.each do |c|
+      br
+    - @campaigns.each do |campaign|
      	div class="col-sm-4"
-     	  = link_to c, :class => "custom-card" do
+     	  = link_to campaign, :class => "custom-card" do
      	      div class="card h-100 mb-2 mt-2"
-     	        = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
+     	        = image_tag campaign.image_campaign.url, height: "200px", :class=>"card-img-top", :input_html => { :alt => "Campaign Image"}
      	        div class="card-body"
-     	          h5 class="card-title"
-     	            = c.campaign_title
+     	          h5 class="card-title text-dark"
+     	            = campaign.campaign_title
      	        p class="card-text ml-4 text-muted"
      	          | Penggalang Dana : 
-     	          = c.user.name
+     	          = campaign.user.name
      	          span>
-     	          = c.user.verified_user ? "(Verified) ": ""
+     	          = campaign.user.verified_user ? "(Verified) ": ""
+                div class="progress" style="height:3px"
+                  div class="progress-bar" style="width:#{ current_donation(campaign) }%"
      	        ul class="list-group list-group-flush"
-     	          li class="list-group-item"
+     	          li class="list-group-item purple-text"
      	            | Target Donasi : 
-     	            = number_to_currency c.donation_target
+     	            = number_to_currency campaign.donation_target
 	div class="row"
     div class="col-lg-12 mt-5"
       div align="center"
-		    = link_to "Lihat lebih banyak", campaigns_path, :class => "btn btn-outline-secondary mb-4"
+		    = link_to "Lihat lebih banyak", campaigns_path, class: "purple-btn"
+
+= render "layouts/footer"

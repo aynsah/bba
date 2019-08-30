@@ -5,22 +5,43 @@ html,
 body{
 	height: 100%;
 }
-
+footer{
+  margin-top:6vh;
+}
 a,
 a:hover,
 a:active {
   text-decoration: none;
 }
+.bg-purple-top{
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40vh;
+  background-color: $mainColor;
+  position: absolute;
+}
+.purple-text{
+  color: $mainColor;
+  transition: .6s all;
+}
+.purple-text:hover{
+  color: $purpleHover;
+}
 
 .card{
-	-webkit-transition: 0.2s;
- 	transition: 0.2s;
+	-webkit-transition: 0.6s all;
+ 	transition:  0.6s all;
 }
 .card:hover{
-	border-color: rgb(66,139,202);
+	border-color: $purpleHover;
 	border-width: 1px;
-	-webkit-transition: 0.2s;
- 	transition: 0.2s;
+  transform: translateY(-10px);
+	-webkit-transition:  0.6s all;
+  transition: 0.6s all;
+}
+.card:hover{
+  transition: 0.6s all;
 }
 
 .card-img-top{
@@ -54,6 +75,7 @@ a:active {
 	background-color: white;
 	border-radius: 20px;
 	box-shadow: 1px 1px 5px #ccc;
+  z-index: 2;
 }
 .fixed-content{
 	position: sticky;
@@ -70,20 +92,18 @@ a:active {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
-.btn-report{
+.purple-btn{
+  border-radius: 3px;
+  border:none;
 	border-radius: 4px;
 	padding: 10px 15px;
   background-color: $mainColor;
   color: white;
-	transition: 1s all;
+	transition: .6s all;
 }
-.btn-report:hover{
+.purple-btn:hover{
   background-color:$purpleHover;
 	color: white;
-}
-.card:hover{
-	transition: 0.6s all;
-	transform: translateY(-10px);
 }
 .ssb-icon{
     text-align: center;
@@ -93,6 +113,9 @@ a:active {
     border-radius: 100%;
     margin: 1vh 1vw;
   }
+.progress-bar{
+  background-color: $mainColor;
+}
 
 /*
   Style Home
@@ -191,6 +214,8 @@ ul, ol {
   color: #eee;
 }
 .submit-btn{
+  border-radius: 3px;
+  border:none;
   background-color: $mainColor;
   color:white;
   padding: 1vh 4vw;
@@ -215,9 +240,6 @@ h1,h2,h3,h4{
 }
 ol{
   padding-inline-start: 15px;
-}
-li{
-  padding-bottom: 10px;
 }
 
 h5{

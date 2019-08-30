@@ -1,6 +1,6 @@
 .container.mt-4.mb-4
 	h1= @campaign.campaign_title
-	p= link_to "#{@campaign.user.name}", users_index_path(current_user.name)
+	p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user.name.split.join)
 	br/
 	h4 
 	  | Komplain dari user : 
@@ -10,7 +10,7 @@
 	br/
 	h6 
 	  | Dikirim oleh : 
-	  = link_to "#{@complaint.user.name}", users_index_path(current_user.name)
+	  = link_to "#{@complaint.user.name}", users_index_path(@complaint.user.name.split.join)
 	h7
 	  | Dikirim :
 	  = @complaint.created_at

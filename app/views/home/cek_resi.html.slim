@@ -9,6 +9,6 @@
 						| Masukan Order ID
 					= form_tag donation_cek_path(:id), class: "form-inline col-lg-12 mx-auto", :method => 'get' do
 						= text_field_tag :id, nil, placeholder:'Donation-XX-XX_XXXXXXXXX', class: "form-control mt-5 col-lg-12"
-						br
-						= button_tag(type: "submit", class: "btn btn-outline-secondary col-lg-2") do
+
+						= button_tag(type: "submit", class: "submit-btn", style: "margin-top:4vh") do
 							| Submit

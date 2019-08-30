@@ -1,14 +1,25 @@
-div class="container mt-4 mb-4"
-  h2= @doa.title
-  p= @doa.doa_status.status_name
-  
-  p= raw @doa.doa
-  hr
-  p= raw @doa.doa_desc
-  hr
-  p 
-    | Dibuat : 
-    = @doa.created_at
-  p
-    | Berakhir : 
-    = @doa.expired_at
+css:
+  body{
+    background-color: #f0f1f7;
+  }
+.container.mt-4.mb-4
+  .content
+    h2= @doa.title
+    p= @doa.doa_status.status_name
+    
+    p= raw @doa.doa
+    hr
+    p= raw @doa.doa_desc
+    hr
+    p 
+      | Dibuat : 
+      = @doa.created_at
+    p
+      | Berakhir : 
+      = @doa.expired_at
+
+  .content
+    = link_to "Perbaharui Doa", edit_doa_path(@doa)
+
+  .content
+    = link_to "back", :back

@@ -1,18 +1,21 @@
-.container
-  h2 Edit Campaign
+.bg-purple-top
+.container style="position:relative"
+  .content
+    h2 Edit Campaign
 
-  = simple_form_for(@campaign) do |f|
+    = simple_form_for(@campaign) do |f|
 
-    .form-group
-      div id="image-user" onclick="trigger_campaign_file();" style="display:inline-block"
-        = image_tag @campaign.image_campaign.url , height: "200px", label: false, :class=>"card-img-top", :input_html => { :alt => "User Image"}, :id => "img"
-      = f.input :image_campaign, as: :file, input_html: {:style => 'opacity:0', :required => "true"} 
-      = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id,:include_blank => false
-      = f.input :campaign_title, required: true
-      = f.input :donation_target, as: :decimal
-      = f.input :campaign_timeout, as: :date
-      = f.input :campaign_desc, as: :ckeditor, input_html: { class: 'ckeditor'}
-      = f.input :additional_text, as: :ckeditor, input_html: { class: 'ckeditor'}
-      = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
+      .form-group
+        div align="center" style="width:100%"
+            div id="image-user" onclick="trigger_campaign_file();" style="display:inline-block"
+              = image_tag @campaign.image_campaign.url , height: "200px", label: false, :class=>"card-img-top", :input_html => { :alt => "User Image"}, :id => "img"
+            = f.input :image_campaign, as: :file, input_html: {:style => 'opacity:0', :required => "true"} 
+        = f.input :category_id, :collection => Category.all,:label_method => :category_name,:value_method => :id,:include_blank => false
+        = f.input :campaign_title, required: true
+        = f.input :donation_target, as: :decimal
+        = f.input :campaign_timeout, as: :date
+        = f.input :campaign_desc, as: :ckeditor, input_html: { class: 'ckeditor'}
+        = f.input :additional_text, as: :ckeditor, input_html: { class: 'ckeditor'}
+        = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
 
-      = f.submit "Create Campaign"
+        = f.submit "Sunting Campaign", class: "submit-btn"

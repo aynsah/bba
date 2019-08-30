@@ -1,85 +1,91 @@
-div class="container mt-4 mb-4"
-  h2 Profil Saya
-  -if @user.photo?
-    =image_tag @user.photo.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "User Image"}
-  hr
-  p
-    | Username : 
-    = @user.name
-  hr
-  p
-    | Address : 
-    = @user.address != "" && @user.address != nil ? @user.address : "Tidak diketahui"
-  hr
-  p
-    | Phone : 
-    = @user.phone != "" && @user.phone != nil ? @user.phone : "Tidak diketahui"
-  
-  hr
-  p Bio : 
-  p= raw @user.bio != "" && @user.bio != nil ? @user.bio : "Tidak diketahui"
-  hr
-  
-  - if current_user
-    - if current_user.id == @user.id || current_user.admin == true 
-      = link_to "Perbaharui profil", edit_registration_path(current_user)
+css:
+  body{
+    background-color: #f0f1f7;
+  }
+.container.mt-4.mb-4
+  .content
+    h2 Profil Saya
+    -if @user.photo?
+      =image_tag @user.photo.url, height: "100px", :class=>"card-img-top", :input_html => { :alt => "User Image"}
+    hr
+    p
+      | Username : 
+      = @user.name
+    hr
+    p
+      | Address : 
+      = @user.address != "" && @user.address != nil ? @user.address : "Tidak diketahui"
+    hr
+    p
+      | Phone : 
+      = @user.phone != "" && @user.phone != nil ? @user.phone : "Tidak diketahui"
+    
+    hr
+    p Bio : 
+    p= raw @user.bio != "" && @user.bio != nil ? @user.bio : "Tidak diketahui"
+    hr
+    
+    - if current_user
+      - if current_user.id == @user.id || current_user.admin == true 
+        = link_to "Perbaharui profil", edit_registration_path(current_user)
       
-  h2 Campaign Saya
-  div class="row"
-    - @campaigns.each do |c|
-      div class="col-sm-4 mt-4"
-        = link_to c, :class => "custom-card" do
-            div class="card h-100"
-              = image_tag c.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
-              div class="card-body"
-                h5 class="card-title"
-                  = c.campaign_title.titleize
-              p class="card-text ml-4 text-muted"
-                | Penggalang Dana : 
-                = c.user.name
-                - if c.user.verified_user
-                  i &#10003;
-                br/
-                | Status : 
-                = c.status.titleize
-                span
-              ul class="list-group list-group-flush"
-                li class="list-group-item"
-                  | Target Donasi : 
-                  = number_to_currency c.donation_target
-  br
-  br/
-  - if current_user
-    - if current_user.id == @user.id || current_user.admin == true 
-      h2 Komplain yang saya ajukan
-      table
-        tr
-          th width="400" Dibuat Tanggal
-          th width="200" Campaign
-    
-        - @complaints.each do |complaint|
-          tr
-            td= complaint.created_at
-            td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"
+  .content
+    h2 Campaign Saya
+    div class="row"
+      - @campaigns.each do |campaign|
+        div class="col-sm-4 mt-4"
+          = link_to campaign, :class => "custom-card" do
+              div class="card h-100"
+                = image_tag campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_html => { :alt => "Campaign Image"}
+                div class="card-body"
+                  h5 class="card-title text-dark"
+                    = campaign.campaign_title.titleize
+                p class="card-text ml-4 text-muted"
+                  | Penggalang Dana : 
+                  = campaign.user.name
+                  - if campaign.user.verified_user
+                    i &#10003;
+                  br/
+                  | Status : 
+                  = campaign.status.titleize
+                  span
+                div class="progress" style="height:3px"
+                  div class="progress-bar" style="width:#{ current_donation(campaign) }%" 
+                ul class="list-group list-group-flush"
+                  li class="list-group-item purple-text"
+                    | Target Donasi : 
+                    = number_to_currency campaign.donation_target
 
-  br/
-  br/
-  br/
   - if current_user
     - if current_user.id == @user.id || current_user.admin == true 
-      h2 Donasi saya
-      table
-        tr
-          th width="400" Campaign
-          th width="200" Jumlah Donasi
-          th width="200" Status
-          th width="200" Tanggal
-          th width="200" Info
-    
-        - @donations.each do |donation|
+      .content
+        h2 Komplain yang saya ajukan
+        table
           tr
-            td= link_to "#{donation.campaign.campaign_title}", campaign_path(donation.campaign_id)
-            td= number_to_currency(donation.donation_amount)
-            td= donation.donation_status
-            td= donation.created_at.to_date
-            td= link_to "Cek Resi", donation_path(:id => donation.id)
+            th width="400" Dibuat Tanggal
+            th width="200" Campaign
+      
+          - @complaints.each do |complaint|
+            tr
+              td= complaint.created_at
+              td= link_to "#{complaint.campaign.campaign_title}", "/campaigns/#{complaint.campaign_id}"
+
+  - if current_user
+    - if current_user.id == @user.id || current_user.admin == true 
+      .content
+        h2 Donasi saya
+        table
+          tr
+            th width="400" Campaign
+            th width="200" Jumlah Donasi
+            th width="200" Status
+            th width="200" Tanggal
+            th width="200" Info
+      
+          - @donations.each do |donation|
+            tr
+              td= link_to "#{donation.campaign.campaign_title}", campaign_path(donation.campaign_id)
+              td= number_to_currency(donation.donation_amount)
+              td= donation.donation_status
+              td= donation.created_at.to_date
+              td= link_to "Cek Donasi", donation_path(:id => donation.id)

@@ -17,7 +17,7 @@
   <body style="padding-top: 56px;">
     <%= render "layouts/navbar" %>
 
-    <div>
+    <div style="position:relative;z-index:1000;">
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
@@ -27,9 +27,8 @@
     <% end %>
     </div>
 
-    <div class="mt-8 h-100">
+    <div class="mt-4 h-100">
       <%= yield %>
-      <%= render "layouts/footer" %>
     </div>
 
 

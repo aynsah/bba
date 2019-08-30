@@ -1,4 +1,6 @@
-div class="container mt-4 mb-4"
+.bg-purple-top
+.container.mt-4.mb-4 style="position:relative"
+  .content
     h2 Tambahkan doa baru
     = simple_form_for(@doa) do |f|
         .form-group
@@ -8,4 +10,4 @@ div class="container mt-4 mb-4"
             = f.input :expired_at, as: :date, label: 'Target Waktu Pencapaian'
             = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
     
-            = f.submit "Create Campaign"
+            = f.submit "Simpan Doa", class: 'submit-btn'

@@ -1,4 +1,6 @@
-div class="container mt-4 mb-4"
+.bg-purple-top
+.container.mt-4.mb-4 style="position:relative"
+  .content
     h2 Edit Wishlist
     = simple_form_for(@doa) do |f|
       .form-group
@@ -6,4 +8,4 @@ div class="container mt-4 mb-4"
         = f.input :doa, as: :ckeditor, input_html: { class: 'ckeditor'}, label: 'Doa'
         = f.input :doa_desc, as: :ckeditor, input_html: { class: 'ckeditor'}, label: 'Deskripsi Doa'
         = f.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
-        = f.submit "Create Campaign"
+        = f.submit "Sunting Doa", class: "submit-btn"

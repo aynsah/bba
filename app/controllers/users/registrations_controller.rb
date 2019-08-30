@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     guest_number = 0
-    while(User.where(:name => resource.name).any?)
+    while(User.where(:name => resource.name.split.join).any?)
       resource.name += "#{guest_number}"
       guest_number += 1
     end

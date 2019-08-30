@@ -49,9 +49,15 @@ class DoasController < ApplicationController
 
   def create
     @doa = Doa.new(doa_params)
-    @doa.validate!
-    @doa.save
-    redirect_to doas_path
+      if @doa.save
+        redirect_to( doas_path, 
+                     notice: 'Doa berhasil tersimpan'
+                    )
+      else 
+        @doa.valid?
+        flash[:alert] = @doa.errors.full_messages[0]
+        render :action => :new
+      end
   end
 
   def edit

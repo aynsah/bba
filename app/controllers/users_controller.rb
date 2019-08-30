@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
-    if User.where(:name => params[:name]).any?
-      @user = User.where(:name => params[:name]).first
+    if User.where("REPLACE(name,' ','')  = ?", params[:name]).any?
+      @user = User.where("REPLACE(name,' ','')  = ?", params[:name]).first
       @campaigns  =          Campaign.where(:user_id =>  @user.id).order(:created_at)
       @complaints = CampaignComplaint.where(:user_id =>  @user.id).order(:created_at)
       @donations  =          Donation.where(:user_id =>  @user.id).order(:created_at)

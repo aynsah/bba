@@ -1,14 +1,17 @@
 -if Campaign.exists?(params[:campaign_id])
-  .container
-    br/
-    h2 Send a campaign report
-    =simple_form_for @campaign_complaint, :method => :post do |f|
-      .form-group
-        = f.input :complaint_category_id, :collection => ComplaintCategory.all,:label_method => :category_name,:value_method => :id, include_blank: false
-        = f.input :complaint, as: :ckeditor, input_html: { class: 'ckeditor'}
-        = f.input :campaign_id, :as => :hidden, :input_html => { :value => params[:campaign_id] }
+  .bg-purple-top
+  .container style='position:relative'
+    .content
+      br/
+      h2 Send a campaign report
+      br
+      =simple_form_for @campaign_complaint, :method => :post do |f|
+        .form-group
+          = f.input :complaint_category_id, :collection => ComplaintCategory.all,:label_method => :category_name,:value_method => :id, include_blank: false
+          = f.input :complaint, as: :ckeditor, input_html: { class: 'ckeditor'}
+          = f.input :campaign_id, :as => :hidden, :input_html => { :value => params[:campaign_id] }
 
-        = f.submit "Send"
+          = f.submit "Kirim", class: 'submit-btn'
 
 - else
   p Campaign telah habis masa waktu atau telah dihapus oleh admin

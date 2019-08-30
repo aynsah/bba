@@ -10,9 +10,10 @@ css:
        .col-md-8
          .content
            h3= @campaign.campaign_title.titleize
-           p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user.name)
+           p= link_to "#{@campaign.user.name}", users_index_path(@campaign.user.name.split.join)
            br
-           = image_tag @campaign.image_campaign.url, height: "200px", :class=>"card-img-top img-responsive ", :input_htm => { :alt => "Campaign Image"}
+           div align="center"
+             = image_tag @campaign.image_campaign.url, width: "100%", height:"300px", :class=>"card-img-top img-responsive ", :input_htm => { :alt => "Campaign Image"}
            br
            br
            
@@ -30,7 +31,6 @@ css:
          - if current_user
            - if current_user.id == @campaign.user_id
              .content
-               br
                = link_to "Perbaharui Campaign", edit_campaign_path(@campaign)
 
 
@@ -41,12 +41,10 @@ css:
          .content align="center"
            p Campaign terlihat mencurigakan? Laporkan sekarang
            br
-           = link_to "Laporkan Campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id }, class: "btn-report"
+           = link_to "Laporkan Campaign ini", {:controller => "campaign_complaints", :action => "new",:campaign_id => @campaign.id }, class: "purple-btn"
          .content.fixed-content
            div id="donation-table"
              = render partial: "donation", locales: {donations: @donations}
-
-
 
 - else
     p Campaign ini tidak ada Atau telah dihapus

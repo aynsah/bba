@@ -14,14 +14,14 @@ br/
     p Donasi untuk Campaign ini telah ditutup
 br
 hr
-- @donations.each do |donate|
+- @donations.each do |donation|
   p
-  	= link_to "#{donate.user.name}", root_path
+  	= link_to "#{donation.user.name}", users_index_path(donation.user.name.split.join)
   	br
-  	= number_to_currency(donate.donation_amount)
+  	= number_to_currency(donation.donation_amount)
     -if current_user
       -if current_user.admin == true
         br/
         br/
-        = link_to "Refund donasi ini", refund_donation_path(:order_id => donate.order_id), data: { confirm: 'Anda yakin untuk mengembalikan donasi ini?' }
+        = link_to "Refund donasi ini", refund_donation_path(:order_id => donation.order_id), data: { confirm: 'Anda yakin untuk mengembalikan donasi ini?' }
   hr

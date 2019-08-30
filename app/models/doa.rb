@@ -2,6 +2,9 @@ class Doa < ApplicationRecord
   belongs_to :user
   belongs_to :doa_status  
 
+  validates :title, presence: {message: "tidak boleh kosong"}
+  validates :doa, presence: {message: "tidak boleh kosong"}
+
   def self.update_status(current_status, id_doa, user_id)
     doa = Doa.find(id_doa)
     doa.update(current_status)

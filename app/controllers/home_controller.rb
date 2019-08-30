@@ -1,8 +1,12 @@
 class HomeController < ApplicationController
+  include CampaignsHelper
+
 	def index
     check_data
     sign_in(User.find(params[:id]), scope: :user) if params[:id]
-		@campaigns = Campaign.where(:status => "approved").last(3)
+		@campaigns = Campaign.where(:status => "approved")
+                         .order(created_at: :desc)
+                         .last(3)
 		@total = Campaign.where(:status => "approved").count
 	end
 

@@ -85,7 +85,6 @@ $(function(){
   $('#campaign_image_campaign').change(function(){
     var input = this;
     var url = $(this).val();
-    alert(url);
     var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
     if (input.files && input.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) 
      {
